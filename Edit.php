@@ -58,7 +58,7 @@ while ($user_data = mysqli_fetch_array($result)){
   <form action="SignUp.php" method="POST" name="form1">
     <div class="form-group">
       <label>NRP:</label>
-      <input type="text" class="form-control" name="nrp" disabled value=<?php echo $nrp;?>>
+      <input type="text" class="form-control" name="nrp" readonly value=<?php echo $nrp;?>>
     </div>
     <div class="form-group">
       <label>Email:</label>

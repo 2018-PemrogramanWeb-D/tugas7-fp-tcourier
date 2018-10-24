@@ -44,10 +44,28 @@ include('config.php');
     </div>
   </div>
 </nav>
-  
+<!-- .......... -->
 <div class="container">
-<h1>Select Job</h1>
+  <div class="page-header align-center">
+    <h2>Pilih Job</h2>
+  </div>
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-1"></div>
+        <a href="courier.php"> <div class="col-sm-4"> <img src="img/courier.png" class="img-circle img-responsive" alt="Courier"> </div> </a>
+        <div class="col-sm-2"></div>
+        <a href="customer.php"> <div class="col-sm-4"> <img src="img/customer.png" class="img-circle img-responsive" alt="Customer"> </div> </a>
+        <div class="col-sm-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-4"> <a href="courier.php" class="btn btn-info btn-block" role="button">COURIER</a> </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4"> <a href="customer.php" class="btn btn-info btn-block" role="button">CUSTOMER</a> </div>
+        <div class="col-sm-1"></div>
+      </div>
+  </div>
 </div>
-
+<!-- .......... -->
 </body>
 </html>

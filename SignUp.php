@@ -36,34 +36,42 @@
 </nav>
   
 <div class="container">
-  <h2>SignUp TCourier</h2>
-  <form action="SignUp.php" method="POST" name="form1">
-    <div class="form-group">
-      <label>NRP:</label>
-      <input type="number" class="form-control" placeholder="Enter NRP" name="nrp">
-    </div>
-    <div class="form-group">
-      <label>Nama:</label>
-      <input type="text" class="form-control" placeholder="Enter your name" name="email">
-    </div>
-    <div class="form-group">
-      <label>Email:</label>
-      <input type="email" class="form-control" placeholder="Enter email" name="email">
-    </div>
-    <div class="form-group">
-      <label>Password:</label>
-      <input type="password" class="form-control" placeholder="Enter password" name="pwd">
-    </div>
-    <div class="form-group">
-      <label>No HP:</label>
-      <input type="number" class="form-control" placeholder="Enter No HP" name="nohp">
-    </div>
-    <div class="form-group">
-      <label>Line ID:</label>
-      <input type="text" class="form-control" placeholder="Enter Line ID" name="idline">
-    </div>
-    <input type="Submit" class="btn btn-default" name="SignUp">
-  </form>
+  <div class="page-header align-center">
+    <h2>SignUp TCourier</h2>
+  </div>
+  <div class="row">
+        <div class="col-sm-3"></div> 
+        <div class="col-sm-6">
+        <form action="SignUp.php" method="POST" name="form1">
+            <div class="form-group">
+              <label>NRP:</label>
+              <input type="number" class="form-control" placeholder="Enter NRP" name="nrp">
+            </div>
+            <div class="form-group">
+              <label>Nama:</label>
+              <input type="text" class="form-control" placeholder="Enter your name" name="email">
+            </div>
+            <div class="form-group">
+              <label>Email:</label>
+              <input type="email" class="form-control" placeholder="Enter email" name="email">
+            </div>
+            <div class="form-group">
+              <label>Password:</label>
+              <input type="password" class="form-control" placeholder="Enter password" name="pwd">
+            </div>
+            <div class="form-group">
+              <label>No HP:</label>
+              <input type="number" class="form-control" placeholder="Enter No HP" name="nohp">
+            </div>
+            <div class="form-group">
+              <label>Line ID:</label>
+              <input type="text" class="form-control" placeholder="Enter Line ID" name="idline">
+            </div>
+            <input type="Submit" class="btn btn-default" name="SignUp">
+        </form>
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
 </div>
 </body>
 </html>

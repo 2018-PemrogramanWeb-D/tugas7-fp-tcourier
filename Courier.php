@@ -1,3 +1,7 @@
+<?php 
+include('config.php'); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,15 +30,29 @@
         <li><a href="About.html">About</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <!-- <li><a href="SignUp.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
-        <li><a href="Login.html"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <?php
+         if (isset($_SESSION['login_user'])){
+          echo '<li><a href="Edit.php"><span class="glyphicon glyphicon-user"></span>'.$_SESSION['login_user'].'</a></li>';
+          echo '<li><a href="Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
+        }
+        ?>
       </ul>
     </div>
   </div>
 </nav>
   
 <div class="container">
-<h1>Courier</h1>
+  <div class="page-header align-center">
+    <h2>Courier</h2>
+  </div>
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-12"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12"></div>
+      </div>
+  </div>
 </div>
 
 </body>

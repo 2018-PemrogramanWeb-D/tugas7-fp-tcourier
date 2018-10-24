@@ -49,8 +49,17 @@ include('config.php');
 </nav>
   
 <div class="container">
-<h1>Home TCourier</h1>
-lalalayeyeyeye
+  <div class="page-header align-center">
+    <h2>Home</h2>
+  </div>
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-12"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12"></div>
+      </div>
+  </div>
 </div>
 
 </body>

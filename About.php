@@ -50,8 +50,17 @@ include('config.php');
 </nav>
   
 <div class="container">
-<h1>About TCourier</h1>
-bola bola apa yang paling berbahaya??
+  <div class="page-header align-center">
+    <h2>About Us</h2>
+  </div>
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-12"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12"></div>
+      </div>
+  </div>
 </div>
 
 </body>

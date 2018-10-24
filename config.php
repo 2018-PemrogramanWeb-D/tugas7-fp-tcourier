@@ -14,7 +14,7 @@ if(isset($_POST['Update'])){
   $pwd = $_POST['pwd'];
   $nohp = $_POST['nohp'];
   $idline = $_POST['idline'];
-  $result = mysqli_query($mysqli, "UPDATE users SET nrp='$nrp', email=''$email, pwd='$pwd', nohp='$nohp', idline='$idline' WHERE nrp=$nrp");
+  $result = mysqli_query($mysqli, "UPDATE users SET email='$email',pwd='$pwd',nohp='$nohp',idline='$idline' WHERE nrp=$nrp");
 	header("Location: Home.php");
 }
 
@@ -26,7 +26,7 @@ if(isset($_POST['Update'])){
     $idline = $_POST['idline'];
     $result = mysqli_query($mysqli, "INSERT INTO users(nrp,email,pwd,nohp,idline) VALUES('$nrp','$email','$pwd','$nohp','$idline')");
      
-}
+  }
 
   if(isset($_POST['SignIn'])) {
        // username dan password didapat dari form

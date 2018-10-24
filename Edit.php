@@ -1,12 +1,13 @@
-<?php include('config.php');
+<?php 
+include('config.php');
 
-$nrp = $_GET['nrp'];
+$nrp = $_SESSION['login_user'];
 $result = mysqli_query($mysqli, "SELECT * FROM users WHERE nrp=$nrp");
 
-while ($user_data = mysqli_fetch_array($result)) {
+while ($user_data = mysqli_fetch_array($result)){
 	$nrp = $user_data['nrp'];
-    $email = $user_data['email'];
-    $pwd = $user_data['pwd'];
+  $email = $user_data['email'];
+  $pwd = $user_data['pwd'];
 	$nohp = $user_data['nohp'];
 	$idline = $user_data['idline'];
 }
@@ -38,6 +39,11 @@ while ($user_data = mysqli_fetch_array($result)) {
       <ul class="nav navbar-nav">
         <li><a href="Home.php">Home</a></li>
         <li><a href="About.php">About</a></li>
+        <?php
+        if (isset($_SESSION['login_user'])){
+          echo'<li><a href="Job.php">Job</a></li>';
+        }
+        ?>
       </ul>
       <!-- <ul class="nav navbar-nav navbar-right">
         <li class="active" ><a href="SignUp.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -52,7 +58,7 @@ while ($user_data = mysqli_fetch_array($result)) {
   <form action="SignUp.php" method="POST" name="form1">
     <div class="form-group">
       <label>NRP:</label>
-      <input type="number" class="form-control" name="nrp" value=<?php echo $nrp;?>>
+      <input type="text" class="form-control" name="nrp" value=<?php echo $nrp;?>>
     </div>
     <div class="form-group">
       <label>Email:</label>
@@ -64,7 +70,7 @@ while ($user_data = mysqli_fetch_array($result)) {
     </div>
     <div class="form-group">
       <label>No HP:</label>
-      <input type="number" class="form-control" name="nohp" value=<?php echo $nohp;?>>
+      <input type="text" class="form-control" name="nohp" value=<?php echo $nohp;?>>
     </div>
     <div class="form-group">
       <label>Line ID:</label>

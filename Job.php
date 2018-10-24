@@ -1,4 +1,6 @@
-<?php include('config.php') ?>
+<?php 
+include('config.php'); 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,9 +13,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<?php
-     $nama = $_SESSION['login_user'];
-?>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -28,10 +27,19 @@
       <ul class="nav navbar-nav">
         <li><a href="Home.php">Home</a></li>
         <li><a href="About.php">About</a></li>
+        <?php
+        if (isset($_SESSION['login_user'])){
+          echo'<li class="active"><a href="Job.php">Job</a></li>';
+        }
+        ?>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="Edit.php"><span class="glyphicon glyphicon-user"></span> <?php echo "$nama"; ?> </a></li>
-        <li><a href="Login.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <?php
+         if (isset($_SESSION['login_user'])){
+          echo'<li><a href="Edit.php"><span class="glyphicon glyphicon-user"></span> <?php echo $nrp;?> </a></li>';
+          echo'<li><a href="Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
+        }
+        ?>
       </ul> 
     </div>
   </div>

@@ -10,21 +10,24 @@ $mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $d
 
 if(isset($_POST['Update'])){
   $nrp = $_POST['nrp'];
+  $nama = $_POST['nama'];
   $email = $_POST['email'];
   $pwd = $_POST['pwd'];
   $nohp = $_POST['nohp'];
   $idline = $_POST['idline'];
-  $result = mysqli_query($mysqli, "UPDATE users SET email='$email',pwd='$pwd',nohp='$nohp',idline='$idline' WHERE nrp=$nrp");
+  //$sql = "UPDATE MyGuests SET lastname='Doe' WHERE id=2";
+  $result = mysqli_query($mysqli, "UPDATE users SET nama='$nama',email='$email',pwd='$pwd',nohp='$nohp',idline='$idline' WHERE nrp='$nrp'");
 	header("Location: Home.php");
 }
 
   if(isset($_POST['SignUp'])) {
     $nrp = $_POST['nrp'];
+    $nama = $_POST['nama'];
     $email = $_POST['email'];
     $pwd = $_POST['pwd'];
     $nohp = $_POST['nohp'];
     $idline = $_POST['idline'];
-    $result = mysqli_query($mysqli, "INSERT INTO users(nrp,email,pwd,nohp,idline) VALUES('$nrp','$email','$pwd','$nohp','$idline')");
+    $result = mysqli_query($mysqli, "INSERT INTO users(nrp,nama,email,pwd,nohp,idline) VALUES('$nrp','$nama','$email','$pwd','$nohp','$idline')");
      
   }
 

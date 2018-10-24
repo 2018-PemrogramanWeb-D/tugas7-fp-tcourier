@@ -36,8 +36,8 @@ include('config.php');
       <ul class="nav navbar-nav navbar-right">
         <?php
          if (isset($_SESSION['login_user'])){
-          echo'<li><a href="Edit.php"><span class="glyphicon glyphicon-user"></span> <?php echo $nrp;?> </a></li>';
-          echo'<li><a href="Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
+          echo '<li><a href="Edit.php"><span class="glyphicon glyphicon-user"></span>'.$_SESSION['login_user'].'</a></li>';
+          echo '<li><a href="Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
         }
         ?>
       </ul> 

@@ -2,10 +2,12 @@
 include('config.php');
 
 $nrp = $_SESSION['login_user'];
+
 $result = mysqli_query($mysqli, "SELECT * FROM users WHERE nrp=$nrp");
 
 while ($user_data = mysqli_fetch_array($result)){
-	$nrp = $user_data['nrp'];
+  $nrp = $user_data['nrp'];
+  $nama = $user_data['nama'];
   $email = $user_data['email'];
   $pwd = $user_data['pwd'];
 	$nohp = $user_data['nohp'];
@@ -33,7 +35,7 @@ while ($user_data = mysqli_fetch_array($result)){
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">TCourier</a>
+      <a class="navbar-brand">TCourier</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -58,7 +60,11 @@ while ($user_data = mysqli_fetch_array($result)){
   <form action="SignUp.php" method="POST" name="form1">
     <div class="form-group">
       <label>NRP:</label>
-      <input type="text" class="form-control" name="nrp" readonly value=<?php echo $nrp;?>>
+      <input type="text" class="form-control" name="nrp" disabled value=<?php echo $nrp;?>>
+    </div>
+    <div class="form-group">
+      <label>Nama:</label>
+      <input type="text" class="form-control" name="nama" value=<?php echo $nama;?>>
     </div>
     <div class="form-group">
       <label>Email:</label>

@@ -43,6 +43,10 @@
       <input type="number" class="form-control" placeholder="Enter NRP" name="nrp">
     </div>
     <div class="form-group">
+      <label>Nama:</label>
+      <input type="text" class="form-control" placeholder="Enter your name" name="email">
+    </div>
+    <div class="form-group">
       <label>Email:</label>
       <input type="email" class="form-control" placeholder="Enter email" name="email">
     </div>

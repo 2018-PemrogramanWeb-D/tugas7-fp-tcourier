@@ -12,6 +12,11 @@ include('config.php');
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<!-- <?php
+if ($_SESSION['job'] ==  'courier') echo "lol";
+else echo "lil";
+// echo $_SESSION['job'];
+?> -->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -28,8 +33,10 @@ include('config.php');
         <li><a href="About.php">About</a></li>
         <?php
         if (isset($_SESSION['login_user'])){
-          echo'<li><a href="Job.php">Job</a></li>';
-        }
+          if ($_SESSION['job'] ==  'courier') echo '<li><a href="Courier.php">Job</a></li>';
+          else if ($_SESSION['job'] ==  'customer') echo '<li><a href="Customer.php">Job</a></li>';
+          else  echo'<li><a href="Job.php">Job</a></li>';
+      }
         ?>
       </ul>
       <ul class="nav navbar-nav navbar-right">

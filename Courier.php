@@ -26,8 +26,12 @@ include('config.php');
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="Home.html">Home</a></li>
-        <li><a href="About.html">About</a></li>
+        <li><a href="Home.php">Home</a></li>
+        <li><a href="About.php">About</a></li>
+        <?php
+          if ($_SESSION['job'] ==  'courier') echo '<li class="active" ><a href="Courier.php">Job</a></li>';
+          else if ($_SESSION['job'] ==  'customer') echo '<li class="active" ><a href="Customer.php">Job</a></li>';
+        ?>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <?php

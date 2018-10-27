@@ -51,4 +51,18 @@ if(isset($_POST['Update'])){
        }
     }
  
+    if(isset($_POST['job']))
+    {
+      $_SESSION['job'] = $_GET['job'];
+
+    //   if($_SESSION['job'] == 'courier') {
+    //     header("location: job.php");
+    //  }else {
+    //   header("location: home.php");
+    //  }
+
+    }
+    
+
+
 ?>

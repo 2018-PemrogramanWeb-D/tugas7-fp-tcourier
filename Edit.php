@@ -27,6 +27,7 @@ while ($user_data = mysqli_fetch_array($result)){
 
 
 <body>
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -47,10 +48,6 @@ while ($user_data = mysqli_fetch_array($result)){
         }
         ?>
       </ul>
-      <!-- <ul class="nav navbar-nav navbar-right">
-        <li class="active" ><a href="SignUp.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="Login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul> -->
     </div>
   </div>
 </nav>
@@ -65,27 +62,27 @@ while ($user_data = mysqli_fetch_array($result)){
             <form action="SignUp.php" method="POST" name="form1">
               <div class="form-group">
                 <label>NRP:</label>
-                <input type="text" class="form-control" name="nrp" readonly value=<?php echo $nrp;?>>
+                <input type="text" class="form-control" name="nrp" readonly value="<?php echo $nrp;?>">
               </div>
               <div class="form-group">
                 <label>Nama:</label>
-                <input type="text" class="form-control" name="nama" value=<?php echo $nama;?>>
+                <input type="text" class="form-control" name="nama" value="<?php echo $nama;?>">
               </div>
               <div class="form-group">
                 <label>Email:</label>
-                <input type="email" class="form-control" name="email" value=<?php echo $email;?>>
+                <input type="email" class="form-control" name="email" value="<?php echo $email;?>">
               </div>
               <div class="form-group">
                 <label>Password:</label>
-                <input type="password" class="form-control" name="pwd" value=<?php echo $pwd;?>>
+                <input type="password" class="form-control" name="pwd" value="<?php echo $pwd;?>">
               </div>
               <div class="form-group">
                 <label>No HP:</label>
-                <input type="text" class="form-control" name="nohp" value=<?php echo $nohp;?>>
+                <input type="text" class="form-control" name="nohp" value="<?php echo $nohp;?>">
               </div>
               <div class="form-group">
                 <label>Line ID:</label>
-                <input type="text" class="form-control" name="idline" value=<?php echo $idline;?>>
+                <input type="text" class="form-control" name="idline" value="<?php echo $idline;?>">
               </div>
               <input type="Submit" class="btn btn-default" name="Update">
             </form>

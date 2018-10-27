@@ -13,6 +13,9 @@ include('config.php');
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<!-- <?php
+$_SESSION['job'] = $_GET['job'];
+?> -->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -50,22 +53,25 @@ include('config.php');
     <h2>Pilih Job</h2>
   </div>
   <div class="container">
+  <form method="POST" name="formjob">
       <div class="row">
         <div class="col-sm-1"></div>
-        <a href="courier.php"> <div class="col-sm-4"> <img src="img/courier.png" class="img-circle img-responsive" alt="Courier"> </div> </a>
+        <div class="col-sm-4"> COURIER </div>
         <div class="col-sm-2"></div>
-        <a href="customer.php"> <div class="col-sm-4"> <img src="img/customer.png" class="img-circle img-responsive" alt="Customer"> </div> </a>
+        <div class="col-sm-4"> CUSTOMER </div>
         <div class="col-sm-1"></div>
       </div>
       <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-4"> <a href="courier.php" class="btn btn-info btn-block" role="button">COURIER</a> </div>
+        <a type="submit" name="job" href="job.php?job=courier"> <div class="col-sm-4"> <img src="img/courier.png" class="img-circle img-responsive" alt="Courier"> </div> </a>
         <div class="col-sm-2"></div>
-        <div class="col-sm-4"> <a href="customer.php" class="btn btn-info btn-block" role="button">CUSTOMER</a> </div>
-        <div class="col-sm-1"></div>
+        <a type="submit" name="job" href="job.php?job=customer"> <div class="col-sm-4"> <img src="img/customer.png" class="img-circle img-responsive" alt="Customer"> </div> </a>
+        <div class="col-sm-1"></div>   
       </div>
+  </form>
   </div>
 </div>
-<!-- .......... -->
+
+    
 </body>
 </html>

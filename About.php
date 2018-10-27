@@ -29,8 +29,10 @@ include('config.php');
         <li class="active" ><a href="About.php">About</a></li>
         <?php
         if (isset($_SESSION['login_user'])){
-          echo'<li><a href="Job.php">Job</a></li>';
-        }
+          if ($_SESSION['job'] ==  'courier') echo '<li><a href="Courier.php">Job</a></li>';
+          else if ($_SESSION['job'] ==  'customer') echo '<li><a href="Customer.php">Job</a></li>';
+          else  echo'<li><a href="Job.php">Job</a></li>';
+      }
         ?>
       </ul>
       <ul class="nav navbar-nav navbar-right">

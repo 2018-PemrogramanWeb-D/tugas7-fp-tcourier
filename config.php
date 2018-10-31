@@ -63,6 +63,9 @@ if(isset($_POST['Update'])){
 
     }
     
-
+  if(isset($_POST['customerwilayah']))
+  {
+    $_SESSION['makanan'] = '01';
+  }
 
 ?>

@@ -1,6 +1,7 @@
 <?php 
-include('config.php'); 
-?>
+include('config.php');
+$wilayah = mysqli_query($mysqli, "SELECT * FROM wilayah");
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,12 +53,39 @@ include('config.php');
   <div class="container">
       <div class="row">
         <div class="col-sm-12"></div>
+        <form method="POST">
+          <select name="wil_cust">
+          <?php
+            while ($row_wilayah = $wilayah->fetch_assoc()) 
+            {
+              echo '<option value=" '.$row_wilayah['id_wilayah'].' "> '.$row_wilayah['nama_wilayah'].' </option>';
+            }
+          ?>
+          </select>
+          <input type="submit" name="customerwilayah">
+        </form>
       </div>
       <div class="row">
-        <div class="col-sm-12"></div>
-      </div>
+        <table width='100%' bsorder=1>
+ 
+    <tr>
+        <th>Nama Makanan</th> <th>Harga</th> <th>Deskripsi Makanan</th> <th>Pilih Makanan</th>
+    </tr>
+    <?php  
+    $list_makanan = 'NULL';
+    $list_makanan = $_SESSION['makanan'];
+    $result = mysqli_query($mysqli,"SELECT * FROM makanan WHERE wilayah_makanan = '$list_makanan'");
+    while($row_makanan = mysqli_fetch_array($result)) {
+        echo "<tr>";
+        echo "<td>".$row_makanan['nama_makanan']."</td>";
+        echo "<td>".$row_makanan['harga_makanan']."</td>";
+        echo "<td>".$row_makanan['deskripsi_makanan']."</td>";
+        echo "<td><a href='edit.php?id=$row_makanan[id_makanan]'>Pilih</a></td></tr>"; 
+      
+    }
+    ?>
+    </table>
   </div>
 </div>
-
 </body>
 </html>

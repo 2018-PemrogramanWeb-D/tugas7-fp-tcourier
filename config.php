@@ -53,13 +53,13 @@ if(isset($_POST['Update'])){
  
     if(isset($_POST['job']))
     {
-      $_SESSION['job'] = $_GET['job'];
+      $_SESSION['job'] = $_POST['job'];
 
-    //   if($_SESSION['job'] == 'courier') {
-    //     header("location: job.php");
-    //  }else {
-    //   header("location: home.php");
-    //  }
+      if($_SESSION['job'] == 'courier') {
+        header("location: Courier.php");
+     }else {
+      header("location: Customer.php");
+     }
 
     }
     

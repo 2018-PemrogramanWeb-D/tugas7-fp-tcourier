@@ -14,7 +14,7 @@ include('config.php');
 </head>
 <body>
 <!-- <?php
-$_SESSION['job'] = $_GET['job'];
+echo $_SESSION['job'];
 ?> -->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -56,16 +56,24 @@ $_SESSION['job'] = $_GET['job'];
   <form method="POST" name="formjob">
       <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-4"> COURIER </div>
+        <div class="col-sm-4">
+          <button type="submit" class="btn btn-success btn-block" value="courier" name="job">COURIER</button>
+        </div>
         <div class="col-sm-2"></div>
-        <div class="col-sm-4"> CUSTOMER </div>
+        <div class="col-sm-4">
+          <button type="submit" class="btn btn-success btn-block" value="customer" name="job">CUSTOMER</button>
+        </div>
         <div class="col-sm-1"></div>
       </div>
       <div class="row">
         <div class="col-sm-1"></div>
-        <a type="submit" name="job" href="job.php?job=courier"> <div class="col-sm-4"> <img src="img/courier.png" class="img-circle img-responsive" alt="Courier"> </div> </a>
+        <div class="col-sm-4">
+          <button type="submit" class="btn btn-link" value="courier" name="job"><img src="img/courier.png" class="img-circle img-responsive" alt="Courier"></button>
+        </div> 
         <div class="col-sm-2"></div>
-        <a type="submit" name="job" href="job.php?job=customer"> <div class="col-sm-4"> <img src="img/customer.png" class="img-circle img-responsive" alt="Customer"> </div> </a>
+        <div class="col-sm-4"> 
+          <button type="submit" class="btn btn-link" value="customer" name="job"><img src="img/courier.png" class="img-circle img-responsive" alt="Courier"></button>
+        </div>
         <div class="col-sm-1"></div>   
       </div>
   </form>

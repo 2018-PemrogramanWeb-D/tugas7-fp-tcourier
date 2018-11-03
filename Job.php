@@ -32,7 +32,7 @@ include('config.php');
         if (isset($_SESSION['login_user'])){
           if ($_SESSION['job'] ==  'courier') echo '<li><a href="Courier.php">Job</a></li>';
           else if ($_SESSION['job'] ==  'customer') echo '<li><a href="Customer.php">Job</a></li>';
-          else  echo'<li><a href="Job.php">Job</a></li>';
+          else  echo'<li class="active"><a href="Job.php">Job</a></li>';
       }
         ?>
       </ul>

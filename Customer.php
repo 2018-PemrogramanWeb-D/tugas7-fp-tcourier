@@ -29,8 +29,8 @@ include('config.php');
         <li><a href="Home.php">Home</a></li>
         <li><a href="About.php">About</a></li>
         <?php
-          if ($_SESSION['job'] ==  'courier') echo '<li class="active" ><a href="Courier.php">Job</a></li>';
-          else if ($_SESSION['job'] ==  'customer') echo '<li class="active" ><a href="Customer.php">Job</a></li>';
+          if ($_SESSION['job'] ==  'courier') echo '<li class="active" ><a href="Courier.php">Courier</a></li>';
+          else if ($_SESSION['job'] ==  'customer') echo '<li class="active" ><a href="Customer.php">Customer</a></li>';
         ?>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -47,7 +47,7 @@ include('config.php');
   
 <div class="container">
   <div class="page-header align-center">
-    <h2>Customer</h2>
+    <h1>Customer</h1>
   </div>
   <div class="container">
   <div class="row">
@@ -56,9 +56,9 @@ include('config.php');
         <form method="POST">
           <select name="wil_cust" class="custom-select btn-block" onchange="this.form.submit();">
             <option value="NULL" selected >Select Area...</option>
-            <option value="m">Mulyosari</option>
-            <option value="g">Gebang</option>
-            <option value="k">Keputih</option>
+            <option value="01">Gebang</option>
+            <option value="02">Keputih</option>
+            <option value="03">Mulyosari</option>
           </select>
         </form>
         </div>
@@ -73,28 +73,37 @@ include('config.php');
           </tr>
           </thead>
           <tbody>
-<?php
-  $wil_cust = $_SESSION['wil_cust'];
-  $result = mysqli_query($mysqli, "SELECT * FROM makanan WHERE wilayah_makanan = '$wil_cust' ");
-  
-  if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
-      echo "
-          <tr>
-              <td>".$row["nama_makanan"]."</td> <td>".$row["harga_makanan"]."</td> <td>".$row["deskripsi_makanan"]."</td> <td>lol</td>
-          </tr>";
-    }
-}
-//  else {
-//     echo "0 results";
-// }
-?>
-          
+			<?php
+			  $wil_cust = $_SESSION['wil_cust'];
+			  $result = mysqli_query($mysqli, "SELECT * FROM makanan WHERE wilayah_makanan = '$wil_cust' ");
+			  if ($result->num_rows > 0) {
+			  while($row = $result->fetch_assoc()) {
+			      echo "
+			          <tr>
+			              <td>".$row["nama_makanan"]."</td> <td>".$row["harga_makanan"]."</td> <td>".$row["deskripsi_makanan"]."</td> <td>Pilih</td>
+			          </tr>";
+			    }
+			}
+			?>
           </tbody>
           </table>
-          
       </div>
+    <div class="page-header align-center">
+    	<h3>Pesanan</h3>
+  	</div>
+  	<form name="pesanan_makanan" method="post">
+  	 <table width='100%' class="table table-hover">
+  		<thead>
+          <tr>
+              <th>Nama Makanan</th> <th>Harga</th> <th>Jumlah</th>
+          </tr>
+         </thead>
+         <tbody>
+         	
+         </tbody>
+     </table>
+     <input type="Submit" class="btn btn-default" name="submitpesanan">
+  	</form>
 </div>
 </body>
 </html>

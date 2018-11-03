@@ -1,10 +1,7 @@
 <?php 
 include('config.php');
-
 $nrp = $_SESSION['login_user'];
-
 $result = mysqli_query($mysqli, "SELECT * FROM users WHERE nrp=$nrp");
-
 while ($user_data = mysqli_fetch_array($result)){
   $nrp = $user_data['nrp'];
   $nama = $user_data['nama'];
@@ -44,8 +41,10 @@ while ($user_data = mysqli_fetch_array($result)){
         <li><a href="About.php">About</a></li>
         <?php
         if (isset($_SESSION['login_user'])){
-          echo'<li><a href="Job.php">Job</a></li>';
-        }
+          if ($_SESSION['job'] ==  'courier') echo '<li><a href="Courier.php">Courier</a></li>';
+          else if ($_SESSION['job'] ==  'customer') echo '<li><a href="Customer.php">Customer</a></li>';
+          else  echo'<li><a href="Job.php">Job</a></li>';
+      	}
         ?>
       </ul>
     </div>

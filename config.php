@@ -51,8 +51,8 @@ if(isset($_POST['Update'])){
  
     if(isset($_POST['job']))
     {
-      $_SESSION['job'] = $_POST['job'];
-      $_SESSION['wil_cust'] = '';	
+      $_SESSION['wil_cust'] ='';
+      $_SESSION['job'] = $_POST['job'];	
       if($_SESSION['job'] == 'courier') {
         header("location: Courier.php");
      }else {
@@ -61,9 +61,9 @@ if(isset($_POST['Update'])){
 
     }
     
-  if(isset($_POST['wil_cust']))
-  {
-    $_SESSION['wil_cust'] = $_POST['wil_cust'];
-  }
+	 if(isset($_POST['wil_cust']))
+	 {
+	   $_SESSION['wil_cust'] = $_POST['wil_cust'];
+	 }
 
 ?>

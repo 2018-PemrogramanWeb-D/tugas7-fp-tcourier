@@ -29,8 +29,8 @@ include('config.php');
         <li><a href="Home.php">Home</a></li>
         <li><a href="About.php">About</a></li>
         <?php
-          if ($_SESSION['job'] ==  'courier') echo '<li class="active" ><a href="Courier.php">Job</a></li>';
-          else if ($_SESSION['job'] ==  'customer') echo '<li class="active" ><a href="Customer.php">Job</a></li>';
+          if ($_SESSION['job'] ==  'courier') echo '<li class="active" ><a href="Courier.php">Courier</a></li>';
+          else if ($_SESSION['job'] ==  'customer') echo '<li class="active" ><a href="Customer.php">Customer</a></li>';
         ?>
       </ul>
       <ul class="nav navbar-nav navbar-right">

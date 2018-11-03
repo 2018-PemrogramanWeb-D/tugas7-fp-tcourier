@@ -42,7 +42,7 @@
   <div class="row">
         <div class="col-sm-3"></div> 
         <div class="col-sm-6">
-        <form action="SignUp.php" method="POST" name="form1">
+        <form method="POST" name="form1">
             <div class="form-group">
               <label>NRP:</label>
               <input type="number" class="form-control" placeholder="Enter NRP" name="nrp">
@@ -71,7 +71,8 @@
         </form>
         </div>
         <div class="col-sm-3"></div>
-      </div>
+  </div>
+    
 </div>
 </body>
 </html>

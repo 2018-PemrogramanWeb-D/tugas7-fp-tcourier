@@ -1,6 +1,5 @@
 <?php 
 include('config.php');
-$wilayah = mysqli_query($mysqli, "SELECT * FROM wilayah");
 ?> 
 
 <!DOCTYPE html>
@@ -51,41 +50,51 @@ $wilayah = mysqli_query($mysqli, "SELECT * FROM wilayah");
     <h2>Customer</h2>
   </div>
   <div class="container">
-      <div class="row">
-        <div class="col-sm-12"></div>
+  <div class="row">
+  <div class="col-sm-4"></div>
+        <div class="col-sm-4">
         <form method="POST">
-          <select name="wil_cust">
-          <?php
-            while ($row_wilayah = $wilayah->fetch_assoc()) 
-            {
-              echo '<option value=" '.$row_wilayah['id_wilayah'].' "> '.$row_wilayah['nama_wilayah'].' </option>';
-            }
-          ?>
+          <select name="wil_cust" class="custom-select btn-block" onchange="this.form.submit();">
+            <option value="NULL" selected >Select Area...</option>
+            <option value="m">Mulyosari</option>
+            <option value="g">Gebang</option>
+            <option value="k">Keputih</option>
           </select>
-          <input type="submit" name="customerwilayah">
         </form>
-      </div>
-      <div class="row">
-        <table width='100%' bsorder=1>
- 
-    <tr>
-        <th>Nama Makanan</th> <th>Harga</th> <th>Deskripsi Makanan</th> <th>Pilih Makanan</th>
-    </tr>
-    <?php  
-    $list_makanan = 'NULL';
-    $list_makanan = $_SESSION['makanan'];
-    $result = mysqli_query($mysqli,"SELECT * FROM makanan WHERE wilayah_makanan = '$list_makanan'");
-    while($row_makanan = mysqli_fetch_array($result)) {
-        echo "<tr>";
-        echo "<td>".$row_makanan['nama_makanan']."</td>";
-        echo "<td>".$row_makanan['harga_makanan']."</td>";
-        echo "<td>".$row_makanan['deskripsi_makanan']."</td>";
-        echo "<td><a href='edit.php?id=$row_makanan[id_makanan]'>Pilih</a></td></tr>"; 
-      
-    }
-    ?>
-    </table>
+        </div>
+  <div class="col-sm-4"></div>
   </div>
+  
+      <div class="row">
+          <table width='100%' class="table table-hover">
+          <thead>
+          <tr>
+              <th>Nama Makanan</th> <th>Harga</th> <th>Deskripsi Makanan</th> <th>Pilih Makanan</th>
+          </tr>
+          </thead>
+          <tbody>
+<?php
+  $wil_cust = $_SESSION['wil_cust'];
+  $result = mysqli_query($mysqli, "SELECT * FROM makanan WHERE wilayah_makanan = '$wil_cust' ");
+  
+  if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+      echo "
+          <tr>
+              <td>".$row["nama_makanan"]."</td> <td>".$row["harga_makanan"]."</td> <td>".$row["deskripsi_makanan"]."</td> <td>lol</td>
+          </tr>";
+    }
+}
+//  else {
+//     echo "0 results";
+// }
+?>
+          
+          </tbody>
+          </table>
+          
+      </div>
 </div>
 </body>
 </html>

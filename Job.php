@@ -1,5 +1,6 @@
 <?php 
 include('config.php'); 
+// session_start();
 ?>
 
 <!DOCTYPE html>
@@ -52,19 +53,8 @@ echo $_SESSION['job'];
   <div class="page-header align-center">
     <h2>Pilih Job</h2>
   </div>
-  <div class="container">
-  <form method="POST" name="formjob">
-      <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-4">
-          <button type="submit" class="btn btn-success btn-block" value="courier" name="job">COURIER</button>
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4">
-          <button type="submit" class="btn btn-success btn-block" value="customer" name="job">CUSTOMER</button>
-        </div>
-        <div class="col-sm-1"></div>
-      </div>
+  <div action='config.php' class="container">
+  <form method="POST">
       <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-4">

@@ -1,4 +1,5 @@
-<?php include('config.php') ?>
+<?php include('config.php')
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -42,7 +42,7 @@
   <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
-        <form action="Login.php" method="POST">
+        <form method="POST">
           <div class="form-group">
             <label for="email">NRP:</label>
             <input type="number" class="form-control" id="nrp" placeholder="Enter NRP" name="nrp">
@@ -58,7 +58,11 @@
         </form>
         </div>
         <div class="col-sm-3"></div>
+  <div class="row">
+  <!-- <?php echo "<h1>".$Err."</h1>"; ?> -->
   </div>
+  </div>
+    
   </div>
 
 </body>

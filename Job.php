@@ -57,11 +57,11 @@ include('config.php');
       <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-4">
-          <button type="submit" class="btn btn-link" value="courier" name="job"><img src="img/courier.png" class="img-responsive" alt="Courier"></button>
+          <button type="submit" class="btn btn-link" value="courier" name="job"><img src="img/courier.png" class="img-circle img-responsive" alt="Courier"></button>
         </div> 
         <div class="col-sm-2"></div>
         <div class="col-sm-4"> 
-          <button type="submit" class="btn btn-link" value="customer" name="job"><img src="img/customer.png" class="img-responsive" alt="Customer"></button>
+          <button type="submit" class="btn btn-link" value="customer" name="job"><img src="img/courier.png" class="img-circle img-responsive" alt="Courier"></button>
         </div>
         <div class="col-sm-1"></div>   
       </div>

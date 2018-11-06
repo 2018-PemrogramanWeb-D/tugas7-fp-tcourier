@@ -46,9 +46,10 @@ include('config.php');
 </nav>
   
 <div class="container">
-  <div class="page-header align-center">
+  <div class="page-header">
     <h1>Customer</h1>
   </div>
+  <h3>Daftar Menu</h3>
   <div class="container">
   <div class="row">
   <div class="col-sm-4"></div>
@@ -56,10 +57,17 @@ include('config.php');
         <form method="POST">
           <select name="wil_cust" class="custom-select btn-block" onchange="this.form.submit();">
             <option value="NULL" selected >Select Area...</option>
-            <option value="01">Gebang</option>
-            <option value="02">Keputih</option>
-            <option value="03">Mulyosari</option>
-          </select>
+            <?php
+			  $result = mysqli_query($mysqli, "SELECT * FROM wilayah ");
+			  if ($result->num_rows > 0) {
+			  while($row = $result->fetch_assoc()) {
+			      echo "
+			      		<option value='".$row['id_wilayah']."'>".$row['nama_wilayah']."</option>
+			           ";
+			    }
+			}
+			?>
+            </select>
         </form>
         </div>
   <div class="col-sm-4"></div>
@@ -73,26 +81,25 @@ include('config.php');
           </tr>
           </thead>
           <tbody>
-          	<form id=myForm method="POST">
-			<?php
-			  $wil_cust = $_SESSION['wil_cust'];
-			  $result = mysqli_query($mysqli, "SELECT * FROM makanan WHERE wilayah_makanan = '$wil_cust' ");
-			  if ($result->num_rows > 0) {
-			  while($row = $result->fetch_assoc()) {
-			      echo '
-			          <tr>
-			              <td>'.$row["nama_makanan"].'</td> <td>'.$row["harga_makanan"].'</td> <td>'.$row["deskripsi_makanan"].'</td> <td><input type="hidden" name="someName" value="helloworld"><a href="Customer.php" onclick="document.getElementById("myForm").submit();">Pilih</a></td>
-			          </tr>';
-			    }
-			}
-			?>
-			</form>
+          <form id=myForm method="POST">
+        			<?php
+        			  $wil_cust = $_SESSION['wil_cust'];
+        			  $result = mysqli_query($mysqli, "SELECT * FROM makanan WHERE wilayah_makanan = '$wil_cust' ");
+        			  if ($result->num_rows > 0) {
+        			  while($row = $result->fetch_assoc()) {
+        			      echo '
+                        <tr>
+                            <td>'.$row["nama_makanan"].'</td> <td>'.$row["harga_makanan"].'</td> <td>'.$row["deskripsi_makanan"].'</td> <td><input type="submit" name="someName" value="helloworld"><a href="Customer.php" onclick="document.getElementById("myForm").submit();">Pilih</a></td>
+                        </tr>';
+        			    }
+        			}
+        			?> 
+          </form>
           </tbody>
           </table>
-      </div>
-    <div class="page-header align-center">
-    	<h3>Pesanan</h3>
-    	<h4>Id : </h4>
+      
+    <h3>Pesanan</h3>
+    <h4>Id : </h4>
   	</div>
   	<form name="pesanan_makanan" method="post">
   	 <table width='100%' class="table table-hover">
@@ -107,6 +114,6 @@ include('config.php');
      </table>
      <input type="Submit" class="btn btn-default" name="submitpesanan">
   	</form>
-</div>
+  	</div>
 </body>
 </html>

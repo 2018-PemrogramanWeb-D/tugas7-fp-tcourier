@@ -73,23 +73,26 @@ include('config.php');
           </tr>
           </thead>
           <tbody>
+          	<form id=myForm method="POST">
 			<?php
 			  $wil_cust = $_SESSION['wil_cust'];
 			  $result = mysqli_query($mysqli, "SELECT * FROM makanan WHERE wilayah_makanan = '$wil_cust' ");
 			  if ($result->num_rows > 0) {
 			  while($row = $result->fetch_assoc()) {
-			      echo "
+			      echo '
 			          <tr>
-			              <td>".$row["nama_makanan"]."</td> <td>".$row["harga_makanan"]."</td> <td>".$row["deskripsi_makanan"]."</td> <td>Pilih</td>
-			          </tr>";
+			              <td>'.$row["nama_makanan"].'</td> <td>'.$row["harga_makanan"].'</td> <td>'.$row["deskripsi_makanan"].'</td> <td><input type="hidden" name="someName" value="helloworld"><a href="Customer.php" onclick="document.getElementById("myForm").submit();">Pilih</a></td>
+			          </tr>';
 			    }
 			}
 			?>
+			</form>
           </tbody>
           </table>
       </div>
     <div class="page-header align-center">
     	<h3>Pesanan</h3>
+    	<h4>Id : </h4>
   	</div>
   	<form name="pesanan_makanan" method="post">
   	 <table width='100%' class="table table-hover">

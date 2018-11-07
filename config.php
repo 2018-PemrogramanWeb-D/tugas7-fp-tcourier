@@ -51,11 +51,15 @@ if(isset($_POST['Update'])){
  
     if(isset($_POST['job']))
     {
+      $nrpjob = $_SESSION['login_user'];
       $_SESSION['wil_cust'] ='';
       $_SESSION['job'] = $_POST['job'];	
       if($_SESSION['job'] == 'courier') {
+        // $result = mysqli_query($mysqli, "INSERT INTO courier(nrp_courier) VALUES((SELECT nrp FROM users WHERE nrp= '$nrpjob'))");
+        $_SESSION['wil_cour'] = '';
         header("location: Courier.php");
      }else {
+      $result = mysqli_query($mysqli, "INSERT INTO customer(nrp_customer) VALUES((SELECT nrp FROM users WHERE nrp= '$nrpjob'))");
       header("location: Customer.php");
      }
 
@@ -65,5 +69,10 @@ if(isset($_POST['Update'])){
 	 {
 	   $_SESSION['wil_cust'] = $_POST['wil_cust'];
 	 }
+
+    if(isset($_POST['wil_cour']))
+   {
+     $_SESSION['wil_cour'] = $_POST['wil_cour'];
+   }
 
 ?>

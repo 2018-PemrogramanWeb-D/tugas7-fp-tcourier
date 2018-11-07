@@ -49,7 +49,7 @@
             </div>
             <div class="form-group">
               <label>Nama:</label>
-              <input type="text" class="form-control" placeholder="Enter your name" name="email">
+              <input type="text" class="form-control" placeholder="Enter your name" name="name">
             </div>
             <div class="form-group">
               <label>Email:</label>

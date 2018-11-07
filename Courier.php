@@ -47,16 +47,53 @@ include('config.php');
   
 <div class="container">
   <div class="page-header align-center">
-    <h2>Courier</h2>
+    <h2>Courier [selesaikan customer dahulu]</h2>
   </div>
-  <div class="container">
-      <div class="row">
-        <div class="col-sm-12"></div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12"></div>
-      </div>
+  setelah submit wilayah ,div pilih wilayah courier di hidden
+  <div class="col-sm-4">
+        <form method="POST">
+          <select name="wil_cust" class="custom-select btn-block">
+            <option value="NULL" selected >Select Area...</option>
+            <?php
+              $result = mysqli_query($mysqli, "SELECT * FROM wilayah ");
+              if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "
+                        <option value='".$row['id_wilayah']."'>".$row['nama_wilayah']."</option>
+                         ";
+                  }
+              }
+            ?>
+            </select>
+            <input type="submit" name="wil_cour" class="btn btn-primary">
+        </form>
   </div>
+
+  <div class="row">
+          <table width='100%' class="table table-hover">
+          <thead>
+          <tr>
+              <th>Nama Makanan</th> <th>Harga</th> <th>Deskripsi Makanan</th> <th>Pilih Makanan</th>
+          </tr>
+          </thead>
+          <tbody>
+          <form id=myForm method="POST">
+              <?php
+                $wil_cour = $_SESSION['wil_cour'];
+                $result = mysqli_query($mysqli, "SELECT * FROM makanan WHERE wilayah_makanan = '$wil_cour' ");
+                if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo '
+                        <tr>
+                            <td>'.$row["nama_makanan"].'</td> <td>'.$row["harga_makanan"].'</td> <td>'.$row["deskripsi_makanan"].'</td> <td><input type="submit" name="someName" value="helloworld"><a href="Customer.php" onclick="document.getElementById("myForm").submit();">Pilih</a></td>
+                        </tr>';
+                  }
+              }
+              ?> 
+          </form>
+          </tbody>
+          </table>
+  <div>
 </div>
 
 </body>

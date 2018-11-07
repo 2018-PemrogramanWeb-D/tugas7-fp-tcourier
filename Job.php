@@ -52,23 +52,75 @@ include('config.php');
   <div class="page-header align-center">
     <h2>Pilih Job</h2>
   </div>
-  <div action='config.php' class="container">
-  <form method="POST">
+  <div class="container">
+<!--   <form method="POST"> -->
       <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-4">
-          <button type="submit" class="btn btn-link" value="courier" name="job"><img src="img/courier.png" class="img-circle img-responsive" alt="Courier"></button>
+          <button type="submit" class="btn btn-link" value="courier" name="job1"><img src="img/courier.png" class="img-circle img-responsive" alt="Courier" data-toggle="modal" data-target="#myModalcourier"></button>
         </div> 
         <div class="col-sm-2"></div>
         <div class="col-sm-4"> 
-          <button type="submit" class="btn btn-link" value="customer" name="job"><img src="img/courier.png" class="img-circle img-responsive" alt="Courier"></button>
+          <button type="submit" class="btn btn-link" value="customer" name="job1"><img src="img/courier.png" class="img-circle img-responsive" alt="Courier" data-toggle="modal" data-target="#myModalcustomer"></button>
         </div>
         <div class="col-sm-1"></div>   
       </div>
-  </form>
+<!--   </form> -->
   </div>
 </div>
 
     
 </body>
+<!-- The Modal -->
+  <div class="modal" id="myModalcustomer">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h2 class="modal-title">Alert!!!</h2>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Apakah yakin ingin melanjutkan sebagai customer...???
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <form method="post">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" value="customer" name="job" class="btn btn-primary submitBtn">Lanjutkan</button> 
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="myModalcourier">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h2 class="modal-title">Alert!!!</h2>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Apakah yakin ingin melanjutkan sebagai courier ...???
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <form method="post">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" value="courier" name="job" class="btn btn-primary submitBtn">Lanjutkan</button> 
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
 </html>

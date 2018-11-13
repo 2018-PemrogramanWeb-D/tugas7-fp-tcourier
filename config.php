@@ -60,6 +60,7 @@ if(isset($_POST['Update'])){
         header("location: Courier.php");
      }else {
       $result = mysqli_query($mysqli, "INSERT INTO customer(nrp_customer) VALUES((SELECT nrp FROM users WHERE nrp= '$nrpjob'))");
+      $result = mysqli_query($mysqli, "INSERT INTO pesanan(nrp_pemesan) VALUES((SELECT nrp_customer FROM customer WHERE nrp_customer= '$nrpjob'))");
       header("location: Customer.php");
      }
 

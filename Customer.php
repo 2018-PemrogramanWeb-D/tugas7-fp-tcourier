@@ -77,7 +77,7 @@ include('config.php');
           <table width='100%' class="table table-hover">
           <thead>
           <tr>
-              <th>Nama Makanan</th> <th>Harga</th> <th>Deskripsi Makanan</th> <th>Pilih Makanan</th>
+              <th>Nama Makanan</th> <th>Harga</th> <th>Deskripsi Makanan</th><th>Jumlah</th><th>Pilih Makanan</th>
           </tr>
           </thead>
           <tbody>
@@ -89,7 +89,7 @@ include('config.php');
         			  while($row = $result->fetch_assoc()) {
         			      echo '
                         <tr>
-                            <td>'.$row["nama_makanan"].'</td> <td>'.$row["harga_makanan"].'</td> <td>'.$row["deskripsi_makanan"].'</td> <td><input type="submit" name="someName" value="helloworld"><a href="Customer.php" onclick="document.getElementById("myForm").submit();">Pilih</a></td>
+                            <td>'.$row["nama_makanan"].'</td> <td>'.$row["harga_makanan"].'</td> <td>'.$row["deskripsi_makanan"].'</td> <td><input type="text" name="jumlah" value=""></td> <td><input type="hidden" name="pilihmakanan" value=""><a href="Customer.php" onclick="document.getElementById("myForm").submit();">Pilih</a></td>
                         </tr>';
         			    }
         			}
@@ -99,17 +99,26 @@ include('config.php');
           </table>
       
     <h3>Pesanan</h3>
-    <h4>Id : </h4>
+    <?php
+    $nrp_cust= $_SESSION['login_user']; 
+    $result = mysqli_query($mysqli, "SELECT * FROM  pesanan WHERE nrp_pemesan=$nrp_cust ORDER BY id_pesanan DESC LIMIT 1");
+    $row = $result->fetch_assoc();
+    echo '<h4>Id : '.$row['id_pesanan'].'</h4>';  
+    ?>
   	</div>
   	<form name="pesanan_makanan" method="post">
   	 <table width='100%' class="table table-hover">
   		<thead>
           <tr>
-              <th>Nama Makanan</th> <th>Harga</th> <th>Jumlah</th>
+              <th>Nama Makanan</th> <th>Jumlah</th> <th>Harga</th>
           </tr>
          </thead>
          <tbody>
-         	
+         	  <?php
+              $nrp_cust= $_SESSION['login_user'];
+               $result = mysqli_query($mysqli, "SELECT * FROM  list_pesanan WHERE id_pesanan=(SELECT * FROM  pesanan WHERE nrp_pemesan=$nrp_cust ORDER BY id_pesanan DESC LIMIT 1)");
+
+            ?>
          </tbody>
      </table>
      <input type="Submit" class="btn btn-default" name="submitpesanan">

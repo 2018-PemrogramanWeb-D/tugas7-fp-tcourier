@@ -117,7 +117,13 @@ include('config.php');
          	  <?php
               $nrp_cust= $_SESSION['login_user'];
                $result = mysqli_query($mysqli, "SELECT * FROM  list_pesanan WHERE id_pesanan=(SELECT * FROM  pesanan WHERE nrp_pemesan=$nrp_cust ORDER BY id_pesanan DESC LIMIT 1)");
-
+               while($row = $result->fetch_assoc()) {
+                  echo '
+                        <tr>
+                            <td>'.$row["nama_makanan"].'</td> <td>'.$row["harga_makanan"].'</td> <td>'.$row["deskripsi_makanan"].'</td> <td><input type="text" name="jumlah" value=""></td>
+                        </tr>';
+                  }
+               } 
             ?>
          </tbody>
      </table>

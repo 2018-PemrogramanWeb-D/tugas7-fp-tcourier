@@ -110,19 +110,18 @@ include('config.php');
   	 <table width='100%' class="table table-hover">
   		<thead>
           <tr>
-              <th>Nama Makanan</th> <th>Jumlah</th> <th>Harga</th>
+              <th>Nama Makanan</th> <th>Jumlah</th> <th>Total Harga</th>
           </tr>
          </thead>
          <tbody>
          	  <?php
               $nrp_cust= $_SESSION['login_user'];
-               $result = mysqli_query($mysqli, "SELECT * FROM  list_pesanan WHERE id_pesanan=(SELECT * FROM  pesanan WHERE nrp_pemesan=$nrp_cust ORDER BY id_pesanan DESC LIMIT 1)");
+              $result = mysqli_query($mysqli, "SELECT list_pesanan.id_pesanan , makanan.nama_makanan, list_pesanan.jumlah, makanan.harga_makanan*list_pesanan.jumlah as total FROM list_pesanan, makanan, pesanan WHERE list_pesanan.id_pesanan = pesanan.id_pesanan  AND list_pesanan.id_makanan=makanan.id_makanan AND pesanan.id_pesanan=(SELECT pesanan.id_pesanan FROM pesanan WHERE pesanan.nrp_pemesan =$nrp_cust ORDER BY id_pesanan DESC LIMIT 1)");
                while($row = $result->fetch_assoc()) {
                   echo '
                         <tr>
-                            <td>'.$row["nama_makanan"].'</td> <td>'.$row["harga_makanan"].'</td> <td>'.$row["deskripsi_makanan"].'</td> <td><input type="text" name="jumlah" value=""></td>
+                            <td>'.$row["nama_makanan"].'</td> <td>'.$row["jumlah"].'</td> <td>'.$row["total"].'</td>
                         </tr>';
-                  }
                } 
             ?>
          </tbody>

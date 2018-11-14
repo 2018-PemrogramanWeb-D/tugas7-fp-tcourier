@@ -89,7 +89,7 @@ include('config.php');
         			  while($row = $result->fetch_assoc()) {
         			      echo '
                         <tr>
-                            <td>'.$row["nama_makanan"].'</td> <td>'.$row["harga_makanan"].'</td> <td>'.$row["deskripsi_makanan"].'</td> <td><input type="text" name="jumlah" value=""></td> <td><input type="hidden" name="pilihmakanan" value=""><a href="Customer.php" onclick="document.getElementById("myForm").submit();">Pilih</a></td>
+                            <td>'.$row["nama_makanan"].'</td> <td>'.$row["harga_makanan"].'</td> <td>'.$row["deskripsi_makanan"].'</td> <td><input type="text" name="jumlah" value=""></td> <td><input class="btn btn-link" type="submit" name="pilihmakanan" value=""></td>
                         </tr>';
         			    }
         			}

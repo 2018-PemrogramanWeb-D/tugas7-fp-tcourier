@@ -1,10 +1,13 @@
 <?php 
 include('config.php');
-?> 
 
+ 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
   <title>TCourier : Customer</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,7 +80,7 @@ include('config.php');
           <table width='100%' class="table table-hover">
           <thead>
           <tr>
-              <th>Nama Makanan</th> <th>Harga</th> <th>Deskripsi Makanan</th><th>Jumlah</th><th>Pilih Makanan</th>
+              <th>Nama Makanan</th> <th>Harga</th> <th>Deskripsi Makanan</th><th>Pilih Makanan</th>
           </tr>
           </thead>
           <tbody>
@@ -89,7 +92,7 @@ include('config.php');
         			  while($row = $result->fetch_assoc()) {
         			      echo '
                         <tr>
-                            <td>'.$row["nama_makanan"].'</td> <td>'.$row["harga_makanan"].'</td> <td>'.$row["deskripsi_makanan"].'</td> <td><input type="text" name="jumlah" value=""></td> <td><input class="btn btn-link" type="submit" name="pilihmakanan" value=""></td>
+                            <td>'.$row["nama_makanan"].'</td> <td>'.$row["harga_makanan"].'</td> <td>'.$row["deskripsi_makanan"].'</td> <td><a  href=customer.php?id='.$row["id_makanan"].' onclick="return pilih();" >Pilih</a></td>
                         </tr>';
         			    }
         			}
@@ -97,7 +100,11 @@ include('config.php');
           </form>
           </tbody>
           </table>
-      
+
+
+
+
+
     <h3>Pesanan</h3>
     <?php
     $nrp_cust= $_SESSION['login_user']; 
@@ -129,5 +136,26 @@ include('config.php');
      <input type="Submit" class="btn btn-default" name="submitpesanan">
   	</form>
   	</div>
+
+    <script type="text/javascript">
+           
+ function pilih(){
+document.write("<?php
+  $nrp_cust= $_SESSION['login_user'];
+  $id = $_GET['id'];
+  $result = mysqli_query($mysqli, "SELECT makanan.id_makanan, pesanan.id_pesanan FROM makanan, pesanan WHERE makanan.id_makanan = $id and pesanan.id_pesanan =(SELECT pesanan.id_pesanan FROM pesanan WHERE pesanan.nrp_pemesan = $nrp_cust ORDER BY id_pesanan DESC LIMIT 1)");
+
+    $row = $result->fetch_assoc();
+    $id_makanan = $row['id_makanan'];
+    $id_pesanan = $row['id_pesanan'];
+  $result = mysqli_query($mysqli, "INSERT INTO list_pesanan(id_pesanan,id_makanan) VALUES('$id_pesanan','$id_makanan')");
+    header("Location: customer.php");
+    ?>");
+  
+  }
+    
+  </script>
+
+
 </body>
 </html>

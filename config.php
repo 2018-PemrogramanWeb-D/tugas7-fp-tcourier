@@ -1,6 +1,5 @@
 <?php
 session_start();
-$errors = array();
 $databaseHost = 'localhost';
 $databaseName = 'tcourier';
 $databaseUsername = 'root';
@@ -55,7 +54,6 @@ if(isset($_POST['Update'])){
       $_SESSION['wil_cust'] ='';
       $_SESSION['job'] = $_POST['job'];	
       if($_SESSION['job'] == 'courier') {
-        // $result = mysqli_query($mysqli, "INSERT INTO courier(nrp_courier) VALUES((SELECT nrp FROM users WHERE nrp= '$nrpjob'))");
         $_SESSION['wil_cour'] = '';
         header("location: Courier.php");
      }else {
@@ -75,5 +73,28 @@ if(isset($_POST['Update'])){
    {
      $_SESSION['wil_cour'] = $_POST['wil_cour'];
    }
+
+    if(isset($_POST['pilih'])) {
+    $nrp = $_SESSION['login_user'];
+    $id_makanan = $_POST['id_makanan'];
+    
+    $result = mysqli_query($mysqli, "SELECT makanan.id_makanan, pesanan.id_pesanan FROM makanan, pesanan WHERE makanan.id_makanan = $id_makanan and pesanan.id_pesanan = (SELECT pesanan.id_pesanan FROM pesanan WHERE pesanan.nrp_pemesan = $nrp ORDER BY id_pesanan DESC LIMIT 1)");
+
+    $row = $result->fetch_assoc();
+    $id_makanan = $row['id_makanan'];
+    $id_pesanan = $row['id_pesanan'];
+    $jumlah = $_POST['jumlah'];
+    $result = mysqli_query($mysqli, "INSERT INTO list_pesanan (id_pesanan,id_makanan,jumlah) 
+      VALUES('$id_pesanan','$id_makanan','$jumlah')");
+      header("Location: customer.php");
+    }
+
+    if(isset($_POST['remove'])) {
+    $id_makanan = $_POST['id_makanan'];
+    
+    $result = mysqli_query($mysqli, "DELETE FROM list_pesanan WHERE id_makanan = $id_makanan ;");
+    
+    header("Location: customer.php");
+    }
 
 ?>

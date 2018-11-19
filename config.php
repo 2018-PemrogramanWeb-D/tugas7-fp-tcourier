@@ -52,9 +52,10 @@ if(isset($_POST['Update'])){
     {
       $nrpjob = $_SESSION['login_user'];
       $_SESSION['wil_cust'] ='';
+      $_SESSION['wil_cour'] = '';
       $_SESSION['job'] = $_POST['job'];	
       if($_SESSION['job'] == 'courier') {
-        $_SESSION['wil_cour'] = '';
+        $result = mysqli_query($mysqli, "INSERT INTO courier(nrp_courier) VALUES((SELECT nrp FROM users WHERE nrp= '$nrpjob'))");
         header("location: Courier.php");
      }else {
       $result = mysqli_query($mysqli, "INSERT INTO customer(nrp_customer) VALUES((SELECT nrp FROM users WHERE nrp= '$nrpjob'))");

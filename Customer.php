@@ -96,7 +96,7 @@ include('config.php');
                         <form method="POST">
 
                             <td>'.$row["nama_makanan"].'</td>
-                            <td>'.$row["harga_makanan"].'</td>
+                            <td>Rp. '.$row["harga_makanan"].'</td>
                             <td>'.$row["deskripsi_makanan"].'</td>
                             <td> <input type="number" class="col-sm-3" name="jumlah" > </td>
                             <input type="hidden" name="id_makanan" readonly value="'.$row["id_makanan"].'">
@@ -127,7 +127,7 @@ include('config.php');
   	 <table width='100%' class="table table-hover">
   		<thead>
           <tr>
-              <th>Nama Makanan</th> <th>Jumlah</th> <th>Total Harga</th> <th>Drop</th>
+              <th>Nama Makanan</th> <th>Jumlah</th> <th>Total Harga</th> <th>Hapus</th>
           </tr>
          </thead>
          <tbody>
@@ -140,7 +140,7 @@ include('config.php');
                         <form method="POST">
                             <td>'.$row["nama_makanan"].'</td>
                             <td>'.$row["jumlah"].'</td>
-                            <td>'.$row["total"].'</td>
+                            <td>Rp. '.$row["total"].'</td>
                             <input type="hidden" name="id_makanan" readonly value="'.$row["id_makanan"].'">
                             <td><button type="Submit" name="remove" class="btn btn-link"> <span class="glyphicon glyphicon-remove"> </span> </button> </td>
                         </form>

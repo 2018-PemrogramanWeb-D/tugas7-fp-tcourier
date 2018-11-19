@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2018 at 09:22 PM
+-- Generation Time: Nov 19, 2018 at 03:35 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -51,6 +51,7 @@ CREATE TABLE `customer` (
 --
 
 CREATE TABLE `list_pesanan` (
+  `id_list` int(5) NOT NULL,
   `id_makanan` int(3) NOT NULL,
   `id_pesanan` int(3) NOT NULL,
   `jumlah` int(11) NOT NULL
@@ -157,7 +158,7 @@ ALTER TABLE `customer`
 -- Indexes for table `list_pesanan`
 --
 ALTER TABLE `list_pesanan`
-  ADD PRIMARY KEY (`id_makanan`);
+  ADD PRIMARY KEY (`id_list`);
 
 --
 -- Indexes for table `makanan`
@@ -199,7 +200,7 @@ ALTER TABLE `makanan`
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id_pesanan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pesanan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `wilayah`

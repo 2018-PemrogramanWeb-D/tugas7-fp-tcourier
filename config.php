@@ -84,8 +84,8 @@ if(isset($_POST['Update'])){
     $id_makanan = $row['id_makanan'];
     $id_pesanan = $row['id_pesanan'];
     $jumlah = $_POST['jumlah'];
-    $result = mysqli_query($mysqli, "INSERT INTO list_pesanan (id_pesanan,id_makanan,jumlah) 
-      VALUES('$id_pesanan','$id_makanan','$jumlah')");
+    $result = mysqli_query($mysqli, "INSERT INTO list_pesanan (id_list,id_pesanan,id_makanan,jumlah) 
+      VALUES('$id_pesanan$id_makanan','$id_pesanan','$id_makanan','$jumlah')");
       header("Location: customer.php");
     }
 

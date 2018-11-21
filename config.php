@@ -52,10 +52,9 @@ if(isset($_POST['Update'])){
     {
       $nrpjob = $_SESSION['login_user'];
       $_SESSION['wil_cust'] ='';
-      $_SESSION['wil_cour'] = '';
       $_SESSION['job'] = $_POST['job'];	
       if($_SESSION['job'] == 'courier') {
-        $result = mysqli_query($mysqli, "INSERT INTO courier(nrp_courier) VALUES((SELECT nrp FROM users WHERE nrp= '$nrpjob'))");
+        $_SESSION['wil_cour'] = '';
         header("location: Courier.php");
      }else {
       $result = mysqli_query($mysqli, "INSERT INTO customer(nrp_customer) VALUES((SELECT nrp FROM users WHERE nrp= '$nrpjob'))");
@@ -91,11 +90,20 @@ if(isset($_POST['Update'])){
     }
 
     if(isset($_POST['remove'])) {
-    $id_makanan = $_POST['id_makanan'];
+    $id_list = $_POST['id_list'];
     
-    $result = mysqli_query($mysqli, "DELETE FROM list_pesanan WHERE id_makanan = $id_makanan ;");
+    $result = mysqli_query($mysqli, "DELETE FROM list_pesanan WHERE id_list = $id_list ;");
     
     header("Location: customer.php");
+    }
+
+    if(isset($_POST['wil_cour'])) {
+    $nrp = $_SESSION["login_user"];
+    $id_wilayah = $_POST["id_wilayah"];
+    
+    $result = mysqli_query($mysqli, "INSERT INTO courier (nrp_courier, wilayah_courier) VALUES ( '$nrp' , '$id_wilayah') ");
+    
+    header("Location: courier.php");
     }
 
 ?>

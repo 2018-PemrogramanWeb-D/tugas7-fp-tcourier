@@ -11,6 +11,7 @@ include('config.php');
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
@@ -47,12 +48,12 @@ include('config.php');
   
 <div class="container">
   <div class="page-header align-center">
-    <h2>Courier [selesaikan customer dahulu]</h2>
+    <h2>Courier</h2>
   </div>
-  setelah submit wilayah ,div pilih wilayah courier di hidden
-  <div class="col-sm-4">
-        <form method="POST">
-          <select name="wil_cust" class="custom-select btn-block">
+  <div class="row">
+  <div class="col-sm-2">
+        <form method="POST" class="form-inline">
+          <select name="id_wilayah" class="btn btn-default dropdown-toggle">
             <option value="NULL" selected >Select Area...</option>
             <?php
               $result = mysqli_query($mysqli, "SELECT * FROM wilayah ");
@@ -65,27 +66,40 @@ include('config.php');
               }
             ?>
             </select>
-            <input type="submit" name="wil_cour" class="btn btn-primary">
-        </form>
+            
+        
+    </div>
+    <div class="col-sm-10"><input type="submit" name="wil_cour" class="btn btn-default"></div>
+    </form>
   </div>
 
-  <div class="row">
+   <h3>Daftar Menu</h3>
+      <div class="row">
           <table width='100%' class="table table-hover">
           <thead>
           <tr>
-              <th>Nama Makanan</th> <th>Harga</th> <th>Deskripsi Makanan</th> <th>Pilih Makanan</th>
+              <th>Id Pesanan</th><th>Nama Makanan</th> <th>Jumlah</th> <th>Total</th>
           </tr>
           </thead>
           <tbody>
           <form id=myForm method="POST">
               <?php
-                $wil_cour = $_SESSION['wil_cour'];
-                $result = mysqli_query($mysqli, "SELECT * FROM makanan WHERE wilayah_makanan = '$wil_cour' ");
+                $wil_cust = $_SESSION['wil_cust'];
+                $result = mysqli_query($mysqli, "SELECT * FROM makanan WHERE wilayah_makanan = '$wil_cust' ");
                 if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     echo '
                         <tr>
-                            <td>'.$row["nama_makanan"].'</td> <td>'.$row["harga_makanan"].'</td> <td>'.$row["deskripsi_makanan"].'</td> <td><input type="submit" name="someName" value="helloworld"><a href="Customer.php" onclick="document.getElementById("myForm").submit();">Pilih</a></td>
+                        <form method="POST">
+
+                            <td>'.$row["nama_makanan"].'</td>
+                            <td>Rp. '.$row["harga_makanan"].',-</td>
+                            <td>'.$row["deskripsi_makanan"].'</td>
+                            <td> <input min="1" type="number" class="col-sm-3" value="1" name="jumlah" > </td>
+                            <input type="hidden" name="id_makanan" readonly value="'.$row["id_makanan"].'">
+                            <td><input type="Submit" class="btn btn-link" value="Pilih" name="pilih"></td>
+                            
+                        </form>
                         </tr>';
                   }
               }

@@ -53,14 +53,14 @@ include('config.php');
   <div class="page-header">
     <h1>Customer</h1>
   </div>
-  <h3>Daftar Menu</h3>
   <div class="container">
   <div class="row">
-  <div class="col-sm-4"></div>
-        <div class="col-sm-4">
-        <form method="POST">
-          <select name="wil_cust" class="custom-select btn-block" onchange="this.form.submit();">
+  	<div class="btn col-md-2">Pilih Wilayah</div>
+  <div class="col-md-3">
+  	<form method="POST">
+          <select name="wil_cust" class="btn btn-default dropdown-toggle" onchange="this.form.submit();">
             <option value="NULL" selected >Select Area...</option>
+
             <?php
 			  $result = mysqli_query($mysqli, "SELECT * FROM wilayah ");
 			  if ($result->num_rows > 0) {
@@ -73,10 +73,11 @@ include('config.php');
 			?>
             </select>
         </form>
-        </div>
-  <div class="col-sm-4"></div>
   </div>
-  
+        
+  <div class="col-md-8"></div>
+  </div>
+  <h3>Daftar Menu</h3>
       <div class="row">
           <table width='100%' class="table table-hover">
           <thead>
@@ -96,9 +97,9 @@ include('config.php');
                         <form method="POST">
 
                             <td>'.$row["nama_makanan"].'</td>
-                            <td>Rp. '.$row["harga_makanan"].'</td>
+                            <td>Rp. '.$row["harga_makanan"].',-</td>
                             <td>'.$row["deskripsi_makanan"].'</td>
-                            <td> <input type="number" class="col-sm-3" name="jumlah" > </td>
+                            <td> <input min="1" type="number" class="col-sm-3" value="1" name="jumlah" > </td>
                             <input type="hidden" name="id_makanan" readonly value="'.$row["id_makanan"].'">
                             <td><input type="Submit" class="btn btn-link" value="Pilih" name="pilih"></td>
                             
@@ -140,8 +141,8 @@ include('config.php');
                         <form method="POST">
                             <td>'.$row["nama_makanan"].'</td>
                             <td>'.$row["jumlah"].'</td>
-                            <td>Rp. '.$row["total"].'</td>
-                            <input type="hidden" name="id_makanan" readonly value="'.$row["id_makanan"].'">
+                            <td>Rp. '.$row["total"].',-</td>
+                            <input type="hidden" name="id_list" readonly value="'.$row["id_pesanan"].$row["id_makanan"].'">
                             <td><button type="Submit" name="remove" class="btn btn-link"> <span class="glyphicon glyphicon-remove"> </span> </button> </td>
                         </form>
                         </tr>';

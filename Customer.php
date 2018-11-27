@@ -55,9 +55,9 @@ include('config.php');
   </div>
   <div class="container">
   <div class="row">
-  	<div class="btn col-md-2">Pilih Wilayah</div>
   <div class="col-md-3">
   	<form method="POST">
+      Pilih Wilayah : 
           <select name="wil_cust" class="btn btn-default dropdown-toggle" onchange="this.form.submit();">
             <option value="NULL" selected >Select Area...</option>
 
@@ -101,8 +101,7 @@ include('config.php');
                             <td>'.$row["deskripsi_makanan"].'</td>
                             <td> <input min="1" type="number" class="col-sm-3" value="1" name="jumlah" > </td>
                             <input type="hidden" name="id_makanan" readonly value="'.$row["id_makanan"].'">
-                            <td><input type="Submit" class="btn btn-link" value="Pilih" name="pilih"></td>
-                            
+                            <td><input type="Submit" class="btn btn-link" value="Pilih" name="pilih"></td>        
                         </form>
                         </tr>';
         			    }
@@ -111,10 +110,6 @@ include('config.php');
           </form>
           </tbody>
           </table>
-
-
-
-
 
     <h3>Pesanan</h3>
     <?php

@@ -72,8 +72,7 @@ if(isset($_POST['Update'])){
      if(isset($_POST['wil_cour']))
    {
      $_SESSION['wil_cour'] = $_POST['wil_cour'];
-     $idpesanan = "";
-     $count = 0;
+     // $_SESSION["w"] = "";
    }
 
    //  if(isset($_POST['wil_cour']))
@@ -107,10 +106,23 @@ if(isset($_POST['Update'])){
     if(isset($_POST['kurir'])) {
     $nrp = $_SESSION["login_user"];
     $id_wilayah = $_POST["id_wilayah"];
+    $_SESSION["w"] = $_POST["id_wilayah"] ;
     
     $result = mysqli_query($mysqli, "INSERT INTO courier (nrp_courier, wilayah_courier) VALUES ( '$nrp' , '$id_wilayah') ");
     
     header("Location: courier.php");
     }
 
+    if(isset($_POST['acc'])) {
+    $nrp = $_SESSION['login_user'];
+    $id_list = $_POST['id_list'];
+    $result = mysqli_query($mysqli, "UPDATE list_pesanan SET id_courier='$nrp' WHERE id_list='$id_list'");
+    header("Location: courier.php");
+    }
+
+    if(isset($_POST['drop'])) {
+    $id_list = $_POST['id_list'];
+    $result = mysqli_query($mysqli, "UPDATE list_pesanan SET id_courier='0' WHERE id_list='$id_list'");
+    header("Location: courier.php");
+    }
 ?>

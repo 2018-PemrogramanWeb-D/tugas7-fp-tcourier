@@ -50,9 +50,13 @@ include('config.php');
   <div class="page-header align-center">
     <h2>Courier</h2>
   </div>
+
   <div class="row">
+  
   <div class="col-sm-2">
-        <form method="POST" class="form-inline">
+
+        <form method="POST">
+<!-- Pilih Wilayah :  -->
           <select name="wil_cour" class="btn btn-default dropdown-toggle" onchange="this.form.submit();">
             <option value="NULL" selected >Select Area...</option>
             <?php
@@ -75,41 +79,73 @@ include('config.php');
 
    <h3>Daftar Pesanan</h3>
       <div class="row">
-         <form id=myForm method="POST">
-              <?php
-                $wil_cour = $_SESSION['wil_cour'];////////////////////////////////////////////////////
-                $result = mysqli_query($mysqli, "SELECT list_pesanan.id_pesanan, makanan.nama_makanan, makanan.harga_makanan, list_pesanan.jumlah, list_pesanan.id_customer FROM list_pesanan, makanan WHERE list_pesanan.wilayah = '$wil_cour' AND list_pesanan.id_makanan = makanan.id_makanan AND list_pesanan.id_courier = 0  ORDER BY list_pesanan.id_pesanan ASC");
-                if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-
-                    if($idpesanan != $row["id_pesanan"];)
-                    {
-                      if($count != 0){
-                        echo '<input type="Submit" class="btn btn-default" name="acc" value="Sikat">';
-                      }
-                       echo '
-                        <table width='100%' class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>Nama Makanan</th> <th>Harga</th> <th>Jumlah</th> <th>Pemesan</th>
-                        </tr>
-                        </thead>
-                        <tbody>'; 
-                        $count ++;
-                    }
-                    echo '
+            <form name="pesanan_makanan" method="post">
+     <table width='100%' class="table table-hover">
+      <thead>
+          <tr>
+              <th>Pemesan</th> <th>Nama Makanan</th> <th>Jumlah</th>  <th>Total Harga</th> <th>Pilih</th>
+          </tr>
+         </thead>
+         <tbody>
+            <?php
+              // $nrp_cust= $_SESSION['login_user'];
+              $wil_cour = $_SESSION['wil_cour'];
+              $result = mysqli_query($mysqli, "SELECT list_pesanan.id_list ,list_pesanan.id_pesanan, makanan.nama_makanan, makanan.harga_makanan, list_pesanan.jumlah, list_pesanan.id_customer, list_pesanan.jumlah*makanan.harga_makanan as Total FROM list_pesanan, makanan WHERE list_pesanan.wilayah = '$wil_cour' AND list_pesanan.id_makanan = makanan.id_makanan AND list_pesanan.id_courier = 0  ORDER BY list_pesanan.id_pesanan ASC");
+               while($row = $result->fetch_assoc()) {
+                  echo '
                     <tr>
-                            <td>'.$row["nama_makanan"].'</td>
-                            <td>'.$row["jumlah"].'</td>
-                            <td>'.$row["id_customer"].'</td>
-                            <td><button type="Submit" class="btn btn-link"> lol</button> </td>
+                        <td>'.$row["id_customer"].'</td>
+                        <td>'.$row["nama_makanan"].'</td>
+                        <td>'.$row["jumlah"].'</td>
+                        <td>Rp. '.$row["Total"].',-</td>
+                        <input type="hidden" name="id_list" readonly value="'.$row["id_list"].'">
+                        <td><input type="Submit" class="btn btn-link" value="Pilih" name="acc"></td> 
+                        
+                            
                     </tr>';
-                  }
-              }
-              ?> 
-          </form>
+               } 
+            ?>
+         </tbody>
+     </table>
+    </form>
   <div>
 </div>
+
+<h3>Pesanan di ACC</h3>
+    
+    </div>
+    <form name="pesanan_makanan" method="post">
+     <table width='100%' class="table table-hover">
+      <thead>
+          <tr>
+              <th>Pemesan</th> <th>Nama Makanan</th> <th>Jumlah</th>  <th>Total Harga</th> <th>Hapus</th>
+          </tr>
+         </thead>
+         <tbody>
+            <?php
+              $nrp_cour= $_SESSION['login_user'];
+
+              $result = mysqli_query($mysqli, "SELECT list_pesanan.id_list ,list_pesanan.id_pesanan, makanan.nama_makanan, makanan.harga_makanan, list_pesanan.jumlah, list_pesanan.id_customer, list_pesanan.jumlah*makanan.harga_makanan as Total FROM list_pesanan, makanan WHERE list_pesanan.wilayah = '$wil_cour' AND list_pesanan.id_makanan = makanan.id_makanan AND list_pesanan.id_courier = '$nrp_cour'  ORDER BY list_pesanan.id_pesanan ASC");
+               while($row = $result->fetch_assoc()) {
+                  echo '
+                        <tr>
+                        <form method="POST">
+                            <td>'.$row["id_customer"].'</td>
+                            <td>'.$row["nama_makanan"].'</td>
+                            <td>'.$row["jumlah"].'</td>
+                            <td>RP. '.$row["Total"].',-</td>
+                            <input type="hidden" name="id_list" readonly value="'.$row["id_list"].'">
+                            <td><button type="Submit" name="drop" class="btn btn-link"> <span class="glyphicon glyphicon-remove"> </span> </button> </td>
+                        </form>
+                        </tr>';
+               } 
+            ?>
+         </tbody>
+     </table>
+     <input type="Submit" class="btn btn-default" name="submitpesanan" value="Mangkat">
+    </form>
+    </div>
+
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 create database tcourier;
  
-use tcourier
+use tcourier;
 -- phpMyAdmin SQL Dump
 -- version 4.8.2
 -- https://www.phpmyadmin.net/
@@ -71,8 +71,8 @@ CREATE TABLE `list_pesanan` (
   `id_makanan` int(3) UNSIGNED ZEROFILL NOT NULL,
   `id_pesanan` int(5) UNSIGNED ZEROFILL NOT NULL,
   `jumlah` int(11) NOT NULL,
-  `id_customer` int(14) NOT NULL,
-  `id_courier` int(14) NOT NULL,
+  `id_customer` char(14) NOT NULL,
+  `id_courier` char(14) NOT NULL,
   `wilayah` varchar(100) NOT NULL,
   `diterima` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

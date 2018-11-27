@@ -1,7 +1,5 @@
 <?php 
 include('config.php');
-
- 
 ?>
 
 <!DOCTYPE html>
@@ -113,10 +111,11 @@ include('config.php');
 
     <h3>Pesanan</h3>
     <?php
+    
     $nrp_cust= $_SESSION['login_user']; 
     $result = mysqli_query($mysqli, "SELECT * FROM  pesanan WHERE nrp_pemesan=$nrp_cust ORDER BY id_pesanan DESC LIMIT 1");
     $row = $result->fetch_assoc();
-    echo '<h4>Id : '.$row['id_pesanan'].'</h4>';  
+    echo '<h4>Id : '.$row['id_pesanan'] .'</h4>';  
     ?>
   	</div>
   	<form name="pesanan_makanan" method="post">
@@ -129,7 +128,7 @@ include('config.php');
          <tbody>
          	  <?php
               $nrp_cust= $_SESSION['login_user'];
-              $result = mysqli_query($mysqli, "SELECT list_pesanan.id_pesanan ,makanan.id_makanan, makanan.nama_makanan, list_pesanan.jumlah, makanan.harga_makanan*list_pesanan.jumlah as total FROM list_pesanan, makanan, pesanan WHERE list_pesanan.id_pesanan = pesanan.id_pesanan  AND list_pesanan.id_makanan=makanan.id_makanan AND pesanan.id_pesanan=(SELECT pesanan.id_pesanan FROM pesanan WHERE pesanan.nrp_pemesan = $nrp_cust ORDER BY id_pesanan DESC LIMIT 1)");
+              $result = mysqli_query($mysqli, "SELECT list_pesanan.id_pesanan ,makanan.id_makanan, makanan.nama_makanan, list_pesanan.jumlah, makanan.harga_makanan*list_pesanan.jumlah as total FROM list_pesanan, makanan, pesanan WHERE list_pesanan.id_pesanan = pesanan.id_pesanan  AND list_pesanan.id_makanan=makanan.id_makanan AND pesanan.id_pesanan=(SELECT pesanan.id_pesanan FROM pesanan WHERE pesanan.nrp_pemesan = '$nrp_cust' ORDER BY id_pesanan DESC LIMIT 1)");
                while($row = $result->fetch_assoc()) {
                   echo '
                         <tr>

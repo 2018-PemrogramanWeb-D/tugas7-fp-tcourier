@@ -45,7 +45,7 @@
         <form method="POST" name="form1">
             <div class="form-group">
               <label>NRP:</label>
-              <input type="number" class="form-control" placeholder="Enter NRP" name="nrp">
+              <input type="number" min="1" class="form-control" placeholder="Enter NRP" name="nrp">
             </div>
             <div class="form-group">
               <label>Nama:</label>

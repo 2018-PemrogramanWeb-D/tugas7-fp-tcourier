@@ -53,7 +53,7 @@ include('config.php');
   <div class="row">
   <div class="col-sm-2">
         <form method="POST" class="form-inline">
-          <select name="id_wilayah" class="btn btn-default dropdown-toggle">
+          <select name="wil_cour" class="btn btn-default dropdown-toggle" onchange="this.form.submit();">
             <option value="NULL" selected >Select Area...</option>
             <?php
               $result = mysqli_query($mysqli, "SELECT * FROM wilayah ");
@@ -69,44 +69,45 @@ include('config.php');
             
         
     </div>
-    <div class="col-sm-10"><input type="submit" name="wil_cour" class="btn btn-default"></div>
+    <div class="col-sm-3"><input type="submit" name="kurir" class="btn btn-default"></div>
     </form>
   </div>
 
-   <h3>Daftar Menu</h3>
+   <h3>Daftar Pesanan</h3>
       <div class="row">
-          <table width='100%' class="table table-hover">
-          <thead>
-          <tr>
-              <th>Id Pesanan</th><th>Nama Makanan</th> <th>Jumlah</th> <th>Total</th>
-          </tr>
-          </thead>
-          <tbody>
-          <form id=myForm method="POST">
+         <form id=myForm method="POST">
               <?php
-                $wil_cust = $_SESSION['wil_cust'];
-                $result = mysqli_query($mysqli, "SELECT * FROM makanan WHERE wilayah_makanan = '$wil_cust' ");
+                $wil_cour = $_SESSION['wil_cour'];////////////////////////////////////////////////////
+                $result = mysqli_query($mysqli, "SELECT list_pesanan.id_pesanan, makanan.nama_makanan, makanan.harga_makanan, list_pesanan.jumlah, list_pesanan.id_customer FROM list_pesanan, makanan WHERE list_pesanan.wilayah = '$wil_cour' AND list_pesanan.id_makanan = makanan.id_makanan AND list_pesanan.id_courier = 0  ORDER BY list_pesanan.id_pesanan ASC");
                 if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    echo '
-                        <tr>
-                        <form method="POST">
 
+                    if($idpesanan != $row["id_pesanan"];)
+                    {
+                      if($count != 0){
+                        echo '<input type="Submit" class="btn btn-default" name="acc" value="Sikat">';
+                      }
+                       echo '
+                        <table width='100%' class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Nama Makanan</th> <th>Harga</th> <th>Jumlah</th> <th>Pemesan</th>
+                        </tr>
+                        </thead>
+                        <tbody>'; 
+                        $count ++;
+                    }
+                    echo '
+                    <tr>
                             <td>'.$row["nama_makanan"].'</td>
-                            <td>Rp. '.$row["harga_makanan"].',-</td>
-                            <td>'.$row["deskripsi_makanan"].'</td>
-                            <td> <input min="1" type="number" class="col-sm-3" value="1" name="jumlah" > </td>
-                            <input type="hidden" name="id_makanan" readonly value="'.$row["id_makanan"].'">
-                            <td><input type="Submit" class="btn btn-link" value="Pilih" name="pilih"></td>
-                            
-                        </form>
-                        </tr>';
+                            <td>'.$row["jumlah"].'</td>
+                            <td>'.$row["id_customer"].'</td>
+                            <td><button type="Submit" class="btn btn-link"> lol</button> </td>
+                    </tr>';
                   }
               }
               ?> 
           </form>
-          </tbody>
-          </table>
   <div>
 </div>
 

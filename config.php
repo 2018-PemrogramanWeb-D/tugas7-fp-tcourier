@@ -52,6 +52,7 @@ if(isset($_POST['Update'])){
     {
       $nrpjob = $_SESSION['login_user'];
       $_SESSION['wil_cust'] ='';
+      // $wil = '';
       $_SESSION['job'] = $_POST['job'];	
       if($_SESSION['job'] == 'courier') {
         $_SESSION['wil_cour'] = '';
@@ -68,24 +69,30 @@ if(isset($_POST['Update'])){
 	 {
 	   $_SESSION['wil_cust'] = $_POST['wil_cust'];
 	 }
-
-    if(isset($_POST['wil_cour']))
+     if(isset($_POST['wil_cour']))
    {
      $_SESSION['wil_cour'] = $_POST['wil_cour'];
+     $idpesanan = "";
+     $count = 0;
    }
+
+   //  if(isset($_POST['wil_cour']))
+   // {
+   //   $_SESSION['wil_cour'] = $_POST['wil_cour'];
+   // }
 
     if(isset($_POST['pilih'])) {
     $nrp = $_SESSION['login_user'];
     $id_makanan = $_POST['id_makanan'];
-    
+     $wilayah = $_SESSION['wil_cust'];
     $result = mysqli_query($mysqli, "SELECT makanan.id_makanan, pesanan.id_pesanan FROM makanan, pesanan WHERE makanan.id_makanan = $id_makanan and pesanan.id_pesanan = (SELECT pesanan.id_pesanan FROM pesanan WHERE pesanan.nrp_pemesan = $nrp ORDER BY id_pesanan DESC LIMIT 1)");
 
     $row = $result->fetch_assoc();
     $id_makanan = $row['id_makanan'];
     $id_pesanan = $row['id_pesanan'];
     $jumlah = $_POST['jumlah'];
-    $result = mysqli_query($mysqli, "INSERT INTO list_pesanan (id_list,id_pesanan,id_makanan,jumlah) 
-      VALUES('$id_pesanan$id_makanan','$id_pesanan','$id_makanan','$jumlah')");
+    $result = mysqli_query($mysqli, "INSERT INTO list_pesanan (id_list,id_pesanan,id_makanan,jumlah,id_customer,wilayah) 
+      VALUES('$id_pesanan$id_makanan','$id_pesanan','$id_makanan','$jumlah', '$nrp', '$wilayah')");
       header("Location: customer.php");
     }
 
@@ -97,7 +104,7 @@ if(isset($_POST['Update'])){
     header("Location: customer.php");
     }
 
-    if(isset($_POST['wil_cour'])) {
+    if(isset($_POST['kurir'])) {
     $nrp = $_SESSION["login_user"];
     $id_wilayah = $_POST["id_wilayah"];
     

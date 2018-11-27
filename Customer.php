@@ -77,7 +77,7 @@ include('config.php');
         
   <div class="col-md-8"></div>
   </div>
-  <h3>Daftar Menu</h3>
+  <h3>Daftar Menu </h3>
       <div class="row">
           <table width='100%' class="table table-hover">
           <thead>
@@ -150,7 +150,7 @@ include('config.php');
             ?>
          </tbody>
      </table>
-     <input type="Submit" class="btn btn-default" name="submitpesanan">
+     <input type="Submit" class="btn btn-default" name="submitpesanan" value="Pesan">
   	</form>
   	</div>
 

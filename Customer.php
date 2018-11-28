@@ -144,7 +144,7 @@ include('config.php');
             ?>
          </tbody>
      </table>
-     <input type="Submit" class="btn btn-default" name="submitpesanan" value="Pesan">
+     <input type="Submit" class="btn btn-default" name="submitpesanancust" value="Pesan">
   	</form>
   	</div>
 

@@ -142,7 +142,7 @@ include('config.php');
             ?>
          </tbody>
      </table>
-     <input type="Submit" class="btn btn-default" name="submitpesanan" value="Mangkat">
+     <input type="Submit" class="btn btn-default" name="submitpesanancour" value="Berangkat">
     </form>
     </div>
 

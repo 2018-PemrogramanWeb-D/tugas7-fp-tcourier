@@ -64,7 +64,7 @@ include('config.php');
      <table width='100%' class="table table-hover">
       <thead>
           <tr>
-              <th>Nama Makanan</th> <th>Jumlah</th> <th>Total Harga</th> <th>Kurir</th> <th>Status</th> <th>Diterima</th>
+              <th>Nama Makanan</th> <th>Jumlah</th> <th>Total Harga</th> <th>Kurir</th> <th>Status</th>
           </tr>
          </thead>
          <tbody>
@@ -82,11 +82,11 @@ include('config.php');
                             ';
 
                              
-                              if( !$row["diterima"] ) echo "<td>Belum Diterima</td>";
+                              if( $row["diterima"] ==0 ) {echo "<td>Belum Diproses</td>";}
                               else
-                              if( $row["diterima"] = 1 ) echo "<td>Diterima Courier</td>";
+                              if( $row["diterima"] == 1 ) {echo "<td>Sedang Diproses</td>";}
                               else
-                              if( $row["diterima"] = 2 ) echo "<td>Diterima</td>";
+                              if( $row["diterima"] == 2 ) {echo "<td>Diterima</td>";}
                             
 
                         echo  '

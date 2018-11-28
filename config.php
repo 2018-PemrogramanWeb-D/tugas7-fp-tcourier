@@ -126,7 +126,17 @@ if(isset($_POST['Update'])){
     header("Location: courier.php");
     }
 
-    if(isset($_POST['submitpesanan'])) {
-    header("Location: pesanan.php");
+    if(isset($_POST['submitpesanancust'])) {
+    header("Location: pesanancust.php");
+    }
+
+    if(isset($_POST['submitpesanancour'])) {
+    header("Location: pesanancour.php");
+    }
+
+    if(isset($_POST['selesai'])) {
+    $id_list = $_POST['id_list'];
+    $result = mysqli_query($mysqli, "UPDATE list_pesanan SET diterima='2' WHERE id_list='$id_list'");
+    header("Location: pesanancour.php");
     }
 ?>

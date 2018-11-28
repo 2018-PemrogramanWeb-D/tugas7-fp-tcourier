@@ -48,7 +48,7 @@ include('config.php');
   
 <div class="container">
   <div class="page-header align-center">
-    <h2>Courier</h2>
+    <h2>Cok</h2>
   </div>
 
   <div class="row">

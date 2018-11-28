@@ -64,13 +64,13 @@ include('config.php');
      <table width='100%' class="table table-hover">
       <thead>
           <tr>
-              <th>Nama Makanan</th> <th>Jumlah</th> <th>Total Harga</th> <th>Kurir</th>
+              <th>Nama Makanan</th> <th>Jumlah</th> <th>Total Harga</th> <th>Kurir</th> <th>Status</th> <th>Diterima</th>
           </tr>
          </thead>
          <tbody>
             <?php
               $nrp_cust= $_SESSION['login_user'];
-              $result = mysqli_query($mysqli, "SELECT list_pesanan.id_pesanan ,makanan.id_makanan, makanan.nama_makanan, list_pesanan.jumlah, makanan.harga_makanan*list_pesanan.jumlah as total,list_pesanan.id_courier FROM list_pesanan, makanan, pesanan WHERE list_pesanan.id_pesanan = pesanan.id_pesanan  AND list_pesanan.id_makanan=makanan.id_makanan AND pesanan.id_pesanan=(SELECT pesanan.id_pesanan FROM pesanan WHERE pesanan.nrp_pemesan = $nrp_cust ORDER BY id_pesanan DESC LIMIT 1)");
+              $result = mysqli_query($mysqli, "SELECT list_pesanan.id_pesanan ,makanan.id_makanan, makanan.nama_makanan, list_pesanan.jumlah, makanan.harga_makanan*list_pesanan.jumlah as total,list_pesanan.id_courier,list_pesanan.diterima FROM list_pesanan, makanan, pesanan WHERE list_pesanan.id_pesanan = pesanan.id_pesanan  AND list_pesanan.id_makanan=makanan.id_makanan AND pesanan.id_pesanan=(SELECT pesanan.id_pesanan FROM pesanan WHERE pesanan.nrp_pemesan = $nrp_cust ORDER BY id_pesanan DESC LIMIT 1)");
                while($row = $result->fetch_assoc()) {
                   echo '
                         <tr>
@@ -79,11 +79,29 @@ include('config.php');
                             <td>'.$row["jumlah"].'</td>
                             <td>Rp. '.$row["total"].',-</td>
                             <td>'.$row["id_courier"].'</td>
+                            ';
+
+                             
+                              if( !$row["diterima"] ) echo "<td>Belum Diterima</td>";
+                              else
+                              if( $row["diterima"] = 1 ) echo "<td>Diterima Courier</td>";
+                              else
+                              if( $row["diterima"] = 2 ) echo "<td>Diterima</td>";
+                            
+
+                        echo  '
                         </form>
                         </tr>';
                } 
             ?>
-            <tr><td></td><td>Total Bayar :</td><td>Rp. xxx.xxx,-</td><td></td></tr>
+            <!-- <?php
+              $nrp_cust= $_SESSION['login_user'];
+              $result = mysqli_query($mysqli, "SELECT list_pesanan.id_list ,list_pesanan.id_pesanan, makanan.nama_makanan, makanan.harga_makanan, list_pesanan.jumlah, list_pesanan.id_customer, list_pesanan.jumlah*makanan.harga_makanan as Total FROM list_pesanan, makanan WHERE list_pesanan.wilayah = '$wil_cour' AND list_pesanan.id_makanan = makanan.id_makanan AND list_pesanan.id_courier = 0  ORDER BY list_pesanan.id_pesanan ASC");
+               while($row = $result->fetch_assoc()) {
+                  echo '<tr><td></td><td>Total Bayar :</td><td>Rp. xxx.xxx,-</td><td></td></tr>';
+               } 
+            ?> -->
+            
          </tbody>
      </table>
     </div>

@@ -90,8 +90,8 @@ if(isset($_POST['Update'])){
     $id_makanan = $row['id_makanan'];
     $id_pesanan = $row['id_pesanan'];
     $jumlah = $_POST['jumlah'];
-    $result = mysqli_query($mysqli, "INSERT INTO list_pesanan (id_list,id_pesanan,id_makanan,jumlah,id_customer,wilayah) 
-      VALUES('$id_pesanan$id_makanan','$id_pesanan','$id_makanan','$jumlah','$nrp_cust', '$wilayah')");
+    $result = mysqli_query($mysqli, "INSERT INTO list_pesanan (id_list,id_pesanan,id_makanan,jumlah,id_customer,wilayah,id_courier) 
+      VALUES('$id_pesanan$id_makanan','$id_pesanan','$id_makanan','$jumlah','$nrp_cust', '$wilayah', 'Belum Ada')");
       header("Location: customer.php");
     }
 
@@ -116,13 +116,13 @@ if(isset($_POST['Update'])){
     if(isset($_POST['acc'])) {
     $nrp = $_SESSION['login_user'];
     $id_list = $_POST['id_list'];
-    $result = mysqli_query($mysqli, "UPDATE list_pesanan SET id_courier='$nrp' WHERE id_list='$id_list'");
+    $result = mysqli_query($mysqli, "UPDATE list_pesanan SET diterima='1',id_courier='$nrp' WHERE id_list='$id_list'");
     header("Location: courier.php");
     }
 
     if(isset($_POST['drop'])) {
     $id_list = $_POST['id_list'];
-    $result = mysqli_query($mysqli, "UPDATE list_pesanan SET id_courier='0' WHERE id_list='$id_list'");
+    $result = mysqli_query($mysqli, "UPDATE list_pesanan SET diterima='0',id_courier='Belum Ada' WHERE id_list='$id_list'");
     header("Location: courier.php");
     }
 

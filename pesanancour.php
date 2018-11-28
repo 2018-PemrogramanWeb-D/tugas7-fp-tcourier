@@ -30,7 +30,7 @@ include('config.php');
         <li><a href="About.php">About</a></li>
         <?php
         if (isset($_SESSION['login_user'])){
-          echo '<li class="active" ><a href="pesanan.php">Pesanan</a></li>';
+          echo '<li class="active" ><a href="pesanan.php">Pesanan Courier</a></li>';
       }
         ?>
       </ul>

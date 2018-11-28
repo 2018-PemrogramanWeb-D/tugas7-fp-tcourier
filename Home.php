@@ -9,10 +9,16 @@ session_start();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="loader.js"></script>
 </head>
-<body>
+<body onload="myFunction()" style="margin:0;">
+<div id="loader"></div>
+
+
+<div style="display:none;" id="myDiv" class="animate-bottom">
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -50,7 +56,7 @@ session_start();
     </div>
   </div>
 </nav>
-  
+
 <div class="container">
   <div class="page-header align-center">
     <h2>Home</h2>
@@ -63,6 +69,7 @@ session_start();
         <div class="col-sm-12"></div>
       </div>
   </div>
+</div>
 </div>
 
 </body>

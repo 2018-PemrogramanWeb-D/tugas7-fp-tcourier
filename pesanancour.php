@@ -65,7 +65,7 @@ include('config.php');
             <?php
               $nrp_cour= $_SESSION['login_user'];
               $wil_cour = $_SESSION['wil_cour'];
-              $result = mysqli_query($mysqli, "SELECT list_pesanan.id_list ,list_pesanan.id_pesanan, makanan.nama_makanan, makanan.harga_makanan, list_pesanan.jumlah, list_pesanan.id_customer, list_pesanan.jumlah*makanan.harga_makanan as Total FROM list_pesanan, makanan WHERE list_pesanan.wilayah = '$wil_cour' AND list_pesanan.id_makanan = makanan.id_makanan AND list_pesanan.id_courier = '$nrp_cour'  ORDER BY list_pesanan.id_pesanan ASC");
+              $result = mysqli_query($mysqli, "SELECT list_pesanan.id_list ,list_pesanan.id_pesanan, makanan.nama_makanan, makanan.harga_makanan, list_pesanan.jumlah, list_pesanan.id_customer, list_pesanan.jumlah*makanan.harga_makanan as Total FROM list_pesanan, makanan WHERE list_pesanan.diterima != 2 AND list_pesanan.wilayah = '$wil_cour' AND list_pesanan.id_makanan = makanan.id_makanan AND list_pesanan.id_courier = '$nrp_cour'  ORDER BY list_pesanan.id_pesanan ASC");
                while($row = $result->fetch_assoc()) {
                   echo '
                         <tr>
@@ -81,27 +81,10 @@ include('config.php');
                         </tr>';
                } 
             ?>
-            <!-- <?php
-              $nrp_cust= $_SESSION['login_user'];
-              $result = mysqli_query($mysqli, "SELECT list_pesanan.id_list ,list_pesanan.id_pesanan, makanan.nama_makanan, makanan.harga_makanan, list_pesanan.jumlah, list_pesanan.id_customer, list_pesanan.jumlah*makanan.harga_makanan as Total FROM list_pesanan, makanan WHERE list_pesanan.wilayah = '$wil_cour' AND list_pesanan.id_makanan = makanan.id_makanan AND list_pesanan.id_courier = 0  ORDER BY list_pesanan.id_pesanan ASC");
-               while($row = $result->fetch_assoc()) {
-                  echo '<tr><td></td><td>Total Bayar :</td><td>Rp. xxx.xxx,-</td><td></td></tr>';
-               } 
-            ?> -->
             
          </tbody>
      </table>
     </div>
-<!--   </div>
-  <div class="container">
-      <div class="row">
-        <div class="col-sm-12"></div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12"></div>
-      </div>
-  </div>
-</div> -->
 
 </body>
 </html>

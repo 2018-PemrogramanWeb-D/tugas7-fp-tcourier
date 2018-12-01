@@ -72,13 +72,8 @@ if(isset($_POST['Update'])){
      if(isset($_POST['wil_cour']))
    {
      $_SESSION['wil_cour'] = $_POST['wil_cour'];
-     // $_SESSION["w"] = "";
+     
    }
-
-   //  if(isset($_POST['wil_cour']))
-   // {
-   //   $_SESSION['wil_cour'] = $_POST['wil_cour'];
-   // }
 
     if(isset($_POST['pilih'])) {
     $nrp_cust = $_SESSION['login_user'];
@@ -90,8 +85,18 @@ if(isset($_POST['Update'])){
     $id_makanan = $row['id_makanan'];
     $id_pesanan = $row['id_pesanan'];
     $jumlah = $_POST['jumlah'];
+
     $result = mysqli_query($mysqli, "INSERT INTO list_pesanan (id_list,id_pesanan,id_makanan,jumlah,id_customer,wilayah,id_courier) 
-      VALUES('$id_pesanan$id_makanan','$id_pesanan','$id_makanan','$jumlah','$nrp_cust', '$wilayah', 'Belum Ada')");
+    VALUES('$id_pesanan$id_makanan','$id_pesanan','$id_makanan','$jumlah','$nrp_cust', '$wilayah', 'Belum Ada')");
+
+    if (!$result) {
+    $result = mysqli_query($mysqli, "SELECT * FROM list_pesanan WHERE list_pesanan.id_list = '$id_pesanan$id_makanan'");
+    $row = $result->fetch_assoc();
+    $jumlah += $row['jumlah'];
+    mysqli_query($mysqli, "UPDATE list_pesanan SET jumlah='$jumlah' WHERE list_pesanan.id_list = '$id_pesanan$id_makanan' ");
+    }
+
+
       header("Location: customer.php");
     }
 

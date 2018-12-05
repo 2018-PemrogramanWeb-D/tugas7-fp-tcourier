@@ -1,10 +1,9 @@
 <?php
-session_start();
+session_start(); 
 $databaseHost = 'localhost';
 $databaseName = 'tcourier';
 $databaseUsername = 'root';
 $databasePassword = '';
- 
 $mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
 
 if(isset($_POST['Update'])){
@@ -14,8 +13,9 @@ if(isset($_POST['Update'])){
   $pwd = $_POST['pwd'];
   $nohp = $_POST['nohp'];
   $idline = $_POST['idline'];
+  // $_SESSION['login_user'] = $nrp;
   $result = mysqli_query($mysqli, "UPDATE users SET nama='$nama',email='$email',pwd='$pwd',nohp='$nohp',idline='$idline' WHERE nrp='$nrp'");
-	header("Location: Home.php");
+	header("Location: Job.php");
 }
 
   if(isset($_POST['SignUp'])) {
@@ -26,17 +26,18 @@ if(isset($_POST['Update'])){
     $nohp = $_POST['nohp'];
     $idline = $_POST['idline'];
     $result = mysqli_query($mysqli, "INSERT INTO users(nrp,nama,email,pwd,nohp,idline) VALUES('$nrp','$nama','$email','$pwd','$nohp','$idline')");
+    // $_SESSION['page'] = '';
     header("Location: Login.php");
   }
 
   if(isset($_POST['SignIn'])) {
-       
+       // $_SESSION['page'] = 'job';
        $myusername = mysqli_real_escape_string($mysqli,$_POST['nrp']);
        $mypassword = mysqli_real_escape_string($mysqli,$_POST['pwd']); 
        $sql = "SELECT nrp FROM users WHERE nrp = '$myusername' and pwd = '$mypassword'";
        $result = mysqli_query($mysqli,$sql);
        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-       
+       // $_SESSION['current_page'] = '';
        $count = mysqli_num_rows($result);
        $_SESSION['job'] = '';	
        if($count == 1) {
@@ -56,6 +57,8 @@ if(isset($_POST['Update'])){
       $_SESSION['job'] = $_POST['job'];	
       if($_SESSION['job'] == 'courier') {
         $_SESSION['wil_cour'] = '';
+        $_SESSION["fix"] = "";
+        // $_SESSION['daerah_operasi']  = "";
         header("location: Courier.php");
      }else {
       $result = mysqli_query($mysqli, "INSERT INTO customer(nrp_customer) VALUES((SELECT nrp FROM users WHERE nrp= '$nrpjob'))");
@@ -74,6 +77,11 @@ if(isset($_POST['Update'])){
      $_SESSION['wil_cour'] = $_POST['wil_cour'];
      
    }
+        if(isset($_POST['wil_cour_fix']))
+   {
+     // $_SESSION['wil_cour'] = $_POST['wil_cour'];
+     $_SESSION["fix"] = $_SESSION['wil_cour'];
+   }
 
     if(isset($_POST['pilih'])) {
     $nrp_cust = $_SESSION['login_user'];
@@ -85,7 +93,8 @@ if(isset($_POST['Update'])){
     $id_makanan = $row['id_makanan'];
     $id_pesanan = $row['id_pesanan'];
     $jumlah = $_POST['jumlah'];
-
+    if($jumlah != "")
+{
     $result = mysqli_query($mysqli, "INSERT INTO list_pesanan (id_list,id_pesanan,id_makanan,jumlah,id_customer,wilayah,id_courier) 
     VALUES('$id_pesanan$id_makanan','$id_pesanan','$id_makanan','$jumlah','$nrp_cust', '$wilayah', 'Belum Ada')");
 
@@ -95,6 +104,7 @@ if(isset($_POST['Update'])){
     $jumlah += $row['jumlah'];
     mysqli_query($mysqli, "UPDATE list_pesanan SET jumlah='$jumlah' WHERE list_pesanan.id_list = '$id_pesanan$id_makanan' ");
     }
+}
 
 
       header("Location: customer.php");
@@ -144,4 +154,10 @@ if(isset($_POST['Update'])){
     $result = mysqli_query($mysqli, "UPDATE list_pesanan SET diterima='2' WHERE id_list='$id_list'");
     header("Location: pesanancour.php");
     }
+
+    // if(isset($_POST['daerah_operasi'])) {
+    // $_SESSION['daerah_operasi'] = $_SESSION['wil_cour'];
+    
+    // // header("Location: Courier.php");
+    // }
 ?>

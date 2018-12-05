@@ -1,77 +1,79 @@
-<?php 
-include('config.php');
-?>
+<?php  include('config.php');   ?>
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-  <title>TCourier : Pesanan</title>
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="5" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta http-equiv="refresh" content="10" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Pesanan || TCourier</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand">TCourier</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a href="Home.php">Home</a></li>
-        <li><a href="About.php">About</a></li>
-        <?php
-        if (isset($_SESSION['login_user'])){
-          echo '<li class="active" ><a href="pesanan.php">Pesanan Customer</a></li>';
-      }
-        ?>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <?php
-        if (isset($_SESSION['login_user'])){
-          echo '<li><a href="Edit.php"><span class="glyphicon glyphicon-user"></span>'.$_SESSION['login_user'].'</a></li>';
-          echo '<li><a href="Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
-        }
-        else {
-          echo'<li><a href="SignUp.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>';
-          echo'<li><a href="Login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
-        } 
-        ?>
-      </ul>
-    </div>
-  </div>
-</nav>
-  
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="css/grayscale.min.css" rel="stylesheet">
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="Home.php">
+                    <i class="fa fa-play-circle"></i> TC<span class="light">ourier</span>
+                </a>
+            </div>
+
+
+        </div>
+        <!-- /.container -->
+    </nav>
+
+<section id="about" class="container intro">
+<br><br><br><br>
 <div class="container">
   <div class="page-header align-center">
-    <h3>Pesanan</h3>
+    <h2 id="signup">Pesanan</h2>
+  </div>
+  <div class="left">
     <?php
     $nrp_cust= $_SESSION['login_user']; 
     $result = mysqli_query($mysqli, "SELECT * FROM  pesanan WHERE nrp_pemesan=$nrp_cust ORDER BY id_pesanan DESC LIMIT 1");
     $row = $result->fetch_assoc();
     echo '<h4>Id : '.$row['id_pesanan'].'</h4>';  
     ?>
-    </div>
     
-     <table width='100%' class="table table-hover">
+     <table width='100%' class="table">
       <thead>
           <tr>
               <th>Nama Makanan</th> <th>Jumlah</th> <th>Total Harga</th> <th>Kurir</th> <th>Status</th>
           </tr>
          </thead>
          <tbody>
+
             <?php
               $nrp_cust= $_SESSION['login_user'];
               $result = mysqli_query($mysqli, "SELECT list_pesanan.id_pesanan ,makanan.id_makanan, makanan.nama_makanan, list_pesanan.jumlah, makanan.harga_makanan*list_pesanan.jumlah as total,list_pesanan.id_courier,list_pesanan.diterima FROM list_pesanan, makanan, pesanan WHERE list_pesanan.id_pesanan = pesanan.id_pesanan  AND list_pesanan.id_makanan=makanan.id_makanan AND pesanan.id_pesanan=(SELECT pesanan.id_pesanan FROM pesanan WHERE pesanan.nrp_pemesan = $nrp_cust ORDER BY id_pesanan DESC LIMIT 1)");
+               
+              $Totalharga = "0";
                while($row = $result->fetch_assoc()) {
+                $Totalharga += $row["total"];
                   echo '
                         <tr>
                         <form method="POST">
@@ -93,7 +95,14 @@ include('config.php');
                         </form>
                         </tr>';
                } 
+            // $result = mysqli_query($mysqli, "SELECT total FROM list_pesanan WHERE id_pesanan = '$id_pesanan' ");
             ?>
+
+            <tr>
+              <th>Total</th> <th></th> <th></th> <th></th> <th>RP. <?php echo $Totalharga; ?>,-</th>
+            </tr>
+            
+
             <!-- <?php
               $nrp_cust= $_SESSION['login_user'];
               $result = mysqli_query($mysqli, "SELECT list_pesanan.id_list ,list_pesanan.id_pesanan, makanan.nama_makanan, makanan.harga_makanan, list_pesanan.jumlah, list_pesanan.id_customer, list_pesanan.jumlah*makanan.harga_makanan as Total FROM list_pesanan, makanan WHERE list_pesanan.wilayah = '$wil_cour' AND list_pesanan.id_makanan = makanan.id_makanan AND list_pesanan.id_courier = 0  ORDER BY list_pesanan.id_pesanan ASC");
@@ -105,16 +114,91 @@ include('config.php');
          </tbody>
      </table>
     </div>
-<!--   </div>
-  <div class="container">
-      <div class="row">
-        <div class="col-sm-12"></div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12"></div>
-      </div>
-  </div>
-</div> -->
+                <?php 
+
+            $result = mysqli_query($mysqli, "SELECT list_pesanan.id_pesanan ,makanan.id_makanan, makanan.nama_makanan, list_pesanan.jumlah, makanan.harga_makanan*list_pesanan.jumlah as total,list_pesanan.id_courier,list_pesanan.diterima FROM list_pesanan, makanan, pesanan WHERE list_pesanan.diterima != 2 AND list_pesanan.id_pesanan = pesanan.id_pesanan  AND list_pesanan.id_makanan=makanan.id_makanan AND pesanan.id_pesanan=(SELECT pesanan.id_pesanan FROM pesanan WHERE pesanan.nrp_pemesan = $nrp_cust ORDER BY id_pesanan DESC LIMIT 1)");
+              if (!$result->fetch_assoc()) {
+                echo '<div class="center"><a href="Job.php" class="btn btn-default" >Back To Job</a><div> <br>';
+              }
+            ?>
+</div>
+</div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>Copyright &copy; TCourier 2018</p>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/grayscale.min.js"></script>
 
 </body>
+<div class="tulis">
+<div class="modal" id="myModalcustomer">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h2 class="modal-title">Alert!!!</h2>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Apakah yakin ingin melanjutkan sebagai customer...???
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <form method="post">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" value="customer" name="job" class="btn btn-primary submitBtn">Lanjutkan</button> 
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="myModalcourier">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h2 class="modal-title">Alert!!!</h2>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Apakah yakin ingin melanjutkan sebagai courier ...???
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <form method="post">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" value="courier" name="job" class="btn btn-primary submitBtn">Lanjutkan</button> 
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  </div>
 </html>

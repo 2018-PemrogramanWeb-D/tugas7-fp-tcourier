@@ -26,8 +26,8 @@
     <link href="css/grayscale.min.css" rel="stylesheet">
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
+<body onload="myFunction()" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<div style="display:none;" id="myDiv" class="intro animate-bottom">
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
@@ -62,6 +62,7 @@
   <div class="page-header align-center">
     <h2 id="signup">Login TCourier</h2>
   </div>
+  <div class="left">
   <div class="row">
 
      <div class="col-sm-4"></div>
@@ -69,15 +70,16 @@
         <form method="POST">
           <div class="form-group">
             <label for="email">NRP:</label>
-            <input type="number" class="form-control" id="nrp" placeholder="Enter NRP" name="nrp">
+            <input type="number" class="form-control" id="nrp" placeholder="Enter NRP" name="nrp" required>
           </div>
           <div class="form-group">
             <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" required>
           </div>
           <div class="checkbox left">
             <label><input type="checkbox" name="remember"> Remember me</label>
           </div>
+          <br><br>
           <div class="center">
           <Input type="submit" class="btn btn-default" name="SignIn" value="Login">
           </div>
@@ -85,7 +87,7 @@
         </div>
         <div class="col-sm-4"></div>
   </div>
-
+  </div>
 </div>
 
     </section>
@@ -111,7 +113,7 @@
 
     <!-- Theme JavaScript -->
     <script src="js/grayscale.min.js"></script>
-
+    </div>
 </body>
 
 </html>

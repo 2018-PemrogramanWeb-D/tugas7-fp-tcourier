@@ -27,8 +27,8 @@ include('config.php');
 
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
+<body onload="myFunction()" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<div style="display:none;" id="myDiv" class="intro animate-bottom">
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
@@ -93,6 +93,7 @@ function goBack() {
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
+                        <br><br>
                         <h1 class="brand-heading">TCourier</h1>
                         <p class="intro-text">Go-Food Nya anak TC
                             <!-- <br> Sekaligus merekatkan diri antar mahasiswa TC -->
@@ -112,7 +113,7 @@ function goBack() {
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>About TCourier</h2>
                 <p>TCourier adalah sebuah website pelayanan makan antar Online bagi mahasiswa TC. Selain itu kita juga bisa saling merekatkan ukhuwah antar mahasiswa TC. Kalian bisa dapet uang jajan tambahan juga Gan.</p>
-                <p>Sistem Pengantarannya COD ya biar bisa saling kenal juga. Kalo beruntung bisa dapet pelanggan Cewek Gan sekalian dapet no Telp kan<br> <strong>ASEEEEKKK</strong></p>
+                <p>Sistem Pengantarannya COD ya biar bisa saling kenal juga. Kalo beruntung bisa dapet gandengan Gan. <br> <strong>ASEEEEKKK</strong></p>
                 <P>NO JOMBLO LYFE</P>
                         <a href="#download" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
@@ -168,7 +169,7 @@ function goBack() {
 
     <!-- Theme JavaScript -->
     <script src="js/grayscale.min.js"></script>
-
+</div>
 </body>
 
 </html>

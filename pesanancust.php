@@ -26,8 +26,8 @@
     <link href="css/grayscale.min.css" rel="stylesheet">
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
+<body onload="myFunction()" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<div style="display:none;" id="myDiv" class="intro animate-bottom">
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
@@ -147,8 +147,9 @@
 
     <!-- Theme JavaScript -->
     <script src="js/grayscale.min.js"></script>
-
+  </div>
 </body>
+
 <div class="tulis">
 <div class="modal" id="myModalcustomer">
     <div class="modal-dialog">

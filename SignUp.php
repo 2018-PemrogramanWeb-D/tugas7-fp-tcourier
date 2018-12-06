@@ -26,8 +26,8 @@
     <link href="css/grayscale.min.css" rel="stylesheet">
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
+<body onload="myFunction()" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<div style="display:none;" id="myDiv" class="intro animate-bottom">
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
@@ -62,33 +62,34 @@
   <div class="page-header align-center">
     <h2 id="signup">SignUp TCourier</h2>
   </div>
+  <div class="left">
   <div class="row">
         <div class="col-sm-4"></div> 
         <div class="col-sm-4">
         <form method="POST"  >
             <div class="form-group">
               <label>NRP:</label>
-              <input type="number" min="1" class="form-control" placeholder="Enter NRP" name="nrp">
+              <input type="number" min="1" class="form-control" placeholder="Enter NRP" name="nrp" required>
             </div>
             <div class="form-group">
               <label>Nama:</label>
-              <input type="text" class="form-control" placeholder="Enter your name" name="nama">
+              <input type="text" class="form-control" placeholder="Enter your name" name="nama" required>
             </div>
             <div class="form-group">
               <label>Email:</label>
-              <input type="email" class="form-control" placeholder="Enter email" name="email">
+              <input type="email" class="form-control" placeholder="Enter email" name="email" required>
             </div>
             <div class="form-group">
               <label>Password:</label>
-              <input type="password" class="form-control" placeholder="Enter password" name="pwd">
+              <input type="password" class="form-control" placeholder="Enter password" name="pwd" required>
             </div>
             <div class="form-group">
               <label>No HP:</label>
-              <input type="number" class="form-control" placeholder="Enter No HP" name="nohp">
+              <input type="number" class="form-control" placeholder="Enter No HP" name="nohp" required>
             </div>
             <div class="form-group">
               <label>Line ID:</label>
-              <input type="text" class="form-control" placeholder="Enter Line ID" name="idline">
+              <input type="text" class="form-control" placeholder="Enter Line ID" name="idline" required>
             </div>
             <div class="center">
             <input type="Submit" class="btn btn-default" name="SignUp" value="Daftar">
@@ -97,7 +98,7 @@
         </div>
         <div class="col-sm-4"></div>
   </div>
-
+  </div>
 </div>
 
     </section>
@@ -123,7 +124,7 @@
 
     <!-- Theme JavaScript -->
     <script src="js/grayscale.min.js"></script>
-
+    </div>
 </body>
 
 </html>

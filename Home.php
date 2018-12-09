@@ -28,7 +28,6 @@ include('config.php');
 </head>
 
 <body onload="myFunction()" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-<div style="display:none;" id="myDiv" class="intro animate-bottom">
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
@@ -90,7 +89,7 @@ function goBack() {
     <!-- Intro Header -->
     <header class="intro">
         <div class="intro-body">
-            <div class="container">
+            <div class="container animate-bottom" style="display:none;" id="myDiv">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <br><br>
@@ -107,8 +106,9 @@ function goBack() {
         </div>
     </header>
 
-    <!-- About Section -->
+    <!-- About Section  <div style="display:none;" id="myDiv" class="animate-bottom">-->
     <section id="about" class="container content-section text-center">
+        
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>About TCourier</h2>
@@ -118,8 +118,9 @@ function goBack() {
                         <a href="#download" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
+                </div>
             </div>
-        </div>
+        
     </section>
 
     <!-- Download Section -->
@@ -169,7 +170,6 @@ function goBack() {
 
     <!-- Theme JavaScript -->
     <script src="js/grayscale.min.js"></script>
-</div>
 </body>
 
 </html>

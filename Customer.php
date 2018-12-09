@@ -27,7 +27,6 @@
 </head>
 
 <body onload="myFuntion()" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-<div style="display:none;" id="myDiv" class="intro animate-bottom">
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
@@ -55,7 +54,7 @@
 
 <section id="about" class="container intro">
 <br><br><br><br>
-<div class="container">
+<div class="container animate-bottom" style="display:none;" id="myDiv">
   <div class="page-header align-center">
     <h2 id="signup">Pilih Pesanan Anda</h2>
   </div>
@@ -207,6 +206,5 @@
 
     <!-- Theme JavaScript -->
     <script src="js/grayscale.min.js"></script>
-  </div>
 </body>
 </html>

@@ -19,34 +19,44 @@ if(isset($_POST['Update'])){
 }
 
   if(isset($_POST['SignUp'])) {
-    $nrp = $_POST['nrp'];
-    $nama = $_POST['nama'];
-    $email = $_POST['email'];
-    $pwd = $_POST['pwd'];
-    $nohp = $_POST['nohp'];
-    $idline = $_POST['idline'];
-    $result = mysqli_query($mysqli, "INSERT INTO users(nrp,nama,email,pwd,nohp,idline) VALUES('$nrp','$nama','$email','$pwd','$nohp','$idline')");
-    // $_SESSION['page'] = '';
+    $nrp = mysql_real_escape_string($_POST['nrp']);
+    $nama = mysql_real_escape_string($_POST['nama']);
+    $email = mysql_real_escape_string($_POST['email']);
+    $pwd = mysql_real_escape_string($_POST['pwd']);
+    $nohp = mysql_real_escape_string($_POST['nohp']);
+    $idline = mysql_real_escape_string($_POST['idline']);
+    $pass = md5($pwd);
+    $result = mysqli_query($mysqli, "INSERT INTO users(nrp,nama,email,pwd,nohp,idline) VALUES('$nrp','$nama','$email','$pass','$nohp','$idline')");
+    // $_SESSION['page'] = '';    
     header("Location: Login.php");
   }
 
   if(isset($_POST['SignIn'])) {
        // $_SESSION['page'] = 'job';
-       $myusername = mysqli_real_escape_string($mysqli,$_POST['nrp']);
-       $mypassword = mysqli_real_escape_string($mysqli,$_POST['pwd']); 
-       $sql = "SELECT nrp FROM users WHERE nrp = '$myusername' and pwd = '$mypassword'";
+       $nrp = mysqli_real_escape_string($mysqli,$_POST['nrp']);
+       $pwd = mysqli_real_escape_string($mysqli,$_POST['pwd']); 
+       $sql = "SELECT * FROM users WHERE nrp = '$nrp' and pwd = '$pwd'";
        $result = mysqli_query($mysqli,$sql);
        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-       // $_SESSION['current_page'] = '';
-       $count = mysqli_num_rows($result);
-       $_SESSION['job'] = '';	
-       if($count == 1) {
-          $_SESSION['login_user'] = $myusername;
-          header("location: job.php");
-       }else {
-        $Err = "Username atau Password anda salah";
-        header("location: Login.php");
+       //Validasi, belum saya coba.. hehe
+       if($row('nrp') == $nrp && $row('pwd') == $pwd){
+        header("location: job.php");
        }
+       else{
+        echo "NRP atau Password salah.";
+       }
+       
+       // $_SESSION['current_page'] = '';
+       //$count = mysqli_num_rows($result);
+       //$_SESSION['job'] = '';	
+       //if($count == 1) {
+       //   $_SESSION['login_user'] = $myusername;
+       //   header("location: job.php");
+       //}else {
+       // $Err = "Username atau Password anda salah";
+       // header("location: Login.php");
+       //}
+
     }
  
     if(isset($_POST['job']))

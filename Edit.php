@@ -39,7 +39,6 @@ while ($user_data = mysqli_fetch_array($result)){
 </head>
 
 <body onload="myFunction()" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-<div style="display:none;" id="myDiv" class="intro animate-bottom">
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
@@ -70,7 +69,7 @@ while ($user_data = mysqli_fetch_array($result)){
 
 <section id="about" class="container intro">
 <br><br><br><br>
-<div class="container">
+<div class="container animate-bottom" style="display:none;" id="myDiv">
   <div class="page-header align-center">
     <h2>Edit Profil</h2>
   </div>
@@ -135,7 +134,6 @@ while ($user_data = mysqli_fetch_array($result)){
 
     <!-- Theme JavaScript -->
     <script src="js/grayscale.min.js"></script>
-  </div>
 </body>
 
 <div class="tulis">

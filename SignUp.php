@@ -111,7 +111,7 @@
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>Copyright &copy; TCourier 2018</p>
+            <h5>Copyright &copy; TCourier 2018</h5>
         </div>
     </footer>
 

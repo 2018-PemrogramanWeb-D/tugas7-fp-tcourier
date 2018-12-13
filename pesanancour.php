@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-
+    <meta http-equiv="refresh" content="8" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -110,7 +110,7 @@
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>Copyright &copy; TCourier 2018</p>
+            <h5>Copyright &copy; TCourier 2018</h5>
         </div>
     </footer>
 

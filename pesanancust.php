@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="refresh" content="10" />
+    <meta http-equiv="refresh" content="8" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,7 +62,7 @@
      <table width='100%' class="table">
       <thead>
           <tr>
-              <th>Nama Makanan</th> <th>Jumlah</th> <th>Total Harga</th> <th>Kurir</th> <th>Status</th>
+              <th>Nama Makanan</th> <th>Jumlah</th> <th>Total Harga</th> <th>Kurir</th><th>ID Line</th><th>Status</th>
           </tr>
          </thead>
          <tbody>
@@ -86,6 +86,7 @@
                             <td>'.$row["jumlah"].'</td>
                             <td>Rp. '.$row["total"].',-</td>
                             <td>'.$row["id_courier"].'</td>
+                            <td></td>
                             ';
 
                              
@@ -104,17 +105,8 @@
             ?>
 
             <tr>
-              <th>Total</th> <th></th> <th></th> <th></th> <th>RP. <?php echo $Totalharga; ?>,-</th>
+              <th>Total</th><th></th> <th>RP. <?php echo $Totalharga; ?>,-</th><th></th> <th></th> <th></th>
             </tr>
-            
-
-            <!-- <?php
-              $nrp_cust= $_SESSION['login_user'];
-              $result = mysqli_query($mysqli, "SELECT list_pesanan.id_list ,list_pesanan.id_pesanan, makanan.nama_makanan, makanan.harga_makanan, list_pesanan.jumlah, list_pesanan.id_customer, list_pesanan.jumlah*makanan.harga_makanan as Total FROM list_pesanan, makanan WHERE list_pesanan.wilayah = '$wil_cour' AND list_pesanan.id_makanan = makanan.id_makanan AND list_pesanan.id_courier = 0  ORDER BY list_pesanan.id_pesanan ASC");
-               while($row = $result->fetch_assoc()) {
-                  echo '<tr><td></td><td>Total Bayar :</td><td>Rp. xxx.xxx,-</td><td></td></tr>';
-               } 
-            ?> -->
             
          </tbody>
      </table>
@@ -132,7 +124,7 @@
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>Copyright &copy; TCourier 2018</p>
+            <h5>Copyright &copy; TCourier 2018</h5>
         </div>
     </footer>
 

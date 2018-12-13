@@ -40,9 +40,6 @@ CREATE TABLE `courier` (
 -- Dumping data for table `courier`
 --
 
-INSERT INTO `courier` (`nrp_courier`, `wilayah_courier`) VALUES
-('2', '');
-
 -- --------------------------------------------------------
 
 --
@@ -57,9 +54,6 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`nrp_customer`) VALUES
-('2');
-
 -- --------------------------------------------------------
 
 --
@@ -68,29 +62,19 @@ INSERT INTO `customer` (`nrp_customer`) VALUES
 
 CREATE TABLE `list_pesanan` (
   `id_list` int(8) UNSIGNED ZEROFILL NOT NULL,
-  `id_makanan` int(3) UNSIGNED ZEROFILL NOT NULL,
-  `id_pesanan` int(5) UNSIGNED ZEROFILL NOT NULL,
+  `id_makanan` int(3) NOT NULL,
+  `id_pesanan` int(5) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `id_customer` char(14) NOT NULL,
   `id_courier` char(14) NOT NULL,
   `wilayah` varchar(100) NOT NULL,
-  `diterima` bit(1) NOT NULL
+  `diterima` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `list_pesanan`
 --
 
-INSERT INTO `list_pesanan` (`id_list`, `id_makanan`, `id_pesanan`, `jumlah`, `id_customer`, `id_courier`, `wilayah`, `diterima`) VALUES
-(00001003, 003, 00001, 1, 1, 0, '02', b'0'),
-(00001004, 004, 00001, 1, 1, 0, '03', b'0'),
-(00001005, 005, 00001, 1, 1, 0, '02', b'0'),
-(00002001, 001, 00002, 1, 2, 0, '01', b'0'),
-(00002002, 002, 00002, 1, 2, 0, '01', b'0'),
-(00002003, 003, 00002, 3, 2, 0, '02', b'0'),
-(00002005, 005, 00002, 1, 2, 0, '02', b'0'),
-(00003003, 003, 00003, 1, 2, 0, '02', b'0'),
-(00003005, 005, 00003, 88, 2, 0, '02', b'0');
 
 -- --------------------------------------------------------
 
@@ -101,7 +85,7 @@ INSERT INTO `list_pesanan` (`id_list`, `id_makanan`, `id_pesanan`, `jumlah`, `id
 CREATE TABLE `makanan` (
   `id_makanan` int(3) UNSIGNED ZEROFILL NOT NULL,
   `nama_makanan` varchar(100) NOT NULL,
-  `wilayah_makanan` int(2) UNSIGNED ZEROFILL NOT NULL,
+  `wilayah_makanan` int(2) NOT NULL,
   `harga_makanan` int(255) NOT NULL,
   `deskripsi_makanan` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -109,13 +93,6 @@ CREATE TABLE `makanan` (
 --
 -- Dumping data for table `makanan`
 --
-
-INSERT INTO `makanan` (`id_makanan`, `nama_makanan`, `wilayah_makanan`, `harga_makanan`, `deskripsi_makanan`) VALUES
-(001, 'Penyetan', 01, 7000, 'enak'),
-(002, 'Tikus Bakar', 01, 1000, 'gk enak'),
-(003, 'kuda bakar', 02, 10000, 'mahal'),
-(004, 'kelinci bakar', 03, 9000, 'kecil'),
-(005, 'jangkrik bakar', 02, 5000, 'jijik');
 
 -- --------------------------------------------------------
 
@@ -131,11 +108,6 @@ CREATE TABLE `pesanan` (
 --
 -- Dumping data for table `pesanan`
 --
-
-INSERT INTO `pesanan` (`id_pesanan`, `nrp_pemesan`) VALUES
-(00001, '1'),
-(00002, '2'),
-(00003, '2');
 
 -- --------------------------------------------------------
 
@@ -156,10 +128,6 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`nrp`, `nama`, `email`, `pwd`, `nohp`, `idline`) VALUES
-('1', '', '1@gmail.com', '1', '1', '1'),
-('2', '', '2@gmail.com', '2', '2', '2');
-
 -- --------------------------------------------------------
 
 --
@@ -178,8 +146,8 @@ CREATE TABLE `wilayah` (
 
 INSERT INTO `wilayah` (`id_wilayah`, `nama_wilayah`, `ongkos_wilayah`) VALUES
 (01, 'Gebang', 5000),
-(02, 'keputih', 5000),
-(03, 'mulyos', 7000);
+(02, 'Keputih', 5000),
+(03, 'Mulyosari', 7000);
 
 --
 -- Indexes for dumped tables
@@ -207,15 +175,13 @@ ALTER TABLE `list_pesanan`
 -- Indexes for table `makanan`
 --
 ALTER TABLE `makanan`
-  ADD PRIMARY KEY (`id_makanan`),
-  ADD KEY `wilayah_makanan` (`wilayah_makanan`);
+  ADD PRIMARY KEY (`id_makanan`);
 
 --
 -- Indexes for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  ADD PRIMARY KEY (`id_pesanan`),
-  ADD KEY `nrp_pemesan` (`nrp_pemesan`);
+  ADD PRIMARY KEY (`id_pesanan`);
 
 --
 -- Indexes for table `users`

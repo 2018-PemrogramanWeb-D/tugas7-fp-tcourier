@@ -58,12 +58,13 @@ if(isset($_POST['Update'])){
         $_SESSION['job'] = '';
         $_SESSION['login_user'] = $nrp;
        }
-       else if ($row['nrp'] != $nrp && $row['pwd'] != $pwd) {
-                 $Err = '<div class="alert alert-danger"> NRP salah. </div>';
+       else if ($row['pwd'] != $pwd && $row['nrp'] != $nrp) {
+                 $Err = '<div class="alert alert-danger"> NRP dan Password salah. </div>';
        }
-       else if ($row['nrp'] == $nrp && $row['pwd'] != $pwd) {
-                 $Err = '<div class="alert alert-danger"> Password salah. </div>';
-       }
+       // else if ($row['nrp'] != $nrp) {
+       //           $Err = '<div class="alert alert-danger"> NRP salah. </div>';
+       // }
+       
        // else{
        //  $Err = '<div class="alert alert-danger"> NRP atau Password salah. </div>';
        // }

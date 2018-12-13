@@ -46,23 +46,10 @@ while ($user_data = mysqli_fetch_array($result)){
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="Home.php">
+                <a class="navbar-brand page-scroll" href="home.php">
                     <i class="fa fa-play-circle"></i> TC<span class="light">ourier</span>
                 </a>
             </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-          <!--   <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-        <?php
-         if (isset($_SESSION['login_user'])){
-          echo '<li><a href="Edit.php"><span class="glyphicon glyphicon-user"></span>'.$_SESSION['login_user'].'</a></li>';
-          echo '<li><a href="Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
-        }
-        ?>
-                </ul>
-            </div>
-           -->  <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
@@ -76,7 +63,7 @@ while ($user_data = mysqli_fetch_array($result)){
   <div class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm-4">   
-            <form action="SignUp.php" method="POST" name="form1">
+            <form action="signup.php" method="POST" name="form1">
               <div class="form-group">
                 <label>NRP:</label>
                 <input type="text" class="form-control " name="nrp" readonly value="<?php echo $nrp;?>" required>
@@ -101,7 +88,7 @@ while ($user_data = mysqli_fetch_array($result)){
                 <label>Line ID:</label>
                 <input type="text" class="form-control" name="idline" value="<?php echo $idline;?>" required>
               </div>
-              <input type="Submit" class="btn btn-default" name="Update">
+              <input type="Submit" class="btn btn-default" name="Update" value="Save">
             </form>
         </div>
         <div class="col-sm-4"></div>

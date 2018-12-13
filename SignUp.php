@@ -1,4 +1,4 @@
-<?php  include('config.php');  ?>
+<?php include('config.php');   ?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sign UP || TCourier</title>
+    <title>Login || TCourier</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Bootstrap Core CSS -->
@@ -34,7 +34,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="Home.php">
+                <a class="navbar-brand page-scroll" href="home.php">
                     <i class="fa fa-play-circle"></i> TC<span class="light">ourier</span>
                 </a>
             </div>
@@ -43,10 +43,10 @@
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a class="page-scroll" href="SignUp.php">Sign Up</a>
+                        <a class="page-scroll" href="signup.php">Sign Up</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="Login.php">Login</a>
+                        <a class="page-scroll" href="login.php">Login</a>
                     </li>
                 </ul>
             </div>
@@ -59,20 +59,22 @@
 <br><br><br><br>
 <div class="container animate-bottom" style="display:none;" id="myDiv">
   <div class="page-header align-center">
-    <h2 id="signup">SignUp TCourier</h2>
+    <h2 id="signup">SignUP TCourier</h2>
   </div>
-  <div class="left">
-  <div class="row">
+  <div class="row left">
         <div class="col-sm-4"></div> 
         <div class="col-sm-4">
         <form method="POST"  >
+            <div class="center">
+            <?php echo $Err; ?>
+            </div>
             <div class="form-group">
               <label>NRP:</label>
-              <input type="number" min="1" class="form-control" placeholder="Enter NRP" name="nrp" required>
+              <input type="number" class="form-control" placeholder="Enter NRP" name="nrp" required>
             </div>
             <div class="form-group">
               <label>Nama:</label>
-              <input type="text" class="form-control" placeholder="Enter your name" name="nama" required>
+              <input type="text" class="form-control" placeholder="Enter your name" name="nama" required pattern="^[A-Za-z -]+$">
             </div>
             <div class="form-group">
               <label>Email:</label>
@@ -80,7 +82,7 @@
             </div>
             <div class="form-group">
               <label>Password:</label>
-              <input type="password" class="form-control" placeholder="Enter password" name="pwd" required>
+              <input type="password" class="form-control" placeholder="Enter password" name="pwd" required pattern="^[A-Za-z0-9]+">
             </div>
             <div class="form-group">
               <label>No HP:</label>
@@ -90,16 +92,20 @@
               <label>Line ID:</label>
               <input type="text" class="form-control" placeholder="Enter Line ID" name="idline" required>
             </div>
+   
             <div class="center">
             <input type="Submit" class="btn btn-default" name="SignUp" value="Daftar">
             </div>
         </form>
         </div>
+        <br>
         <div class="col-sm-4"></div>
+  
   </div>
-  </div>
-</div>
 
+  <br>
+
+</div>
     </section>
 
     <!-- Footer -->

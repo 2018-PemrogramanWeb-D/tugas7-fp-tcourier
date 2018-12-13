@@ -1,4 +1,4 @@
-<?php include('config.php');  ?>
+<?php include('config.php'); $_SESSION['page'] = 'job'; ?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -34,7 +34,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="Home.php">
+                <a class="navbar-brand page-scroll" href="home.php">
                     <i class="fa fa-play-circle"></i> TC<span class="light">ourier</span>
                 </a>
             </div>
@@ -44,8 +44,8 @@
                 <ul class="nav navbar-nav">
         <?php
          if (isset($_SESSION['login_user'])){
-          echo '<li><a href="Edit.php"><span class="glyphicon glyphicon-user"></span>'.$_SESSION['login_user'].'</a></li>';
-          echo '<li><a href="Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
+          echo '<li><a href="edit.php"><span class="glyphicon glyphicon-user"></span>'.$_SESSION['login_user'].'</a></li>';
+          echo '<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
         }
         ?>
                 </ul>

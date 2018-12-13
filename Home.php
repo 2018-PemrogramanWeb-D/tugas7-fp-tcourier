@@ -1,5 +1,5 @@
 <?php 
-include('config.php');
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,31 +49,21 @@ include('config.php');
                         <a class="page-scroll" href="#about">About</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#download">Contact Us</a>
+                        <a  class="page-scroll" href="#download">Contact Us</a>
                     </li>
-                    <li>
-                        <!-- <a class="page-scroll" href="#contact">Contact</a> -->
-                    </li>
-<!-- <button >Go Back</button> -->
 
-<script>
-function goBack() {
-    window.history.back();
-}
-
-</script>
         <?php
         if (isset($_SESSION['login_user'])){
            echo '
                         <li>
-                        <a class="page-scroll btn" onclick="goBack()" >Continue</a>
+                        <a class="page-scroll" href="'.$_SESSION["page"].'.php" >Continue</a>
                         </li>
                         ';
         }
         else 
         {    echo '
                         <li>
-                        <a class="page-scroll" href="Login.php" >Start</a>
+                        <a class="page-scroll" href="login.php" >Start</a>
                         </li>
                         ';
         }
@@ -108,7 +98,6 @@ function goBack() {
 
     <!-- About Section  <div style="display:none;" id="myDiv" class="animate-bottom">-->
     <section id="about" class="container content-section text-center">
-        
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>About TCourier</h2>
@@ -120,7 +109,6 @@ function goBack() {
                         </a>
                 </div>
             </div>
-        
     </section>
 
     <!-- Download Section -->

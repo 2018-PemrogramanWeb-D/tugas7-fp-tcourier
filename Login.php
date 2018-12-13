@@ -1,4 +1,4 @@
-<?php include('config.php');   ?>
+<?php include('config.php');  ?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -34,7 +34,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="Home.php">
+                <a class="navbar-brand page-scroll" href="home.php">
                     <i class="fa fa-play-circle"></i> TC<span class="light">ourier</span>
                 </a>
             </div>
@@ -43,10 +43,10 @@
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a class="page-scroll" href="SignUp.php">Sign Up</a>
+                        <a class="page-scroll" href="signup.php">Sign Up</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="Login.php">Login</a>
+                        <a class="page-scroll" href="login.php">Login</a>
                     </li>
                 </ul>
             </div>
@@ -66,10 +66,13 @@
 
      <div class="col-sm-4"></div>
         <div class="col-sm-4">
+            <div class="center">
+            <?php echo $Err; ?>
+          </div>
         <form method="POST">
           <div class="form-group">
             <label for="email">NRP:</label>
-            <input type="number" class="form-control" id="nrp" placeholder="Enter NRP" name="nrp" required>
+            <input type="number" class="form-control" id="nrp" min="1" placeholder="Enter NRP" name="nrp" required>
           </div>
           <div class="form-group">
             <label for="pwd">Password:</label>
@@ -87,6 +90,7 @@
         <div class="col-sm-4"></div>
   </div>
   </div>
+
 </div>
 
     </section>

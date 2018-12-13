@@ -5,6 +5,7 @@ $databaseName = 'tcourier';
 $databaseUsername = 'root';
 $databasePassword = '';
 $mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
+$Err = "";
 
 if(isset($_POST['Update'])){
   $nrp = $_POST['nrp'];
@@ -13,49 +14,59 @@ if(isset($_POST['Update'])){
   $pwd = $_POST['pwd'];
   $nohp = $_POST['nohp'];
   $idline = $_POST['idline'];
-  // $_SESSION['login_user'] = $nrp;
   $result = mysqli_query($mysqli, "UPDATE users SET nama='$nama',email='$email',pwd='$pwd',nohp='$nohp',idline='$idline' WHERE nrp='$nrp'");
-	header("Location: Job.php");
+	header("Location: job.php");
 }
 
   if(isset($_POST['SignUp'])) {
-    $nrp = mysql_real_escape_string($_POST['nrp']);
-    $nama = mysql_real_escape_string($_POST['nama']);
-    $email = mysql_real_escape_string($_POST['email']);
-    $pwd = mysql_real_escape_string($_POST['pwd']);
-    $nohp = mysql_real_escape_string($_POST['nohp']);
-    $idline = mysql_real_escape_string($_POST['idline']);
-    $pass = md5($pwd);
-    $result = mysqli_query($mysqli, "INSERT INTO users(nrp,nama,email,pwd,nohp,idline) VALUES('$nrp','$nama','$email','$pass','$nohp','$idline')");
-    // $_SESSION['page'] = '';    
-    header("Location: Login.php");
+    $nrp = $_POST['nrp'];
+    $nama = $_POST['nama'];
+    $email = $_POST['email'];
+    $pwd = $_POST['pwd'];
+    $nohp = $_POST['nohp'];
+    $idline = $_POST['idline'];
+
+    if(strlen($nrp) != 14 ){
+      $Err = '<div class="alert alert-danger">NRP tidak valid.</div>';
+    }
+    else if(strlen($pwd) < 6){
+     $Err = '<div class="alert alert-danger">Password harus lebih dari 6 karakter.</div>'; 
+    }
+    else{
+
+    $result = mysqli_query($mysqli, "INSERT INTO users(nrp,nama,email,pwd,nohp,idline) VALUES('$nrp','$nama','$email','$pwd','$nohp','$idline')");
+
+    if ($result) {
+      header("Location: login.php");
+    }
+    else $Err = '<div class="alert alert-danger">User telah terdaftar.</div>';
+    
+
+    }
+
+    
   }
 
   if(isset($_POST['SignIn'])) {
-       // $_SESSION['page'] = 'job';
        $nrp = mysqli_real_escape_string($mysqli,$_POST['nrp']);
        $pwd = mysqli_real_escape_string($mysqli,$_POST['pwd']); 
        $sql = "SELECT * FROM users WHERE nrp = '$nrp' and pwd = '$pwd'";
        $result = mysqli_query($mysqli,$sql);
        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-       //Validasi, belum saya coba.. hehe
-       if($row('nrp') == $nrp && $row('pwd') == $pwd){
-        header("location: job.php");
+       if($row['nrp'] == $nrp && $row['pwd'] == $pwd){
+        header("Location: job.php");
+        $_SESSION['job'] = '';
+        $_SESSION['login_user'] = $nrp;
        }
-       else{
-        echo "NRP atau Password salah.";
+       else if ($row['nrp'] != $nrp && $row['pwd'] != $pwd) {
+                 $Err = '<div class="alert alert-danger"> NRP salah. </div>';
        }
-       
-       // $_SESSION['current_page'] = '';
-       //$count = mysqli_num_rows($result);
-       //$_SESSION['job'] = '';	
-       //if($count == 1) {
-       //   $_SESSION['login_user'] = $myusername;
-       //   header("location: job.php");
-       //}else {
-       // $Err = "Username atau Password anda salah";
-       // header("location: Login.php");
-       //}
+       else if ($row['nrp'] == $nrp && $row['pwd'] != $pwd) {
+                 $Err = '<div class="alert alert-danger"> Password salah. </div>';
+       }
+       // else{
+       //  $Err = '<div class="alert alert-danger"> NRP atau Password salah. </div>';
+       // }
 
     }
  
@@ -69,15 +80,22 @@ if(isset($_POST['Update'])){
         $_SESSION['wil_cour'] = '';
         $_SESSION["fix"] = "";
         // $_SESSION['daerah_operasi']  = "";
-        header("location: Courier.php");
+        header("location: courier.php");
      }else {
       $result = mysqli_query($mysqli, "INSERT INTO customer(nrp_customer) VALUES((SELECT nrp FROM users WHERE nrp= '$nrpjob'))");
       $result = mysqli_query($mysqli, "INSERT INTO pesanan(nrp_pemesan) VALUES((SELECT nrp_customer FROM customer WHERE nrp_customer= '$nrpjob'))");
-      header("location: Customer.php");
+      $_SESSION["no"] = true;
+      header("location: customer.php");
      }
 
     }
     
+
+   if(isset($_POST['start']))
+   {
+     $_SESSION['Err'] = "";
+      header("Location: login.php");
+   }
 	 if(isset($_POST['wil_cust']))
 	 {
 	   $_SESSION['wil_cust'] = $_POST['wil_cust'];
@@ -89,11 +107,11 @@ if(isset($_POST['Update'])){
    }
         if(isset($_POST['wil_cour_fix']))
    {
-     // $_SESSION['wil_cour'] = $_POST['wil_cour'];
      $_SESSION["fix"] = $_SESSION['wil_cour'];
    }
 
     if(isset($_POST['pilih'])) {
+    $_SESSION["no"] = false;
     $nrp_cust = $_SESSION['login_user'];
     $id_makanan = $_POST['id_makanan'];
      $wilayah = $_SESSION['wil_cust'];
@@ -164,10 +182,4 @@ if(isset($_POST['Update'])){
     $result = mysqli_query($mysqli, "UPDATE list_pesanan SET diterima='2' WHERE id_list='$id_list'");
     header("Location: pesanancour.php");
     }
-
-    // if(isset($_POST['daerah_operasi'])) {
-    // $_SESSION['daerah_operasi'] = $_SESSION['wil_cour'];
-    
-    // // header("Location: Courier.php");
-    // }
 ?>

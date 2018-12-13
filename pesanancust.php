@@ -1,4 +1,4 @@
-<?php  include('config.php');   ?>
+<?php  include('config.php');  $_SESSION['page'] = 'pesanancust'; ?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -26,7 +26,8 @@
     <link href="css/grayscale.min.css" rel="stylesheet">
 </head>
 
-<body onload="myFunction()" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
@@ -34,7 +35,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="Home.php">
+                <a class="navbar-brand page-scroll" href="home.php">
                     <i class="fa fa-play-circle"></i> TC<span class="light">ourier</span>
                 </a>
             </div>
@@ -46,7 +47,7 @@
 
 <section id="about" class="container intro">
 <br><br><br><br>
-<div class="container animate-bottom" style="display:none;" id="myDiv">
+<div class="container">
   <div class="page-header align-center">
     <h2 id="signup">Pesanan</h2>
   </div>
@@ -68,10 +69,15 @@
 
             <?php
               $nrp_cust= $_SESSION['login_user'];
-              $result = mysqli_query($mysqli, "SELECT list_pesanan.id_pesanan ,makanan.id_makanan, makanan.nama_makanan, list_pesanan.jumlah, makanan.harga_makanan*list_pesanan.jumlah as total,list_pesanan.id_courier,list_pesanan.diterima FROM list_pesanan, makanan, pesanan WHERE list_pesanan.id_pesanan = pesanan.id_pesanan  AND list_pesanan.id_makanan=makanan.id_makanan AND pesanan.id_pesanan=(SELECT pesanan.id_pesanan FROM pesanan WHERE pesanan.nrp_pemesan = $nrp_cust ORDER BY id_pesanan DESC LIMIT 1)");
+              $result = mysqli_query($mysqli, "SELECT list_pesanan.id_pesanan ,makanan.id_makanan, makanan.nama_makanan, list_pesanan.jumlah, makanan.harga_makanan*list_pesanan.jumlah as total,list_pesanan.id_courier,list_pesanan.diterima, list_pesanan.diterima FROM list_pesanan, makanan, pesanan WHERE list_pesanan.id_pesanan = pesanan.id_pesanan  AND list_pesanan.id_makanan=makanan.id_makanan AND pesanan.id_pesanan=(SELECT pesanan.id_pesanan FROM pesanan WHERE pesanan.nrp_pemesan = $nrp_cust ORDER BY id_pesanan DESC LIMIT 1)");
                
               $Totalharga = "0";
+              // list_pesanan.diterima != 2
+              $flag = true;
                while($row = $result->fetch_assoc()) {
+                if( $row["diterima"] !=2 ){
+                  $flag = false;
+                }
                 $Totalharga += $row["total"];
                   echo '
                         <tr>
@@ -114,10 +120,8 @@
      </table>
     </div>
                 <?php 
-
-            $result = mysqli_query($mysqli, "SELECT list_pesanan.id_pesanan ,makanan.id_makanan, makanan.nama_makanan, list_pesanan.jumlah, makanan.harga_makanan*list_pesanan.jumlah as total,list_pesanan.id_courier,list_pesanan.diterima FROM list_pesanan, makanan, pesanan WHERE list_pesanan.diterima != 2 AND list_pesanan.id_pesanan = pesanan.id_pesanan  AND list_pesanan.id_makanan=makanan.id_makanan AND pesanan.id_pesanan=(SELECT pesanan.id_pesanan FROM pesanan WHERE pesanan.nrp_pemesan = $nrp_cust ORDER BY id_pesanan DESC LIMIT 1)");
-              if (!$result->fetch_assoc()) {
-                echo '<div class="center"><a href="Job.php" class="btn btn-default" >Back To Job</a><div> <br>';
+              if ($flag) {
+                echo '<div class="center"><a href="job.php" class="btn btn-default" >Back To Job</a><div> <br>';
               }
             ?>
 </div>
@@ -146,8 +150,8 @@
 
     <!-- Theme JavaScript -->
     <script src="js/grayscale.min.js"></script>
-</body>
 
+</body>
 <div class="tulis">
 <div class="modal" id="myModalcustomer">
     <div class="modal-dialog">

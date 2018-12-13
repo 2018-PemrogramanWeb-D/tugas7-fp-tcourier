@@ -1,4 +1,4 @@
-<?php  include('config.php');   ?>
+<?php  include('config.php');  $_SESSION['page'] = 'customer'; ?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -34,7 +34,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="Home.php">
+                <a class="navbar-brand page-scroll" href="home.php">
                     <i class="fa fa-play-circle"></i> TC<span class="light">ourier</span>
                 </a>
             </div>
@@ -42,9 +42,12 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
              <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
                 <ul class="nav navbar-nav">
-
-                <li><a href="Job.php"><span class="glyphicon glyphicon-wrench"></span> Go to job</a></li>
-        
+                <?php 
+                if ($_SESSION["no"]) {
+                
+                echo '<li><a href="job.php"><span class="glyphicon glyphicon-wrench"></span> Go to job</a></li>';
+                }
+                ?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -54,7 +57,8 @@
 
 <section id="about" class="container intro">
 <br><br><br><br>
-<div class="container animate-bottom" style="display:none;" id="myDiv">
+  <!-- <div class="animate-bottom" style="display:none;" id="myDiv"> -->
+  <div class="container">
   <div class="page-header align-center">
     <h2 id="signup">Pilih Pesanan Anda</h2>
   </div>

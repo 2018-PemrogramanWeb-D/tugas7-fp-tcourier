@@ -6,7 +6,7 @@ tugas7-fp-tcourier created by GitHub Classroom
   <li> Hendra Ramadani       05111740000055</li>
 <ul><br>
 <h2>Cara buka lewat Xampp</h2>
-<ol>
+<ol type="1">
   <li>Buka Xampp</li>
   <li>Aktifkan service apache dan mysql pada Xampp</li> 
 <p align="center">

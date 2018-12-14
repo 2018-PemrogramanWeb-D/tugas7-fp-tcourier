@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="refresh" content="8" />
+    <meta http-equiv="refresh" content="10" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -119,7 +119,7 @@
         <table width='50%' class="table">
       <thead>
           <tr>
-              <th>NRP</th> <th>Nama Courier</th> <th>Line</th> <th>No WA</th> <th>Upah</th>
+              <th>NRP</th> <th>Nama Courier</th> <th>No. WA</th> <th>ID Line</th> <th>Upah</th>
           </tr>
          </thead>
          <tbody>
@@ -135,7 +135,7 @@
                             <td>'.$row["nama"].'</td>
                             <td>'.$row["nohp"].'</td>
                             <td>'.$row["idline"].'</td>
-                            <td>'.$row["ongkos_wilayah"].'</td>
+                            <td>Rp. '.$row["ongkos_wilayah"].',-</td>
                         </form>
                         </tr>';
                } 

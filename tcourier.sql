@@ -1,14 +1,11 @@
-create database tcourier;
- 
-use tcourier;
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 27, 2018 at 04:45 PM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.8
+-- Host: localhost:3306
+-- Generation Time: Dec 14, 2018 at 09:25 AM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -22,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tcourier`
+-- Database: `id8127372_tcourier`
 --
 
 -- --------------------------------------------------------
@@ -36,10 +33,6 @@ CREATE TABLE `courier` (
   `wilayah_courier` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `courier`
---
-
 -- --------------------------------------------------------
 
 --
@@ -50,10 +43,6 @@ CREATE TABLE `customer` (
   `nrp_customer` char(14) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `customer`
---
-
 -- --------------------------------------------------------
 
 --
@@ -62,19 +51,14 @@ CREATE TABLE `customer` (
 
 CREATE TABLE `list_pesanan` (
   `id_list` int(8) UNSIGNED ZEROFILL NOT NULL,
-  `id_makanan` int(3) NOT NULL,
-  `id_pesanan` int(5) NOT NULL,
+  `id_makanan` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `id_pesanan` int(5) UNSIGNED ZEROFILL NOT NULL,
   `jumlah` int(11) NOT NULL,
   `id_customer` char(14) NOT NULL,
   `id_courier` char(14) NOT NULL,
   `wilayah` varchar(100) NOT NULL,
-  `diterima` int(1) NOT NULL
+  `diterima` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `list_pesanan`
---
-
 
 -- --------------------------------------------------------
 
@@ -85,7 +69,7 @@ CREATE TABLE `list_pesanan` (
 CREATE TABLE `makanan` (
   `id_makanan` int(3) UNSIGNED ZEROFILL NOT NULL,
   `nama_makanan` varchar(100) NOT NULL,
-  `wilayah_makanan` int(2) NOT NULL,
+  `wilayah_makanan` int(2) UNSIGNED ZEROFILL NOT NULL,
   `harga_makanan` int(255) NOT NULL,
   `deskripsi_makanan` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -93,6 +77,14 @@ CREATE TABLE `makanan` (
 --
 -- Dumping data for table `makanan`
 --
+
+INSERT INTO `makanan` (`id_makanan`, `nama_makanan`, `wilayah_makanan`, `harga_makanan`, `deskripsi_makanan`) VALUES
+(001, 'Penyetan Bebek', 01, 10000, 'Sambal Pilihan Terenak'),
+(002, 'Nasi Goreng Ijo', 01, 12000, 'gk enak'),
+(003, 'Ayam Geprek', 02, 10000, 'Custom Level PEDAS'),
+(004, 'Pizza', 03, 20000, 'Mehong'),
+(005, 'Sate Ayam', 02, 10000, 'Kulit Ayam Pilihan'),
+(006, 'Katsu', 03, 15000, 'Lezat Biasah Saja');
 
 -- --------------------------------------------------------
 
@@ -104,10 +96,6 @@ CREATE TABLE `pesanan` (
   `id_pesanan` int(5) UNSIGNED ZEROFILL NOT NULL,
   `nrp_pemesan` char(14) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pesanan`
---
 
 -- --------------------------------------------------------
 
@@ -123,10 +111,6 @@ CREATE TABLE `users` (
   `nohp` varchar(15) DEFAULT NULL,
   `idline` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users`
---
 
 -- --------------------------------------------------------
 
@@ -145,9 +129,9 @@ CREATE TABLE `wilayah` (
 --
 
 INSERT INTO `wilayah` (`id_wilayah`, `nama_wilayah`, `ongkos_wilayah`) VALUES
-(01, 'Gebang', 5000),
+(01, 'Gebang', 7000),
 (02, 'Keputih', 5000),
-(03, 'Mulyosari', 7000);
+(03, 'Mulyos', 8000);
 
 --
 -- Indexes for dumped tables
@@ -175,13 +159,15 @@ ALTER TABLE `list_pesanan`
 -- Indexes for table `makanan`
 --
 ALTER TABLE `makanan`
-  ADD PRIMARY KEY (`id_makanan`);
+  ADD PRIMARY KEY (`id_makanan`),
+  ADD KEY `wilayah_makanan` (`wilayah_makanan`);
 
 --
 -- Indexes for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  ADD PRIMARY KEY (`id_pesanan`);
+  ADD PRIMARY KEY (`id_pesanan`),
+  ADD KEY `nrp_pemesan` (`nrp_pemesan`);
 
 --
 -- Indexes for table `users`
@@ -203,13 +189,13 @@ ALTER TABLE `wilayah`
 -- AUTO_INCREMENT for table `makanan`
 --
 ALTER TABLE `makanan`
-  MODIFY `id_makanan` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_makanan` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id_pesanan` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pesanan` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `wilayah`

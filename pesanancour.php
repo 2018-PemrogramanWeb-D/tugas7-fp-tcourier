@@ -81,9 +81,9 @@
          </thead>
          <tbody>
             <?php
-
-            // $result = mysqli_query($mysqli, "SELECT list_pesanan.id_list ,list_pesanan.id_pesanan, makanan.nama_makanan, makanan.harga_makanan, list_pesanan.jumlah, list_pesanan.id_customer, list_pesanan.jumlah*makanan.harga_makanan as Total FROM list_pesanan, makanan WHERE list_pesanan.diterima != 2 AND list_pesanan.wilayah = '$wil_cour' AND list_pesanan.id_makanan = makanan.id_makanan AND list_pesanan.id_courier = '$nrp_cour'  ORDER BY list_pesanan.id_pesanan ASC");
+            $bayar = 0;
                while($row = $result->fetch_assoc()) {
+                $bayar += $row["Total"];
                   echo '
                         <tr>
                         <form method="POST">
@@ -98,7 +98,9 @@
                         </tr>';
                } 
             ?>
-            
+            <tr>
+              <th>Total</th><th></th><th></th><th></th> <th>RP. <?php echo $bayar; ?>,-</th><th></th>
+            </tr>
          </tbody>
      </table>
 

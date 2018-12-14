@@ -62,17 +62,17 @@
      <table width='100%' class="table">
       <thead>
           <tr>
-              <th>Nama Makanan</th> <th>Jumlah</th> <th>Total Harga</th> <th>Kurir</th><th>ID Line</th><th>Status</th>
+              <th>Nama Makanan</th> <th>Jumlah</th> <th>Total Harga</th> <th>Kurir</th><th>Status</th>
           </tr>
          </thead>
          <tbody>
 
             <?php
               $nrp_cust= $_SESSION['login_user'];
-              $result = mysqli_query($mysqli, "SELECT list_pesanan.id_pesanan ,makanan.id_makanan, makanan.nama_makanan, list_pesanan.jumlah, makanan.harga_makanan*list_pesanan.jumlah as total,list_pesanan.id_courier,list_pesanan.diterima, list_pesanan.diterima FROM list_pesanan, makanan, pesanan WHERE list_pesanan.id_pesanan = pesanan.id_pesanan  AND list_pesanan.id_makanan=makanan.id_makanan AND pesanan.id_pesanan=(SELECT pesanan.id_pesanan FROM pesanan WHERE pesanan.nrp_pemesan = $nrp_cust ORDER BY id_pesanan DESC LIMIT 1)");
+              $result = mysqli_query($mysqli, "SELECT list_pesanan.id_pesanan , makanan.nama_makanan, list_pesanan.jumlah, makanan.harga_makanan*list_pesanan.jumlah as total,list_pesanan.id_courier,list_pesanan.diterima FROM list_pesanan, makanan, pesanan WHERE list_pesanan.id_pesanan = pesanan.id_pesanan  AND list_pesanan.id_makanan=makanan.id_makanan AND pesanan.id_pesanan=(SELECT pesanan.id_pesanan FROM pesanan WHERE pesanan.nrp_pemesan = $nrp_cust ORDER BY id_pesanan DESC LIMIT 1)");
                
               $Totalharga = "0";
-              // list_pesanan.diterima != 2
+              $id_pesanan = $row["id_pesanan"];
               $flag = true;
                while($row = $result->fetch_assoc()) {
                 if( $row["diterima"] !=2 ){
@@ -86,7 +86,6 @@
                             <td>'.$row["jumlah"].'</td>
                             <td>Rp. '.$row["total"].',-</td>
                             <td>'.$row["id_courier"].'</td>
-                            <td></td>
                             ';
 
                              
@@ -101,21 +100,53 @@
                         </form>
                         </tr>';
                } 
-            // $result = mysqli_query($mysqli, "SELECT total FROM list_pesanan WHERE id_pesanan = '$id_pesanan' ");
             ?>
 
             <tr>
-              <th>Total</th><th></th> <th>RP. <?php echo $Totalharga; ?>,-</th><th></th> <th></th> <th></th>
+              <th>Total</th><th></th> <th>RP. <?php echo $Totalharga; ?>,-</th><th></th> <th></th>
             </tr>
             
          </tbody>
      </table>
-    </div>
-                <?php 
+     <div class="center">
+            <?php 
               if ($flag) {
-                echo '<div class="center"><a href="job.php" class="btn btn-default" >Back To Job</a><div> <br>';
+                echo '<a href="job.php" class="btn btn-default" >Back To Job</a>';
               }
             ?>
+     </div>
+    <h4>Info Courier</h4>
+        <table width='50%' class="table">
+      <thead>
+          <tr>
+              <th>NRP</th> <th>Nama Courier</th> <th>Line</th> <th>No WA</th> <th>Upah</th>
+          </tr>
+         </thead>
+         <tbody>
+
+            <?php
+              $result = mysqli_query($mysqli, "SELECT DISTINCT list_pesanan.id_courier, users.nama, users.nohp, users.idline, wilayah.ongkos_wilayah  FROM list_pesanan, users, wilayah WHERE list_pesanan.id_pesanan = '$id_pesanan' AND list_pesanan.id_courier = users.nrp AND list_pesanan.wilayah = wilayah.id_wilayah ");
+              
+              while($row = $result->fetch_assoc()) {
+                  echo '
+                        <tr>
+                        <form method="POST">
+                            <td>'.$row["id_courier"].'</td>
+                            <td>'.$row["nama"].'</td>
+                            <td>'.$row["nohp"].'</td>
+                            <td>'.$row["idline"].'</td>
+                            <td>'.$row["ongkos_wilayah"].'</td>
+                        </form>
+                        </tr>';
+               } 
+            ?>
+         </tbody>
+     </table>
+
+    </div>
+
+
+
 </div>
 </div>
 

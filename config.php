@@ -15,7 +15,14 @@ if(isset($_POST['Update'])){
   $nohp = $_POST['nohp'];
   $idline = $_POST['idline'];
   $result = mysqli_query($mysqli, "UPDATE users SET nama='$nama',email='$email',pwd='$pwd',nohp='$nohp',idline='$idline' WHERE nrp='$nrp'");
-	header("Location: job.php");
+
+  if($_SESSION['update'] == "admin"){
+      header("Location: admin.php");
+  }
+  else if($_SESSION['update'] == "users"){
+      header("Location: job.php");
+  }
+	
 }
 
   if(isset($_POST['SignUp'])) {
@@ -48,6 +55,7 @@ if(isset($_POST['Update'])){
   }
 
   if(isset($_POST['SignIn'])) {
+      $_SESSION['update'] = 'users';
        $nrp = mysqli_real_escape_string($mysqli,$_POST['nrp']);
        $pwd = mysqli_real_escape_string($mysqli,$_POST['pwd']); 
        $sql = "SELECT * FROM users WHERE nrp = '$nrp' and pwd = '$pwd'";
@@ -200,12 +208,14 @@ if(isset($_POST['Update'])){
   }
   if(isset($_POST['admindelete'])) {
     $nrpdelete = $_GET['nrp'];
-    $result = mysqli_query($mysqli,"DELETE FROM users WHERE nrp = '05111740000002'");
+    $result = mysqli_query($mysqli,"DELETE FROM users WHERE nrp = '$nrpdelete';");
     header("Location: admin.php");
   }
 
     if(isset($_POST['adminupdate'])) {
-    $_SESSION['login_user'] = $_POST['nrp'];
+    $nrpupdate= $_POST['nrp'];
+    $_SESSION['login_user'] = $nrpupdate;
+    $_SESSION['update'] = "admin";
     header("Location: edit.php");
   }
   ///---ADMIN

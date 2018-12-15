@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 14, 2018 at 09:25 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.0.26
+-- Host: 127.0.0.1
+-- Generation Time: Dec 15, 2018 at 07:46 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `id8127372_tcourier`
+-- Database: `tcourier`
 --
 
 -- --------------------------------------------------------
@@ -57,7 +57,7 @@ CREATE TABLE `list_pesanan` (
   `id_customer` char(14) NOT NULL,
   `id_courier` char(14) NOT NULL,
   `wilayah` varchar(100) NOT NULL,
-  `diterima` bit(1) NOT NULL
+  `diterima` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -80,11 +80,12 @@ CREATE TABLE `makanan` (
 
 INSERT INTO `makanan` (`id_makanan`, `nama_makanan`, `wilayah_makanan`, `harga_makanan`, `deskripsi_makanan`) VALUES
 (001, 'Penyetan Bebek', 01, 10000, 'Sambal Pilihan Terenak'),
-(002, 'Nasi Goreng Ijo', 01, 12000, 'gk enak'),
+(002, 'Nasi Goreng Ijo', 01, 12000, 'Gk enak'),
 (003, 'Ayam Geprek', 02, 10000, 'Custom Level PEDAS'),
 (004, 'Pizza', 03, 20000, 'Mehong'),
 (005, 'Sate Ayam', 02, 10000, 'Kulit Ayam Pilihan'),
-(006, 'Katsu', 03, 15000, 'Lezat Biasah Saja');
+(006, 'Katsu', 03, 15000, 'Lezat Biasah Saja'),
+(007, 'Sosis Bakar', 03, 4000, 'Sosis enak ndak bikin kembung');
 
 -- --------------------------------------------------------
 
@@ -189,13 +190,13 @@ ALTER TABLE `wilayah`
 -- AUTO_INCREMENT for table `makanan`
 --
 ALTER TABLE `makanan`
-  MODIFY `id_makanan` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_makanan` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id_pesanan` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pesanan` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `wilayah`

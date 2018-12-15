@@ -215,13 +215,14 @@ if(isset($_POST['SignUp'])) {
     $deskripsimakanan = $_POST['deskripsimakanan'];
     $result = mysqli_query($mysqli, "INSERT INTO makanan(id_makanan,nama_makanan,wilayah_makanan,harga_makanan,deskripsi_makanan) VALUES('NULL','$namamakanan','$wilayahmakanan','$hargamakanan','$deskripsimakanan')");
   }
-  if(isset($_POST['admindelete'])) {
-    $nrpdelete = $_GET['nrp'];
+
+  if(isset($_POST['admindeleteuser'])) {
+    $nrpdelete = $_POST['nrp'];
     $result = mysqli_query($mysqli,"DELETE FROM users WHERE nrp = '$nrpdelete';");
     header("Location: admin.php");
   }
 
-  if(isset($_POST['adminupdate'])) {
+  if(isset($_POST['adminupdateuser'])) {
     $nrpupdate= $_POST['nrp'];
     $_SESSION['login_user'] = $nrpupdate;
     $_SESSION['update'] = "admin";
@@ -231,6 +232,17 @@ if(isset($_POST['SignUp'])) {
   if(isset($_POST['adminadduser'])) {
     $_SESSION['update'] = "admin";
     header("Location: signup.php");
+  }
+
+    if(isset($_POST['admindeletemakanan'])) {
+    $makanandelete = $_POST['id_makanan'];
+    $result = mysqli_query($mysqli,"DELETE FROM makanan WHERE id_makanan = '$makanandelete';");
+    header("Location: admin.php");
+  }
+      if(isset($_POST['admindeletewilayah'])) {
+    $wilayahdelete = $_POST['id_wilayah'];
+    $result = mysqli_query($mysqli,"DELETE FROM wilayah WHERE id_wilayah = '$wilayahdelete';");
+    header("Location: admin.php");
   }
   ///---ADMIN
 ?>

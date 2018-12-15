@@ -114,7 +114,7 @@
     <script src="js/grayscale.min.js"></script>
 </body>
 <div class="tulis">
-<div class="modal" id="myModalcustomer">
+<div class="modal fade" id="myModalcustomer">
     <div class="modal-dialog">
       <div class="modal-content">
       
@@ -139,7 +139,7 @@
       </div>
     </div>
   </div>
-  <div class="modal" id="myModalcourier">
+  <div class="modal fade" id="myModalcourier">
     <div class="modal-dialog">
       <div class="modal-content">
       

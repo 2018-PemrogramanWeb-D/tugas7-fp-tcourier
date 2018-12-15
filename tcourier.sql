@@ -211,21 +211,7 @@ ALTER TABLE `wilayah`
 --
 -- Constraints for table `courier`
 --
-ALTER TABLE `courier`
-  ADD CONSTRAINT `courier_ibfk_1` FOREIGN KEY (`nrp_courier`) REFERENCES `users` (`nrp`);
 
---
--- Constraints for table `customer`
---
-ALTER TABLE `customer`
-  ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`nrp_customer`) REFERENCES `users` (`nrp`);
-
---
--- Constraints for table `pesanan`
---
-ALTER TABLE `pesanan`
-  ADD CONSTRAINT `pesanan_ibfk_1` FOREIGN KEY (`nrp_pemesan`) REFERENCES `users` (`nrp`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

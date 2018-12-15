@@ -183,4 +183,19 @@ if(isset($_POST['Update'])){
     $result = mysqli_query($mysqli, "UPDATE list_pesanan SET diterima='2' WHERE id_list='$id_list'");
     header("Location: pesanancour.php");
     }
+
+    //ADMIN--
+  if(isset($_POST['tambahwilayah'])) {
+    $namawilayah = $_POST['namawilayah'];
+    $ongkoswilayah = $_POST['ongkoswilayah'];
+    $result = mysqli_query($mysqli, "INSERT INTO wilayah(id_wilayah,nama_wilayah,ongkos_wilayah) VALUES('NULL','$namawilayah','$ongkoswilayah')");
+  }
+
+    if(isset($_POST['tambahmakanan'])) {
+    $namamakanan = $_POST['namamakanan'];
+    $wilayahmakanan = $_POST['wilayahmakanan'];
+    $hargamakanan = $_POST['hargamakanan'];
+    $deskripsimakanan = $_POST['deskripsimakanan'];
+    $result = mysqli_query($mysqli, "INSERT INTO makanan(id_makanan,nama_makanan,wilayah_makanan,harga_makanan,deskripsi_makanan) VALUES('NULL','$namamakanan','$wilayahmakanan','$hargamakanan','$deskripsimakanan')");
+  }
 ?>

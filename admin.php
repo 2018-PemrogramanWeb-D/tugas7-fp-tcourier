@@ -20,7 +20,7 @@
 
 	<h3>Edit Wilayah</h3>
 	<div>
-		<input id="myInput" type="text" placeholder="Search Wilayah" class="sch">
+		<input id="wilayah" type="text" placeholder="Search Wilayah" class="sch">
 		<table class="table">
 		<thead>
 			<tr>
@@ -30,7 +30,7 @@
 				<th>Edit</th>
 			</tr>
 		</thead>
-		<tbody id="myTable">
+		<tbody id="TableWilayah">
 			<?php 
 			$result = mysqli_query($mysqli, "SELECT * FROM wilayah ORDER BY id_wilayah ASC");
 			while($row = mysqli_fetch_array($result)) {
@@ -62,7 +62,7 @@
 	</form>
 	<h3>Edit Makanan</h3>
 	<div>
-		<input id="myInput" type="text" placeholder="Search Makanan" class="sch">
+		<input id="makanan" type="text" placeholder="Search Makanan" class="sch">
 		<table class="table">
 		<thead>
 			<tr>
@@ -74,7 +74,7 @@
 				<th>Edit</th>
 			</tr>
 		</thead>
-		<tbody id="myTable">
+		<tbody id="TableMakanan">
 			<?php 
 			$result = mysqli_query($mysqli, "SELECT * FROM makanan ORDER BY id_makanan ASC");
 			while($row = mysqli_fetch_array($result)) {
@@ -104,7 +104,7 @@
 	</form>
 	<h3>Cari Users</h3>
 	<div>
-		<input id="myInput" type="text" placeholder="Search User" class="sch">
+		<input id="users" type="text" placeholder="Search User" class="sch">
 		<table class="table">
 		<thead>
 			<tr>
@@ -116,7 +116,7 @@
 				<th>Edit</th>
 			</tr>
 		</thead>
-		<tbody id="myTable">
+		<tbody id="TableUsers">
 			<?php 
 			$result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY nrp ASC");
 			while($row = mysqli_fetch_array($result)) {
@@ -145,9 +145,25 @@
 
 <script>
   	$(document).ready(function(){
-	  	$("#myInput").on("keyup", function() {
+	  	$("#wilayah").on("keyup", function() {
 		    		var value = $(this).val().toLowerCase();
-		    		$("#myTable tr").filter(function() {
+		    		$("#TableWilayah tr").filter(function() {
+		      			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		    		});
+	  			});	
+	  	})
+  	  	$(document).ready(function(){
+	  	$("#makanan").on("keyup", function() {
+		    		var value = $(this).val().toLowerCase();
+		    		$("#TableMakanan tr").filter(function() {
+		      			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		    		});
+	  			});	
+	  	})
+  	  	$(document).ready(function(){
+	  	$("#users").on("keyup", function() {
+		    		var value = $(this).val().toLowerCase();
+		    		$("#TableUsers tr").filter(function() {
 		      			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 		    		});
 	  			});	

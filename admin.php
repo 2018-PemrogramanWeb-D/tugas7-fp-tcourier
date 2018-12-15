@@ -50,6 +50,8 @@
 	</table>
 	</div>
 
+	<br>
+
 	<h3>Tambah Makanan</h3>
 	<form method="POST">
 		<input type="text" name="namamakanan">
@@ -93,8 +95,13 @@
 		</tbody>
 	</table>
 	</div>
+
 	<br>
 
+	<h3>Tambah User</h3>
+	<form method="POST">
+		<input type="Submit" name="adminadduser" value="Klik Disini">
+	</form>
 	<h3>Cari Users</h3>
 	<div>
 		<input id="myInput" type="text" placeholder="Search User" class="sch">

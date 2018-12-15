@@ -22,10 +22,10 @@ if(isset($_POST['Update'])){
   else if($_SESSION['update'] == "users"){
       header("Location: job.php");
   }
-	
+	$_SESSION['update'] = "";
 }
 
-  if(isset($_POST['SignUp'])) {
+if(isset($_POST['SignUp'])) {
     $nrp = $_POST['nrp'];
     $nama = $_POST['nama'];
     $email = $_POST['email'];
@@ -43,16 +43,25 @@ if(isset($_POST['Update'])){
 
     $result = mysqli_query($mysqli, "INSERT INTO users(nrp,nama,email,pwd,nohp,idline) VALUES('$nrp','$nama','$email','$pwd','$nohp','$idline')");
 
+
+
+  if($_SESSION['update'] == "admin"){
     if ($result) {
-      header("Location: login.php");
+        header("Location: admin.php");
+      }
+      else $Err = '<div class="alert alert-danger">User telah terdaftar.</div>';
     }
-    else $Err = '<div class="alert alert-danger">User telah terdaftar.</div>';
-    
-
+  else{
+      if ($result) {
+        header("Location: login.php");
+      }
+      else $Err = '<div class="alert alert-danger">User telah terdaftar.</div>';
+      }
     }
-
-    
+    $_SESSION['update'] = "";
   }
+
+    
 
   if(isset($_POST['SignIn'])) {
       $_SESSION['update'] = 'users';
@@ -212,11 +221,16 @@ if(isset($_POST['Update'])){
     header("Location: admin.php");
   }
 
-    if(isset($_POST['adminupdate'])) {
+  if(isset($_POST['adminupdate'])) {
     $nrpupdate= $_POST['nrp'];
     $_SESSION['login_user'] = $nrpupdate;
     $_SESSION['update'] = "admin";
     header("Location: edit.php");
+  }
+
+  if(isset($_POST['adminadduser'])) {
+    $_SESSION['update'] = "admin";
+    header("Location: signup.php");
   }
   ///---ADMIN
 ?>

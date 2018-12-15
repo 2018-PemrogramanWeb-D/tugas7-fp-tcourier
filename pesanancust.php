@@ -93,7 +93,7 @@
                               else
                               if( $row["diterima"] == 1 ) {echo "<td>Sedang Diproses</td>";}
                               else
-                              if( $row["diterima"] == 2 ) {echo "<td>Diterima</td>";}
+                              if( $row["diterima"] == 2 ) {echo "<td>Diterima <span class='glyphicon glyphicon-ok'></span></td>";}
                             
 
                         echo  '
@@ -119,7 +119,7 @@
         <table width='50%' class="table">
       <thead>
           <tr>
-              <th>NRP</th> <th>Nama Courier</th> <th>No. WA</th> <th>ID Line</th> <th>Upah</th>
+              <th>NRP</th> <th>Nama Courier</th> <th>No. WA</th> <th>ID Line</th> <th>Fee</th><th>Total per Courier</th>
           </tr>
          </thead>
          <tbody>
@@ -135,7 +135,12 @@
                             <td>'.$row["nama"].'</td>
                             <td>'.$row["nohp"].'</td>
                             <td>'.$row["idline"].'</td>
-                            <td>Rp. '.$row["ongkos_wilayah"].',-</td>
+                            <td>Rp. '.$row["ongkos_wilayah"].',-</td>';
+                            $id_courier = $row["id_courier"];
+                 $cour = mysqli_query($mysqli, "SELECT SUM(list_pesanan.jumlah*makanan.harga_makanan) AS Totalcour FROM list_pesanan, makanan WHERE list_pesanan.id_courier = '$id_courier' AND list_pesanan.id_pesanan = '$id_pesanan' AND makanan.id_makanan = list_pesanan.id_makanan ");
+                 $list = $cour->fetch_assoc();
+                 $bayaran = $list["Totalcour"] + $row["ongkos_wilayah"];
+                  echo '<td>Rp. '.$bayaran.',-</td>
                         </form>
                         </tr>';
                } 

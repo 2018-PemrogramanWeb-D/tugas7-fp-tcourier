@@ -198,4 +198,15 @@ if(isset($_POST['Update'])){
     $deskripsimakanan = $_POST['deskripsimakanan'];
     $result = mysqli_query($mysqli, "INSERT INTO makanan(id_makanan,nama_makanan,wilayah_makanan,harga_makanan,deskripsi_makanan) VALUES('NULL','$namamakanan','$wilayahmakanan','$hargamakanan','$deskripsimakanan')");
   }
+  if(isset($_POST['admindelete'])) {
+    $nrpdelete = $_GET['nrp'];
+    $result = mysqli_query($mysqli,"DELETE FROM users WHERE nrp = '05111740000002'");
+    header("Location: admin.php");
+  }
+
+    if(isset($_POST['adminupdate'])) {
+    $_SESSION['login_user'] = $_POST['nrp'];
+    header("Location: edit.php");
+  }
+  ///---ADMIN
 ?>

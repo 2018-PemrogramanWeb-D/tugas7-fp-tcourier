@@ -70,7 +70,7 @@
             </div>
             <div class="form-group">
               <label>NRP:</label>
-              <input type="number" class="form-control" placeholder="Enter NRP" name="nrp" required>
+              <input type="text" class="form-control" placeholder="Enter NRP" name="nrp" required pattern="^[0-9]+$">
             </div>
             <div class="form-group">
               <label>Nama:</label>

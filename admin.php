@@ -26,21 +26,38 @@
 <body>
 	<section id="about" class="container intro">
 	<div class="container">
-			<div class="page-header left">
-			<h3>Tambah Wilayah</h3>
+			<div class="page-header center">
+			<h3>Admin Panel</h3>
 			</div>
 	<div class="row left">			
-	<form method="POST">	
-		<input type="text" name="namawilayah">
-		<input type="number" name="ongkoswilayah">
-		<input type="Submit" name="tambahwilayah">	
-	</form>	
-	<div class="page-header left">
+	
+        <div class="col-sm-4">
+        <h3>Tambah Wilayah</h3>
+        <form method="POST">
+          <div class="form-group">
+            <label for="namawilayah">Nama Wilayah :</label>
+                <input type="text" name="namawilayah" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="ongkoswilayah">Ongkos Wilayah :</label>
+                <input type="number" name="ongkoswilayah" class="form-control">
+          </div>
+          	<input type="Submit" name="tambahwilayah" value="Tambah" class="btn btn-default">
+
+        </form>
+        </div>
+  </div>
+	<hr><hr><br>
+	<div class="left">
 	<h3>Edit Wilayah</h3>
 	</div>
+	<div class="row">
+		<div class="col-sm-4">
+		<input id="wilayah" type="text" placeholder="Search Wilayah" class="form-control"><br>
+		</div>
+	</div>
 	<div>
-		<input id="wilayah" type="text" placeholder="Search Wilayah" class="form-control">
-		<table class="table">
+		<table class="table left">
 		<thead>
 			<tr>
 				<th>Id Wilayah</th>
@@ -55,39 +72,59 @@
 			while($row = mysqli_fetch_array($result)) {
 			echo '
 				<tr>
-				<form method="POST">
+				<form method="POST" id="updateadminwilyah">
+				<td> <input type="number" class="form-control" value="0" name="jumlah" > </td>
 				<td>'.$row['id_wilayah'].'</td>
 				<td>'.$row['nama_wilayah'].'</td>
 				<td>Rp. '.$row['ongkos_wilayah'].',-</td>
 				<input type="hidden" name="id_wilayah" readonly value="'.$row['id_wilayah'].'">
-				<td> <input type="button" class="btn btn-link" name="adminupdatewilayah" value="Update" data-toggle="modal" 
-				onclick="admin.php?id_wilayah='.$row['id_wilayah'].'" data-target="#modalwilayah"> | <Input type="submit" class="btn btn-link" name="admindeletewilayah" value="Delete"> </td>
+				<td> <input type="submit" class="btn btn-link" name="adminupdatewilayah" value="Update" > | <Input type="submit" class="btn btn-link" name="admindeletewilayah" value="Delete"> </td>
 				</form>
 				</tr>';      
 				}      
 			?>
 		</tbody>
 	</table>
-	</div>
+	<hr><hr><br>
 	</section>
 	<section id="about" class="container text-center">
-	<div class="page-header left">
+	<div class="left">
 	<h3>Tambah Makanan</h3>
-	</div>
 	<form method="POST">
-		<input type="text" name="namamakanan" class="">
-		<input type="text" name="wilayahmakanan">
-		<input type="number" name="hargamakanan">	
-		<input type="text" name="deskripsimakanan">	
-		<input type="Submit" name="tambahmakanan" class="btn btn-default">
-	</form>
-	<br><br>
-	<div class="page-header left">
+	<div class="row">
+		<div class="col-sm-4">
+          <div class="form-group">
+            <label for="namamakanan">Nama Makanan :</label>
+                <input type="text" name="namamakanan" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="wilayahmakanan">Wilayah Makanan :</label>
+                <input type="text" name="wilayahmakanan" class="form-control">
+          </div>
+                    <div class="form-group">
+            <label for="hargamakanan">Harga Makanan :</label>
+                <input type="number" name="hargamakanan" class="form-control">
+          </div>
+                    <div class="form-group">
+            <label for="deskripsimakanan">Deskripsi Makanan :</label>
+                <input type="text-area" name="deskripsimakanan" class="form-control">
+          </div>
+          	<input type="Submit" name="tambahwilayah" value="Tambah" class="btn btn-default">
+        </div>
+    </div>
+    </form>
+	</div>
+	<hr><hr><br>
+	<div class=" left">
 	<h3>Edit Makanan</h3>
 	</div>
+	<div class="row">
+		<div class="col-sm-4">
+		<input id="makanan" type="text" placeholder="Search Makanan" class="form-control"><br>
+		</div>
+	</div>
 	<div>
-		<input id="makanan" type="text" placeholder="Search Makanan" class="form-control">
-		<table class="table">
+		<table class="table left">
 		<thead>
 			<tr>
 				<th>Id Makanan</th>
@@ -118,22 +155,29 @@
 			?>
 		</tbody>
 	</table>
+	<hr><hr><br>
+	</div>
 	</div>
 	</section>
-	<br>
 	<section id="download" class="container text-center">
-	<div class="page-header left">
+	<div class="left">
 	<h3>Tambah User</h3>
 	</div>
-	<form method="POST">
+	<form method="POST" class="left">
 		<input type="Submit" name="adminadduser" class="btn btn-default" value="Klik Disini">
 	</form>
-	<div class="page-header left">
-	<h3>Cari Users</h3>
+	<hr><hr><br>
+	<div class="left">
+	<h3>Edit Users</h3>
 	</div>
+	<div class="row">
+		<div class="col-sm-4">
+		<input id="users" type="text" placeholder="Search User" class="form-control"><br>
+		</div>
+	</div>
+		
 	<div>
-		<input id="users" type="text" placeholder="Search User" class="form-control">
-		<table class="table">
+		<table class="table left">
 		<thead>
 			<tr>
 				<th>NRP</th>
@@ -168,7 +212,10 @@
 			</div>
 		</div>
 	</section>	
+		</div>
 </body>
+
+
   <div class="modal fade" id="modalwilayah">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -213,6 +260,10 @@
 
 <script>
   	$(document).ready(function(){
+		$('#updateadminwilayah').on('submit', function(e){
+		      $('#modalwilayah').modal('show');
+		      return false;
+		 });
 	  	$("#wilayah").on("keyup", function() {
 		    		var value = $(this).val().toLowerCase();
 		    		$("#TableWilayah tr").filter(function() {

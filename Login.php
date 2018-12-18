@@ -68,8 +68,8 @@
           </div>
         <form method="POST">
           <div class="form-group">
-            <label for="email">NRP:</label>
-            <input type="number" class="form-control" id="nrp" min="1" placeholder="Enter NRP" name="nrp" required>
+            <label for="nrp">NRP:</label>
+            <input type="text" class="form-control" id="nrp" placeholder="Enter NRP" name="nrp" required pattern="^[0-9]+$" >
           </div>
           <div class="form-group">
             <label for="pwd">Password:</label>

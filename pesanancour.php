@@ -1,3 +1,6 @@
+<?php if ($_SESSION['job']== NULL) {
+  header("Location: job.php");
+} ?>
 <?php include('config.php'); $_SESSION['page'] = 'pesanancour';  ?>
 <!DOCTYPE html>
 

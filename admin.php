@@ -73,11 +73,12 @@
 			echo '
 				<tr>
 				<form method="POST" id="updateadminwilyah">
-				<td> <input type="number" class="form-control" value="0" name="jumlah" > </td>
-				<td>'.$row['id_wilayah'].'</td>
-				<td>'.$row['nama_wilayah'].'</td>
-				<td>Rp. '.$row['ongkos_wilayah'].',-</td>
+				<td> '.$row['id_wilayah'].'</td>
+
+				<td> <input type="text" class="form-control" value="'.$row['nama_wilayah'].'" name="nama_wilayahadmin" > </td>
+				<td> <input type="text" class="form-control" value="Rp. '.$row['ongkos_wilayah'].',-" name="ongkos_wilayahadmin" > </td>
 				<input type="hidden" name="id_wilayah" readonly value="'.$row['id_wilayah'].'">
+				
 				<td> <input type="submit" class="btn btn-link" name="adminupdatewilayah" value="Update" > | <Input type="submit" class="btn btn-link" name="admindeletewilayah" value="Delete"> </td>
 				</form>
 				</tr>';      

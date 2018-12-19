@@ -72,16 +72,14 @@
 			while($row = mysqli_fetch_array($result)) {
 			echo '
 				<tr>
-				<form method="POST" id="updateadminwilyah">
+				<form method="POST" id="adminupdatewilayah">
 				<td> '.$row['id_wilayah'].'</td>
-
 				<td> <input type="text" class="form-control" value="'.$row['nama_wilayah'].'" name="nama_wilayahadmin" > </td>
-				<td> <input type="text" class="form-control" value="Rp. '.$row['ongkos_wilayah'].',-" name="ongkos_wilayahadmin" > </td>
+				<td> <input type="text" class="form-control" value="'.$row['ongkos_wilayah'].'" name="ongkos_wilayahadmin" > </td>
 				<input type="hidden" name="id_wilayah" readonly value="'.$row['id_wilayah'].'">
-				
 				<td> <input type="submit" class="btn btn-link" name="adminupdatewilayah" value="Update" > | <Input type="submit" class="btn btn-link" name="admindeletewilayah" value="Delete"> </td>
 				</form>
-				</tr>';      
+				</tr>';
 				}      
 			?>
 		</tbody>
@@ -144,10 +142,10 @@
 				<tr>
 				<form method="POST">
 				<td>'.$row['id_makanan'].'</td>
-				<td contenteditable="true">'.$row['nama_makanan'].'</td>
-				<td>'.$row['wilayah_makanan'].'</td>
-				<td>'.$row['harga_makanan'].'</td>
-				<td>'.$row['deskripsi_makanan'].'</td>
+				<td> <input type="text" class="form-control" value="'.$row['nama_makanan'].'" name="nama_makananadmin" > </td>
+				<td> <input type="text" class="form-control" value="'.$row['wilayah_makanan'].'" name="wilayah_makananadmin" > </td>
+				<td> <input type="number" class="form-control" value="'.$row['harga_makanan'].'" name="harga_makananadmin" > </td>
+				<td> <input type="text" class="form-control" value="'.$row['deskripsi_makanan'].'" name="deskripsi_makananadmin" > </td>
 				<input type="hidden" name="id_makanan" readonly value="'.$row['id_makanan'].'">
 				<td> <input type="submit" class="btn btn-link" name="adminupdatemakanan" value="Update"> | <Input type="submit" class="btn btn-link" name="admindeletemakanan" value="Delete"> </td>
 				</form>

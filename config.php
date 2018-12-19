@@ -244,5 +244,24 @@ if(isset($_POST['SignUp'])) {
     $result = mysqli_query($mysqli,"DELETE FROM wilayah WHERE id_wilayah = '$wilayahdelete';");
     header("Location: admin.php");
   }
+
+  if(isset($_POST['adminupdatewilayah'])){
+    $id_wilayahupdate = $_POST['id_wilayah'];
+    $namawilayahupdate = $_POST['nama_wilayahadmin'];
+    $ongkoswilayahupdate = $_POST['ongkos_wilayahadmin'];
+
+    $result = mysqli_query($mysqli, "UPDATE wilayah SET nama_wilayah='$namawilayahupdate', ongkos_wilayah='$ongkoswilayahupdate' WHERE id_wilayah='$id_wilayahupdate'");
+    header("Location: admin.php");
+  }
+  
+    if(isset($_POST['adminupdatemakanan'])){
+    $id_makananupdate = $_POST['id_makanan'];
+    $namamakananupdate = $_POST['nama_makananadmin'];
+    $hargamakananupdate = $_POST['harga_makananadmin'];
+    $deskripsimakananupdate = $_POST['deskripsi_makananadmin'];
+    $wilayahmakananupdate = $_POST['wilayah_makananadmin'];
+    $result = mysqli_query($mysqli, "UPDATE makanan SET nama_makanan='$namamakananupdate', harga_makanan='$hargamakananupdate', wilayah_makanan='$wilayahmakananupdate', deskripsi_makanan='$deskripsimakananupdate' WHERE id_makanan='$id_makananupdate'");
+    header("Location: admin.php");
+  }
   ///---ADMIN
 ?>

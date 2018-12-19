@@ -67,13 +67,18 @@ if(isset($_POST['SignUp'])) {
       $_SESSION['update'] = 'users';
        $nrp = mysqli_real_escape_string($mysqli,$_POST['nrp']);
        $pwd = mysqli_real_escape_string($mysqli,$_POST['pwd']); 
-       $sql = "SELECT * FROM users WHERE nrp = '$nrp' and pwd = '$pwd'";
-       $result = mysqli_query($mysqli,$sql);
+       $result = mysqli_query($mysqli,"SELECT * FROM users WHERE nrp = '$nrp' and pwd = '$pwd'");
        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
        if($row['nrp'] == $nrp && $row['pwd'] == $pwd){
-        header("Location: job.php");
+        if($nrp=="05111040000000" && $row['nrp'] == $nrp && $row['pwd'] == $pwd){
+          header("Location: admin.php");
+        }else
+        {
+          header("Location: job.php");
         $_SESSION['job'] = '';
-        $_SESSION['login_user'] = $nrp;
+        $_SESSION['login_user'] = $nrp; 
+        }
+        
        }
        else if ($row['pwd'] != $pwd && $row['nrp'] != $nrp) {
                  $Err = '<div class="alert alert-danger"> NRP dan Password salah. </div>';

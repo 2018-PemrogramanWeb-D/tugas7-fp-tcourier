@@ -28,6 +28,7 @@
 	<div class="container">
 			<div class="page-header center">
 			<h3>Admin Panel</h3>
+			<h4><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout Admin</a></h4>
 			</div>
 	<div class="row left">			
 	
@@ -40,7 +41,7 @@
           </div>
           <div class="form-group">
             <label for="ongkoswilayah">Ongkos Wilayah :</label>
-                <input type="number" name="ongkoswilayah" class="form-control">
+                <input type="text" name="ongkoswilayah" class="form-control" required pattern="^[0-9]+$">
           </div>
           	<input type="Submit" name="tambahwilayah" value="Tambah" class="btn btn-default">
 
@@ -86,6 +87,10 @@
 	</table>
 	<hr><hr><br>
 	</section>
+
+
+
+
 	<section id="about" class="container text-center">
 	<div class="left">
 	<h3>Tambah Makanan</h3>
@@ -98,22 +103,37 @@
           </div>
           <div class="form-group">
             <label for="wilayahmakanan">Wilayah Makanan :</label>
-                <input type="text" name="wilayahmakanan" class="form-control">
+	            <select name="wilayahmakanan" class="form-control btn btn-default dropdown-toggle">
+	         		<option value="NULL" selected >Pilih Wilayah</option>
+			            <?php
+			              $result = mysqli_query($mysqli, "SELECT * FROM wilayah ");
+			              if ($result->num_rows > 0) {
+			              while($row = $result->fetch_assoc()) {
+			                  echo "
+			                        <option value='".$row['id_wilayah']."'>".$row['id_wilayah']."-".$row['nama_wilayah']."</option>
+			                       ";
+			                }
+			            }
+			            ?>
+	            </select>
           </div>
-                    <div class="form-group">
+          <div class="form-group">
             <label for="hargamakanan">Harga Makanan :</label>
-                <input type="number" name="hargamakanan" class="form-control">
+                <input type="text" name="hargamakanan" class="form-control" required pattern="^[0-9]+$">
           </div>
-                    <div class="form-group">
+          <div class="form-group">
             <label for="deskripsimakanan">Deskripsi Makanan :</label>
                 <input type="text-area" name="deskripsimakanan" class="form-control">
           </div>
-          	<input type="Submit" name="tambahwilayah" value="Tambah" class="btn btn-default">
+          	<input type="Submit" name="tambahmakanan" value="Tambah" class="btn btn-default">
         </div>
     </div>
     </form>
 	</div>
+
 	<hr><hr><br>
+
+
 	<div class=" left">
 	<h3>Edit Makanan</h3>
 	</div>
@@ -136,15 +156,33 @@
 		</thead>
 		<tbody id="TableMakanan">
 			<?php 
-			$result = mysqli_query($mysqli, "SELECT * FROM makanan ORDER BY id_makanan ASC");
+			$result = mysqli_query($mysqli, "SELECT * FROM makanan,wilayah WHERE makanan.wilayah_makanan=wilayah.id_wilayah ORDER BY id_makanan ASC");
 			while($row = mysqli_fetch_array($result)) {
 			echo '
 				<tr>
 				<form method="POST">
 				<td>'.$row['id_makanan'].'</td>
 				<td> <input type="text" class="form-control" value="'.$row['nama_makanan'].'" name="nama_makananadmin" > </td>
-				<td> <input type="text" class="form-control" value="'.$row['wilayah_makanan'].'" name="wilayah_makananadmin" > </td>
-				<td> <input type="number" class="form-control" value="'.$row['harga_makanan'].'" name="harga_makananadmin" > </td>
+
+				<td> 
+				<select name="wilayah_makananadmin" class="form-control btn btn-default dropdown-toggle">
+	         		<option value="'.$row['wilayah_makanan'].'" selected >'.$row['wilayah_makanan'].'-'.$row['nama_wilayah'].'</option>'; 
+
+			              $ok = mysqli_query($mysqli, "SELECT * FROM wilayah ");
+			              if ($ok->num_rows > 0) {
+			              while($baris = $ok->fetch_assoc()) {
+			                  echo '
+			                        <option value="'.$baris['id_wilayah'].'">'.$baris['id_wilayah'].'-'.$baris['nama_wilayah'].'</option>
+			                       ';
+			                }
+			            }
+			    echo'  	      				
+	            </select>
+
+				</td>
+
+				
+				<td> <input type="text" class="form-control" value="'.$row['harga_makanan'].'" name="harga_makananadmin" required pattern="^[0-9]+$""> </td>
 				<td> <input type="text" class="form-control" value="'.$row['deskripsi_makanan'].'" name="deskripsi_makananadmin" > </td>
 				<input type="hidden" name="id_makanan" readonly value="'.$row['id_makanan'].'">
 				<td> <input type="submit" class="btn btn-link" name="adminupdatemakanan" value="Update"> | <Input type="submit" class="btn btn-link" name="admindeletemakanan" value="Delete"> </td>
@@ -214,47 +252,6 @@
 		</div>
 </body>
 
-
-  <div class="modal fade" id="modalwilayah">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <form method="post">
-        <div class="modal-header">
-        	<button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 class="modal-title">Edit Wilayah</h3>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-        	<?php 
-			$nrp = $_SESSION['login_user'];
-			$result = mysqli_query($mysqli, "SELECT * FROM users WHERE nrp=$nrp");
-			while ($user_data = mysqli_fetch_array($result)){
-			  $nrp = $user_data['nrp'];
-			  $nama = $user_data['nama'];
-			  $email = $user_data['email'];
-			  $pwd = $user_data['pwd'];
-			  $nohp = $user_data['nohp'];
-			  $idline = $user_data['idline'];
-			}
-			?>
-          <!-- $rowid = $_GET['rowid']; -->
-          <input type="text" name="adminnamawilayah" placeholder="Nama Wilayah">
-          <input type="number" name="adminongkoswilayah" placeholder="Ongkos Wilayah">
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          
-          <button type="submit" name="adminupdatewilayah" class="btn btn-primary submitBtn">Save</button> 
-          </form>
-        </div>
-        
-      </div>
-    </div>
-  </div>
 </html>
 
 <script>

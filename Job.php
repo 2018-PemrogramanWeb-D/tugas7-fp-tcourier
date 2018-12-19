@@ -1,5 +1,8 @@
 <?php include('config.php'); $_SESSION['page'] = 'job';
- if($_SESSION['login_user']==NULL){
+ if($_SESSION['login_admin']!=NULL){
+  header("Location: admin.php");
+ }
+else if($_SESSION['login_user']==NULL){
   header("Location: login.php");
  }
 ?>

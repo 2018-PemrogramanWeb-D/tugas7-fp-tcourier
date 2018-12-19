@@ -1,5 +1,12 @@
-<?php include('config.php');   
+<?php  include('config.php'); 
+if($_SESSION['login_admin']==NULL && $_SESSION['login_user']==NULL){
+  header("Location: login.php"); 
+}
+else if ($_SESSION['login_user']!=NULL){
+	header("Location: job.php");
+}
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>

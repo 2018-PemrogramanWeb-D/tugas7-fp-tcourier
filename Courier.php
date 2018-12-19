@@ -1,5 +1,8 @@
 <?php  include('config.php');  $_SESSION['page'] = 'courier';
-if($_SESSION['login_user']!=NULL){
+if($_SESSION['login_admin']!=NULL){
+  header("Location: admin.php");
+ }
+else if($_SESSION['login_user']!=NULL){
   if ($_SESSION['job'] == NULL) {
   header("Location: job.php");
   }
@@ -7,6 +10,7 @@ if($_SESSION['login_user']!=NULL){
   header("Location: login.php");
 }
 ?>
+
 <!DOCTYPE html>
 
 <html lang="en">

@@ -72,11 +72,15 @@ if(isset($_POST['SignUp'])) {
        if($row['nrp'] == $nrp && $row['pwd'] == $pwd){
         if($nrp=="05111040000000" && $row['nrp'] == $nrp && $row['pwd'] == $pwd){
           header("Location: admin.php");
+          $_SESSION['login_admin'] = "1"; 
+          $_SESSION["page"]="admin";
+          $_SESSION['login_user'] = "";
         }else
         {
           header("Location: job.php");
         $_SESSION['job'] = '';
         $_SESSION['login_user'] = $nrp; 
+        $_SESSION['login_admin'] = "";
         }
         
        }

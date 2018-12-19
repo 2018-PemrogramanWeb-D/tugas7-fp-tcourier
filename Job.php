@@ -1,4 +1,12 @@
-<?php include('config.php'); $_SESSION['page'] = 'job'; ?>
+<?php include('config.php'); $_SESSION['page'] = 'job';
+if($_SESSION['login_user']!=NULL){
+  if ($_SESSION['job'] == NULL) {
+  header("Location: job.php");
+  }
+}else if($_SESSION['login_user']==NULL){
+  header("Location: login.php");
+}
+?>
 <!DOCTYPE html>
 
 <html lang="en">

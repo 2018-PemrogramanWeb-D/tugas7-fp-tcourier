@@ -1,6 +1,11 @@
 <?php 
  include('config.php');
-$nrp = $_SESSION['login_user'];
+if ($_SESSION['update']=="admin") {
+  $nrp = $_SESSION['adminupdateuser'];
+}else if ($_SESSION['update']=="users") {
+  $nrp = $_SESSION['login_user'];
+}
+
 $result = mysqli_query($mysqli, "SELECT * FROM users WHERE nrp=$nrp");
 while ($user_data = mysqli_fetch_array($result)){
   $nrp = $user_data['nrp'];
@@ -11,6 +16,7 @@ while ($user_data = mysqli_fetch_array($result)){
   $idline = $user_data['idline'];
 }
 ?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -23,7 +29,7 @@ while ($user_data = mysqli_fetch_array($result)){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Job || TCourier</title>
+    <title>Edit || TCourier</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Bootstrap Core CSS -->

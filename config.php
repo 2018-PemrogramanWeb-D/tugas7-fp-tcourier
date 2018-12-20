@@ -22,7 +22,6 @@ if(isset($_POST['Update'])){
   else if($_SESSION['update'] == "users"){
       header("Location: job.php");
   }
-	$_SESSION['update'] = "";
 }
 
 if(isset($_POST['SignUp'])) {
@@ -64,23 +63,23 @@ if(isset($_POST['SignUp'])) {
     
 
   if(isset($_POST['SignIn'])) {
-      $_SESSION['update'] = 'users';
+      $_SESSION['update'] = "users";
        $nrp = mysqli_real_escape_string($mysqli,$_POST['nrp']);
        $pwd = mysqli_real_escape_string($mysqli,$_POST['pwd']); 
        $result = mysqli_query($mysqli,"SELECT * FROM users WHERE nrp = '$nrp' and pwd = '$pwd'");
        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
        if($row['nrp'] == $nrp && $row['pwd'] == $pwd){
         if($nrp=="05111040000000" && $row['nrp'] == $nrp && $row['pwd'] == $pwd){
-          header("Location: admin.php");
           $_SESSION['login_admin'] = "1"; 
           $_SESSION["page"]="admin";
           $_SESSION['login_user'] = "";
-        }else
+          header("Location: admin.php");
+        }else 
         {
-          header("Location: job.php");
         $_SESSION['job'] = '';
         $_SESSION['login_user'] = $nrp; 
         $_SESSION['login_admin'] = "";
+        header("Location: job.php");
         }
         
        }
@@ -232,9 +231,9 @@ if(isset($_POST['SignUp'])) {
   }
 
   if(isset($_POST['adminupdateuser'])) {
-    $nrpupdate= $_POST['nrp'];
-    $_SESSION['login_user'] = $nrpupdate;
-    $_SESSION['update'] = "admin";
+     $nrpupdate= $_POST['nrp'];
+     $_SESSION['adminupdateuser'] = $nrpupdate;
+     $_SESSION['update'] = "admin";
     header("Location: edit.php");
   }
 
@@ -248,7 +247,7 @@ if(isset($_POST['SignUp'])) {
     $result = mysqli_query($mysqli,"DELETE FROM makanan WHERE id_makanan = '$makanandelete';");
     header("Location: admin.php");
   }
-      if(isset($_POST['admindeletewilayah'])) {
+  if(isset($_POST['admindeletewilayah'])) {
     $wilayahdelete = $_POST['id_wilayah'];
     $result = mysqli_query($mysqli,"DELETE FROM wilayah WHERE id_wilayah = '$wilayahdelete';");
     header("Location: admin.php");
@@ -263,7 +262,7 @@ if(isset($_POST['SignUp'])) {
     header("Location: admin.php");
   }
   
-    if(isset($_POST['adminupdatemakanan'])){
+  if(isset($_POST['adminupdatemakanan'])){
     $id_makananupdate = $_POST['id_makanan'];
     $namamakananupdate = $_POST['nama_makananadmin'];
     $hargamakananupdate = $_POST['harga_makananadmin'];
